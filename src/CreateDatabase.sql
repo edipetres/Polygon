@@ -1,5 +1,6 @@
-drop table if exists building;
 drop table if exists customer;
+drop table if exists building;
+
 
 CREATE TABLE customer (
 customerID int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,

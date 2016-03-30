@@ -5,6 +5,7 @@
  */
 package DataSource;
 
+import Domain.Building;
 import Domain.Customer;
 import java.sql.Connection;
 
@@ -15,6 +16,7 @@ import java.sql.Connection;
 public class DBFacade {
     
     private Connection con;
+    private BuildingMapper bm;
     //add mappers here as private objects
     private CustomerMapper customerMap;
     //Singleton start
@@ -22,6 +24,7 @@ public class DBFacade {
     
     private DBFacade () {
         con = DBConnector.getInstance().getConnection();
+        bm = new BuildingMapper();
         //assign the mappers with a new object 
     }
     
@@ -33,6 +36,9 @@ public class DBFacade {
     }
     //Singleton end
     
+    public boolean addBuilding() {
+        return bm.addBuilding(con,1,null);
+    }
     public boolean createCustomer(Customer c){
 
         return customerMap.createCustomer(c, con);
