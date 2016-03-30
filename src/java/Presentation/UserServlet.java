@@ -8,6 +8,7 @@ package Presentation;
 import Domain.DomainFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,9 +52,9 @@ public class UserServlet extends HttpServlet {
             String command = request.getParameter("command");
             switch (command)
             {
-//                case "getOrder":
-//                    getOrder(request, response, domainModel);
-//                    break;
+                case "addBuilding":
+                    addBuilding(request, response, domainModel);
+                    break;
 //                case "newOrder":
 //                    createOrder(request, response, domainModel);
 //                    break;
@@ -71,6 +72,18 @@ public class UserServlet extends HttpServlet {
 //                    break;
     }
     }
+    
+    private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        boolean result = false;
+        
+        
+        request.setAttribute("Message", "");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowOrder.jsp");
+        dispatcher.forward(request, response);
+        return result;
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

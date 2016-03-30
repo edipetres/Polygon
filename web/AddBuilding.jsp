@@ -14,7 +14,7 @@
     <body>
         <h1>You can add a new building here:</h1>
         <form name="AddBuilding" action="UserServlet" method="POST">
-            <input type="hidden" name="doThis" value="add">
+            <input type="hidden" name="command" value="addBuilding">
             Building Name: <br>
             <input type="text" name="name" /> <br>
             Address: <br>
