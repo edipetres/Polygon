@@ -17,11 +17,13 @@
             <input type="hidden" name="command" value="addBuilding">
             Building Name: <br>
             <input type="text" name="name" /> <br>
-            Address: <br>
-            <input type="text" name="address"> <br>
+            Street: <br>
+            <input type="text" name="street"> <br>
             Size: <input type="text" name="size" size="5"> 
             <br>
+            Zip: <br> <input type="text" name="zip" size="5">
             <input type="submit" value="Add">
         </form>
+        ${Message}
     </body>
 </html>
