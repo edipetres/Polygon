@@ -27,19 +27,12 @@ public class DomainFacade {
          return new DomainFacade();
     }
     //----------------------
-    public Customer createCustomer(String company_name, String fname, String lname, String username, String pwd, String email, String phone_no)
+    public boolean createCustomer(Customer c)
     {
-        newCustomer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
-        
-        boolean status = dbf.createCustomer(newCustomer);
-        if (!status)
-        {
-            newCustomer = null;
-        }
-
-        return newCustomer;
+        return dbf.createCustomer(c);
     }
 
+    
     public boolean addBuilding() {
         return dbf.addBuilding();
 }

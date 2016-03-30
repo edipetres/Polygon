@@ -92,13 +92,14 @@ public class UserServlet extends HttpServlet {
         String company_name = request.getParameter("company_name");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
-        String username =request.getParameter("username");
+        String username = request.getParameter("username");
         String pwd = request.getParameter("pwd");
         String email = request.getParameter("email");
         String phone_no = request.getParameter("phone_no");
 
-        Customer customer = domainModel.createCustomer(company_name, fname, lname, username, pwd, email, phone_no);
-
+        Customer customer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
+        System.out.println(customer.getCompany_name());
+        domainModel.createCustomer(customer);
         request.setAttribute("customer", customer);
     }
 

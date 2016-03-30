@@ -25,6 +25,7 @@ public class DBFacade {
     private DBFacade () {
         con = DBConnector.getInstance().getConnection();
         bm = new BuildingMapper();
+        customerMap = new CustomerMapper();
         //assign the mappers with a new object 
     }
     
