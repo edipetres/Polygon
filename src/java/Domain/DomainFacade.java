@@ -27,5 +27,7 @@ public class DomainFacade {
     }
     //----------------------
 
-    
+    public boolean addBuilding() {
+        return dbf.addBuilding();
+}
 }

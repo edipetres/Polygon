@@ -77,6 +77,10 @@ public class UserServlet extends HttpServlet {
         boolean result = false;
         
         
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        int size = Integer.parseInt(request.getParameter("size"));
+        
         request.setAttribute("Message", "");
         RequestDispatcher dispatcher = request.getRequestDispatcher("ShowOrder.jsp");
         dispatcher.forward(request, response);
