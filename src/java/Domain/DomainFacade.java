@@ -5,10 +5,26 @@
  */
 package Domain;
 
+import DataSource.DBFacade;
+
 /**
  *
  * @author edipetres
  */
 public class DomainFacade {
-    
+   // private Order currentOrder;       // Order in focus
+    private DBFacade dbf;
+
+    private DomainFacade()
+    {
+        //currentOrder = null;
+        dbf = DBFacade.getInstance();
+    }
+
+    public static DomainFacade getInstance()
+    {
+         return new DomainFacade();
+    }
+    //----------------------
+
 }

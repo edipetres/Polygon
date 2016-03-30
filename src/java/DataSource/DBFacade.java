@@ -21,7 +21,7 @@ public class DBFacade {
     
     private DBFacade () {
         con = DBConnector.getInstance().getConnection();
-        //assign the mappers with a new object here
+        //assign the mappers with a new object 
     }
     
     public static DBFacade getInstance() {
