@@ -5,7 +5,11 @@
  */
 package Presentation;
 
+
 import Domain.Building;
+
+import Domain.Customer;
+
 import Domain.DomainFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,9 +60,9 @@ public class UserServlet extends HttpServlet {
                 case "addBuilding":
                     addBuilding(request, response, domainModel);
                     break;
-//                case "newOrder":
-//                    createOrder(request, response, domainModel);
-//                    break;
+                case "addCustomer":
+                    createCustomer(request, response, domainModel);
+                    break;
 //                case "newOrderDetail":
 //                    createNewOrderDetail(request, response, domainModel);
 //                    break;
@@ -92,7 +96,19 @@ public class UserServlet extends HttpServlet {
         return result;
     }
     
-    
+    private void createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        String company_name = request.getParameter("company_name");
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String username =request.getParameter("username");
+        String pwd = request.getParameter("pwd");
+        String email = request.getParameter("email");
+        String phone_no = request.getParameter("phone_no");
+
+        Customer customer = domainModel.createCustomer(company_name, fname, lname, username, pwd, email, phone_no);
+
+        request.setAttribute("customer", customer);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

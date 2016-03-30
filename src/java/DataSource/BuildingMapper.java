@@ -21,15 +21,15 @@ import java.util.logging.Logger;
 public class BuildingMapper {
     public boolean addBuilding(Connection con,Building building) {
         boolean result = false;
-        String sqlString = "INSERT INTO Building(name,street,zip,size,condition_level,customer_id) "
+        String sqlString = "INSERT INTO Building (building_id,name,street,zip,condition_level,customer_id) "
                 + "VALUES (?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
-            stmt.setString(1, building.getName());
-            stmt.setString(2, building.getAddress());
-            stmt.setInt(3, building.getZip());
-            stmt.setInt(4, building.getSize());
+            stmt.setInt(1, building.getBuildingID());
+            stmt.setString(2, building.getName());
+            stmt.setString(3, building.getStreet());
+            stmt.setInt(4, building.getZip());
             stmt.setInt(5, building.getCondition());
             stmt.setInt(6, building.getCustomerID());
             
@@ -38,6 +38,7 @@ public class BuildingMapper {
             result = true;
         } catch (SQLException ex) {
             result = false;
+            System.out.println("Exception in dbconnector. ex = " + ex);
         }
         return result;
     }
