@@ -30,7 +30,7 @@ public class DomainFacade {
     public Customer createCustomer(String company_name, String fname, String lname, String username, String pwd, String email, String phone_no)
     {
         newCustomer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
-
+        
         boolean status = dbf.createCustomer(newCustomer);
         if (!status)
         {
@@ -39,4 +39,5 @@ public class DomainFacade {
 
         return newCustomer;
     }
+
 }
