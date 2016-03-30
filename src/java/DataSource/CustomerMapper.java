@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class CustomerMapper {
     
-    public boolean createCustomer(Customer c, Connection con){
+    public boolean createCustomer(Customer c, Connection con) throws SQLException{
     boolean result = false;
         String sql = "INSERT INTO Customer (company_name, fname, lname, username, pwd, email, phone_no) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement statement = con.prepareStatement(sql);
@@ -31,13 +31,14 @@ public class CustomerMapper {
             statement.setString(7, c.getPhone_no());
 
             statement.execute();
-            
+            statement.close();
             result = true;
-        } catch (SQLException e, Exception ex) {
+        } catch (SQLException e) {
             result = false;
             System.out.println("Problem in Mapper "+ e);
-            System.out.println(ex);
-        }finally{statement.close();}
+
+        }
         return result;
     }
+
 }
