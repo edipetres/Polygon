@@ -14,6 +14,7 @@ import Domain.DomainFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -66,9 +67,9 @@ public class UserServlet extends HttpServlet {
                 case "addCustomer":
                     createCustomer(request, response, domainModel);
                     break;
-//                case "newOrderDetail":
-//                    createNewOrderDetail(request, response, domainModel);
-//                    break;
+                case "showCustomers":
+                    showCustomers(request, response, domainModel);
+                    break;
 //                    
 //                //== exercise
 //                case "updateOrder":
@@ -114,6 +115,15 @@ public class UserServlet extends HttpServlet {
 //        request.setAttribute("customer", customer);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddCustomer.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void showCustomers(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<Customer> customers = df.showCustomers();
+	request.setAttribute("customers", customers);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomers.jsp");
         dispatcher.forward(request, response);
     }
 

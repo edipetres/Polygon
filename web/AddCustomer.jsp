@@ -26,7 +26,7 @@
   <form role="form" action="UserServlet" method="post">
       <input type="hidden" name="command" value="addCustomer">
     <div class="form-group">
-      <label for="company_name">Company name:</label>
+      <label for="company_name">Municipality or association name:</label>
       <input type="text" class="form-control" name="company_name">
     </div>
     <div class="form-group">

@@ -45,18 +45,18 @@ public class CustomerMapper {
     }
     public List<Customer> viewAllCustomers(Connection con){
         ArrayList<Customer> customers = new ArrayList<>();
-        String sql = "SELECT * FROM Customers";
+        String sql = "SELECT * FROM Customer";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                     Customer c = new Customer(
-                    rs.getString("Match_id"),
-                    rs.getString(""),
-                    rs.getString(""),
-                    rs.getString(""),
-                    rs.getString(""),
-                    rs.getString(""),
-                    rs.getString("")
+                    rs.getString("company_name"),
+                    rs.getString("fname"),
+                    rs.getString("lname"),
+                    rs.getString("username"),
+                    rs.getString("pwd"),
+                    rs.getString("email"),
+                    rs.getString("phone_no")
                     );
                     customers.add(c);
                 }

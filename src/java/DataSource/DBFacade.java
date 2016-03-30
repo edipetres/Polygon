@@ -9,6 +9,7 @@ import Domain.Building;
 import Domain.Customer;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -45,4 +46,11 @@ public class DBFacade {
     public boolean addBuilding(Building building) {
         return bm.addBuilding(con, building);
     }
+    
+    public List<Customer> showCustomers() 
+	  {
+		  return customerMap.viewAllCustomers(con);
+	  }
+    
+   
 }

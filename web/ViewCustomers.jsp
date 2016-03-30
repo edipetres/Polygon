@@ -4,7 +4,14 @@
     Author     : Minerva
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Domain.Customer"%>
+<%@page import="Domain.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	List<Customer> customers = (List<Customer>) request.getAttribute("customers");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,16 +31,20 @@
         <div class="container">
         <h1>Customers</h1>
         <!--single customer info start-->
+        <c:forEach var="customer" items="${customers}" >
         <div class="panel panel-info">
-      <div class="panel-heading">Company name</div>
+      <div class="panel-heading"><c:out value="${customer.company_name}"/></div>
       <div class="panel-body">
-          <b>Firstname Lastname</b> <br>
-          <span class="glyphicon glyphicon-envelope"></span> name@email.com <br>
-          <span class="glyphicon glyphicon-earphone"></span> 05 123 4567<br>
+          <b> <c:out value="${customer.fname}"/> <c:out value="${customer.lname}"/></b> <br>
+          <span class="glyphicon glyphicon-envelope"></span> <c:out value="${customer.email}"/> <br>
+          <span class="glyphicon glyphicon-earphone"></span> <c:out value="${customer.phone_no}"/><br>
           <button type="button" class="btn btn-primary">View buildings</button>
       </div>
     </div><!-- single customer info end-->
-        
+  
+    </c:forEach> 
+ 
+        </table>
   </div><!--container end-->
   
   

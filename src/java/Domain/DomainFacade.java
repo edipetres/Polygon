@@ -37,6 +37,9 @@ public class DomainFacade {
     public boolean addBuilding(Building building) {
         return dbf.addBuilding(building);
     }
-
+    public List<Customer> showCustomers() {
+        List <Customer> allCustomers = dbf.showCustomers();
+        return allCustomers;
+    }
 
 }
