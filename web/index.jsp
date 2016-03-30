@@ -5,7 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
-request.setAttribute("bansk", "olen binsk!");
+request.setAttribute("bansk", "olen himokoodari banskton!");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
