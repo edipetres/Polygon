@@ -23,7 +23,8 @@
     <body>
         <div class="container">
   <h1>Add new customer</h1>
-  <form role="form" action="UserServlet">
+  <form role="form" action="UserServlet" method="post">
+      <input type="hidden" name="command" value="addCustomer">
     <div class="form-group">
       <label for="company_name">Company name:</label>
       <input type="text" class="form-control" name="company_name">

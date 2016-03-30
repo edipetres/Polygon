@@ -55,9 +55,9 @@ public class UserServlet extends HttpServlet {
                 case "addBuilding":
                     addBuilding(request, response, domainModel);
                     break;
-//                case "newOrder":
-//                    createOrder(request, response, domainModel);
-//                    break;
+                case "addCustomer":
+                    createCustomer(request, response, domainModel);
+                    break;
 //                case "newOrderDetail":
 //                    createNewOrderDetail(request, response, domainModel);
 //                    break;
@@ -83,7 +83,11 @@ public class UserServlet extends HttpServlet {
         return result;
     }
     
-    
+    private boolean createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        boolean result = false;
+
+        return result;
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
