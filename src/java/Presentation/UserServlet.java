@@ -108,7 +108,10 @@ public class UserServlet extends HttpServlet {
         Customer customer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
         System.out.println(customer.getCompany_name());
         domainModel.createCustomer(customer);
-        request.setAttribute("customer", customer);
+//        request.setAttribute("customer", customer);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AddCustomer.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
