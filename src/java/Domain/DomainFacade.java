@@ -14,7 +14,8 @@ import DataSource.DBFacade;
 public class DomainFacade {
    // private Order currentOrder;       // Order in focus
     private DBFacade dbf;
-
+    private Customer newCustomer;
+    
     private DomainFacade()
     {
         //currentOrder = null;
@@ -26,5 +27,16 @@ public class DomainFacade {
          return new DomainFacade();
     }
     //----------------------
+    public Customer createCustomer(String company_name, String fname, String lname, String username, String pwd, String email, String phone_no)
+    {
+        newCustomer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
 
+        boolean status = dbf.createCustomer(newCustomer);
+        if (!status)
+        {
+            newCustomer = null;
+        }
+
+        return newCustomer;
+    }
 }
