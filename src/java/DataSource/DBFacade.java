@@ -36,11 +36,11 @@ public class DBFacade {
     }
     //Singleton end
     
-    public boolean addBuilding() {
-        return bm.addBuilding(con,1,null);
-    }
     public boolean createCustomer(Customer c){
-
         return customerMap.createCustomer(c, con);
+    }
+
+    public boolean addBuilding(Building building) {
+        return bm.addBuilding(con, building);
     }
 }

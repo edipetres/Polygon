@@ -40,7 +40,7 @@ public class DomainFacade {
         return newCustomer;
     }
 
-    public boolean addBuilding() {
-        return dbf.addBuilding();
-}
+    public boolean addBuilding(Building building) {
+        return dbf.addBuilding(building);
+    }
 }

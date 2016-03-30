@@ -19,15 +19,19 @@ import java.util.logging.Logger;
  * @author edipetres
  */
 public class BuildingMapper {
-    public boolean addBuilding(Connection con, int customerID, Building building) {
+    public boolean addBuilding(Connection con,Building building) {
         boolean result = false;
-        String sqlString = "INSERT INTO building(customerID,name,address,size,cond,lastCheckUp) "
+        String sqlString = "INSERT INTO Building(name,street,zip,size,condition_level,customer_id) "
                 + "VALUES (?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
-            stmt.setInt(1, customerID);
-            //stmt.setString(2, name);
+            stmt.setString(1, building.getName());
+            stmt.setString(2, building.getAddress());
+            stmt.setInt(3, building.getZip());
+            stmt.setInt(4, building.getSize());
+            stmt.setInt(5, building.getCondition());
+            stmt.setInt(6, building.getCustomerID());
             
             stmt.execute();
             stmt.close();

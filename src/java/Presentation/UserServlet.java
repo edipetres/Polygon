@@ -5,6 +5,7 @@
  */
 package Presentation;
 
+import Domain.Building;
 import Domain.DomainFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,11 +79,15 @@ public class UserServlet extends HttpServlet {
         
         
         String name = request.getParameter("name");
-        String address = request.getParameter("address");
+        String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
+        int zip = Integer.parseInt(request.getParameter("zip"));
         
-        request.setAttribute("Message", "");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowOrder.jsp");
+        Building tempBuild = new Building(1,name,street,size,0,null,zip);
+        result = domainModel.addBuilding(tempBuild);
+        
+        request.setAttribute("Message", "Building added: "+result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
         dispatcher.forward(request, response);
         return result;
     }
