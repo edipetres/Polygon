@@ -83,8 +83,7 @@ public class UserServlet extends HttpServlet {
     private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         boolean result = false;
         
-        
-        String name = request.getParameter("name");
+        String name = request.getParameter("b_name");
         String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
