@@ -86,13 +86,13 @@ public class CheckupReportMapper {
         boolean result = false;
         String sqlString = "UPDATE CheckupReport  "
                 + "SET checkDate=current_date(), condition_level=?, reportStatus='done', comments=? "
-                + "WHERE creport_id=?";
+                + "WHERE creport_id=3";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
             stmt.setInt(1, cr.getCondition_level());
             stmt.setString(2, cr.getComments());
-            stmt.setInt(3, cr.getCreport_id());
+//            stmt.setInt(3, cr.getCreport_id());
 
             stmt.execute();
             stmt.close();

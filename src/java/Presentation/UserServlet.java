@@ -189,8 +189,8 @@ public class UserServlet extends HttpServlet {
         CheckupReport report = new CheckupReport(condition_level, comments);
         domainModel.updateCheckupReport(report);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
-        dispatcher.forward(request, response);    
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 
+        dispatcher.forward(request, response);
     }
 
 }
