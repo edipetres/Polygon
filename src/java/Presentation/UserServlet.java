@@ -77,6 +77,9 @@ public class UserServlet extends HttpServlet {
                 case "showActiveCheckupReports":
                     showActiveCheckupReports(request, response, domainModel);
                     break;  
+                case "requestCheckup":
+                    requestCheckup(request, response, domainModel);
+                    break;  
                     
     }
     }
@@ -191,6 +194,10 @@ public class UserServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 
         dispatcher.forward(request, response);
+    }
+
+    private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+        domainModel.createCheckupReport(2);
     }
 
 }
