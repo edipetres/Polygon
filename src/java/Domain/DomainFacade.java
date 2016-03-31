@@ -6,6 +6,8 @@
 package Domain;
 
 import DataSource.DBFacade;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -27,7 +29,7 @@ public class DomainFacade {
          return new DomainFacade();
     }
     //----------------------
-    public boolean createCustomer(Customer c)
+    public boolean createCustomer(Customer c) throws SQLException
     {
         return dbf.createCustomer(c);
     }
@@ -35,4 +37,9 @@ public class DomainFacade {
     public boolean addBuilding(Building building) {
         return dbf.addBuilding(building);
     }
+    public List<Customer> showCustomers() {
+        List <Customer> allCustomers = dbf.showCustomers();
+        return allCustomers;
+    }
+
 }

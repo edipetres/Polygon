@@ -8,8 +8,11 @@ package DataSource;
 import Domain.Customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,10 +38,35 @@ public class CustomerMapper {
             result = true;
         } catch (SQLException e) {
             result = false;
-            System.out.println("Problem in Mapper "+ e);
+            System.out.println("Problem in CustomerMapper "+ e);
 
         }
         return result;
     }
-
+    public List<Customer> viewAllCustomers(Connection con){
+        ArrayList<Customer> customers = new ArrayList<>();
+        String sql = "SELECT * FROM Customer";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                    Customer c = new Customer(
+                    rs.getString("company_name"),
+                    rs.getString("fname"),
+                    rs.getString("lname"),
+                    rs.getString("username"),
+                    rs.getString("pwd"),
+                    rs.getString("email"),
+                    rs.getString("phone_no")
+                    );
+                    customers.add(c);
+                }
+            
+            return customers;
+        } catch (Exception e) {
+            System.out.println("Problem in CustomerMapper ");
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+    }
 }

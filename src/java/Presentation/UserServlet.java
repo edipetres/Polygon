@@ -13,6 +13,10 @@ import Domain.Customer;
 import Domain.DomainFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +42,7 @@ public class UserServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         //-- Establish or reestablish application demainModeltext
             HttpSession sessionObj = request.getSession();
@@ -63,9 +67,9 @@ public class UserServlet extends HttpServlet {
                 case "addCustomer":
                     createCustomer(request, response, domainModel);
                     break;
-//                case "newOrderDetail":
-//                    createNewOrderDetail(request, response, domainModel);
-//                    break;
+                case "showCustomers":
+                    showCustomers(request, response, domainModel);
+                    break;
 //                    
 //                //== exercise
 //                case "updateOrder":
@@ -95,7 +99,7 @@ public class UserServlet extends HttpServlet {
         return result;
     }
     
-    private void createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+    private void createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException, SQLException {
         String company_name = request.getParameter("company_name");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
@@ -112,6 +116,15 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddCustomer.jsp");
         dispatcher.forward(request, response);
     }
+    
+    private void showCustomers(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<Customer> customers = df.showCustomers();
+	request.setAttribute("customers", customers);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomers.jsp");
+        dispatcher.forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -125,7 +138,11 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -139,7 +156,11 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
