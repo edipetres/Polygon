@@ -23,8 +23,8 @@
     <body>
         <div class="container">
   <h1>Check up report </h1>
-  <%request.setAttribute("customername", "test");%>
-  ${customername}
+
+  Customer name
   Building info
   <form role="form" action="UserServlet" method="post">
       <input type="hidden" name="command" value="updateCheckupReport">
@@ -38,6 +38,7 @@
       </textarea>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
+    <a href="UserServlet?command=showActiveCheckupReports" class="button">Back</a>
   </form>
 </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
