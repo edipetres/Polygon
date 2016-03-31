@@ -60,14 +60,19 @@ FOREIGN KEY (building_id) REFERENCES Building(building_id),
 FOREIGN KEY (employee_id) REFERENCES Employee(emp_id)
 );
 
-create table DamageReport(
-dreport_id int primary key,
+create table ServiceRequest(
+srequest_id int primary key,
 building_id int NOT NULL,
-checkDate DATE NOT NULL,
-incident varchar(10),
-reportStatus varchar(10) NOT NULL,
-comments varchar(30),
-FOREIGN KEY (building_id) REFERENCES Building(building_id)
+employee_id int,
+requestDate DATE,
+checkDate DATE,
+service_id int,
+description varchar(255),
+reportStatus enum('pending','active','done') NOT NULL,
+FOREIGN KEY (building_id) REFERENCES Building(building_id),
+FOREIGN KEY (employee_id) REFERENCES Employee(emp_id)
 );
-
-select * from Customer;
+create table Services(
+service_id int primary key,
+service_name varchar(40)
+);
