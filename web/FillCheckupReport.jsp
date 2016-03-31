@@ -26,7 +26,7 @@
   Customer name
   Building info
   <form role="form" action="UserServlet" method="post">
-      <input type="hidden" name="command" value="addCheckupReport">
+      <input type="hidden" name="command" value="updateCheckupReport">
     <div class="form-group">
       <label for="condition_level">Condition of building:</label>
       <input type="number" class="form-control" name="condition_level">

@@ -7,6 +7,7 @@ package Presentation;
 
 
 import Domain.Building;
+import Domain.CheckupReport;
 
 import Domain.Customer;
 
@@ -73,10 +74,10 @@ public class UserServlet extends HttpServlet {
                 case "updateCheckupReport":
                     updateCheckupReport(request, response, domainModel);
                     break;
-//                //== exercise
-//                case "updateOrderDetail":
-//                    updateOrderDetail(request, response, domainModel);
-//                    break;
+                case "showActiveCheckupReports":
+                    showActiveCheckupReports(request, response, domainModel);
+                    break;  
+                    
     }
     }
     
@@ -121,6 +122,14 @@ public class UserServlet extends HttpServlet {
 	request.setAttribute("customers", customers);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomers.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void showActiveCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<CheckupReport> reports = df.showActiveCheckupReports();
+	request.setAttribute("reports", reports);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -172,8 +181,16 @@ public class UserServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+
+        int condition_level = Integer.parseInt(request.getParameter("condition_level"));
+        String comments = request.getParameter("comments");
+
+        CheckupReport report = new CheckupReport(condition_level, comments);
+        domainModel.updateCheckupReport(report);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
+        dispatcher.forward(request, response);    
     }
 
 }

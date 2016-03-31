@@ -98,7 +98,8 @@ SET checkDate=current_date(), condition_level=1, reportStatus='done', comments='
 WHERE creport_id=2;
 
 select * from checkupreport;
-select reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.lname from CheckupReport
+select reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport
 join Building ON Building.building_id=CheckupReport.building_id
 join Customer ON Customer.customer_id=Building.customer_id
-join Employee ON Employee.emp_id=CheckupReport.employee_id;
+join Employee ON Employee.emp_id=CheckupReport.employee_id
+where reportStatus='active';

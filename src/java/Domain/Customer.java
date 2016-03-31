@@ -19,6 +19,12 @@ public class Customer {
     String email;
     String phone_no;
 
+    public Customer(String company_name, String fname, String lname) {
+        this.company_name = company_name;
+        this.fname = fname;
+        this.lname = lname;
+    }
+
     public Customer(String company_name, String fname, String lname, String username, String pwd, String email, String phone_no) {
         this.company_name = company_name;
         this.fname = fname;

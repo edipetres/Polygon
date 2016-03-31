@@ -57,9 +57,13 @@ public class DBFacade {
         return creportmap.updateCheckupReport(checkuprreport, con);
     }
     public List<Customer> showCustomers() 
-	  {
-		  return customerMap.viewAllCustomers(con);
-	  }
+    {
+	return customerMap.viewAllCustomers(con);
+    }
+    public List<CheckupReport> showActiveCheckupReports() 
+    {
+	return creportmap.getActiveReports(con);
+    }
     
    
 }
