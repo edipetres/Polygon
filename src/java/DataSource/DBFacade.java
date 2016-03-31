@@ -8,6 +8,7 @@ package DataSource;
 import Domain.Building;
 import Domain.Customer;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -37,7 +38,7 @@ public class DBFacade {
     }
     //Singleton end
     
-    public boolean createCustomer(Customer c){
+    public boolean createCustomer(Customer c) throws SQLException{
         return customerMap.createCustomer(c, con);
     }
 
