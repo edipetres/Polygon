@@ -37,6 +37,12 @@ public class DomainFacade {
     public boolean addBuilding(Building building) {
         return dbf.addBuilding(building);
     }
+    public boolean createCheckupReport(int building_id) {
+        return dbf.createCheckupReport(building_id);
+    }
+    public boolean updateCheckupReport(CheckupReport checkupreport) {
+        return dbf.updateCheckupReport(checkupreport);
+    }
     public List<Customer> showCustomers() {
         List <Customer> allCustomers = dbf.showCustomers();
         return allCustomers;

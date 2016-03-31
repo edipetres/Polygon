@@ -18,8 +18,7 @@ public class CheckupReport {
     String comments;
     int employee_id; 
 
-    public CheckupReport(Building building, String checkDate, int condition_level, String comments) {
-        this.building = building;
+    public CheckupReport(String checkDate, int condition_level, String comments) {
         this.checkDate = checkDate;
         this.condition_level = condition_level;
         this.comments = comments;

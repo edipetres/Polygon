@@ -70,11 +70,9 @@ public class UserServlet extends HttpServlet {
                 case "showCustomers":
                     showCustomers(request, response, domainModel);
                     break;
-//                    
-//                //== exercise
-//                case "updateOrder":
-//                    updateOrder(request, response, domainModel);
-//                    break;
+                case "updateCheckupReport":
+                    updateCheckupReport(request, response, domainModel);
+                    break;
 //                //== exercise
 //                case "updateOrderDetail":
 //                    updateOrderDetail(request, response, domainModel);
@@ -174,5 +172,9 @@ public class UserServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
