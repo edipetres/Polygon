@@ -23,7 +23,8 @@
     <body>
         <div class="container">
   <h1>Check up report </h1>
-  Customer name
+  <%request.setAttribute("customername", "test");%>
+  ${customername}
   Building info
   <form role="form" action="UserServlet" method="post">
       <input type="hidden" name="command" value="updateCheckupReport">
