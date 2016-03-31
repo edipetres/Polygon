@@ -1,10 +1,13 @@
-create database Polygon;
+-- create database Polygon;
 use Polygon;
 
-Drop table if exists Report;
+Drop table if exists DamageReport;
+Drop table if exists CheckupReport;
 Drop table if exists Building;
+Drop table if exists City;
 Drop table if exists Employee;
 Drop table if exists Customer;
+
 
 
 
@@ -48,10 +51,10 @@ create table CheckupReport(
 creport_id int primary key,
 building_id int NOT NULL,
 checkDate DATE NOT NULL,
-condition_level int NOT NULL,
-reportStatus varchar(10) NOT NULL,
-comments varchar(30),
-employee_id int NOT NULL,
+condition_level int,
+reportStatus enum('pending','active','done') NOT NULL,
+comments varchar(255),
+employee_id int,
 FOREIGN KEY (building_id) REFERENCES Building(building_id),
 FOREIGN KEY (employee_id) REFERENCES Employee(emp_id)
 );
