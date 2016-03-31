@@ -23,6 +23,7 @@ phone_no varchar(15)
 
 create table Customer(
 customer_id int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+company_name varchar(30),
 fname varchar(30) NOT NULL,
 lname varchar(30) NOT NULL,
 username varchar(30) NOT NULL,
@@ -48,7 +49,7 @@ FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
 );
 
 create table CheckupReport(
-creport_id int primary key,
+creport_id int auto_increment primary key,
 building_id int NOT NULL,
 checkDate DATE NOT NULL,
 condition_level int,
@@ -68,3 +69,5 @@ reportStatus varchar(10) NOT NULL,
 comments varchar(30),
 FOREIGN KEY (building_id) REFERENCES Building(building_id)
 );
+
+select * from Customer;
