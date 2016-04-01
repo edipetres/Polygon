@@ -63,6 +63,44 @@ public class CheckupReportMapper {
             return null;
         }
     }
+    public CheckupReport getReportByID(int reportid, Connection con){
+    CheckupReport cr = null;
+    String sql = "SELECT * FROM CheckupReport WHERE creport_id=?";
+    try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setInt(1, reportid);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                    Building b = new Building(
+                    rs.getString("street"),
+                    rs.getInt("size"),
+                    rs.getInt("zip"));
+                    Customer c = new Customer(
+                    rs.getString("company_name"),
+                    rs.getString("fname"),
+                    rs.getString("lname")
+                    );
+                    Employee e = new Employee(
+                    rs.getString("fname"),
+                    rs.getString("lname")
+                    );
+                    cr = new CheckupReport(
+                    rs.getInt("creport_id"),
+                    b,
+                    c,
+                    e,
+                    rs.getString("reportStatus")
+                    );
+
+                }
+            
+            return cr;
+        } catch (Exception e) {
+            System.out.println("Problem in CustomerMapper ");
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
     public boolean createCheckupReport(int building_id, Connection con) {
         boolean result = false;
         String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus) "

@@ -25,13 +25,14 @@
         for (int i =0; i < reports.size(); i ++ ){
             
         %>
+        <%= reports.get(i).getCreport_id()%>
         <b>Customer: </b>
     <%= reports.get(i).getCustomer().getCompany_name()%>
     <b>Worker: </b>
     <%= reports.get(i).getEmployee().getFname()%>
     <%= reports.get(i).getEmployee().getLname()%> 
     
-    <a href="FillCheckupReport.jsp">Go</a>
+    <a href="FillCheckupReport.jsp?reportid=<%= reports.get(i).getCreport_id()%>">Go</a>
 
     <br>
  <%} //end of for loop%>
