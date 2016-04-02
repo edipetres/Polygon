@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +23,17 @@
 
                             <!-- Form Name -->
                             <legend>Request a service</legend>
+                            <form action="UIServlet"> 
+                                <input type="hidden" name="command" value="getAllServices">
+                                <input type="submit" value="Show all">
+                            </form>
+
+                            <!-- JSTL iterator-->
+                            <select>
+                                <c:forEach var="service" items="${serviceList}">
+                                    <option><c:out value="${service}"/></option>
+                                </c:forEach>
+                            </select>
 
                             <!-- Multiple Radios -->
                             <div class="form-group">

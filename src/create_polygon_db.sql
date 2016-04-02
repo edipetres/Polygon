@@ -1,14 +1,15 @@
 -- create database Polygon;
 use Polygon;
 
-Drop table if exists DamageReport;
-Drop table if exists CheckupReport;
-Drop table if exists Building;
+
 Drop table if exists City;
+Drop table if exists CheckupReport;
+Drop table if exists ServiceRequest;
+Drop table if exists Services;
+Drop table if exists Report;
+Drop table if exists Building;
 Drop table if exists Employee;
 Drop table if exists Customer;
-
-
 
 
 create table Employee(
