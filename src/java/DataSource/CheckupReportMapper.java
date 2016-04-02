@@ -21,7 +21,24 @@ import java.util.List;
  * @author Minerva
  */
 public class CheckupReportMapper {
-    
+//        private static Connection conn;
+//    private static CheckupReportMapper sm;
+//    
+//    CheckupReportMapper() {
+//        conn = (Connection) DBConnector.getInstance().getConnection();
+//        
+//    }
+//    public static void main(String[] args) {
+//    
+//       CheckupReportMapper sm = new CheckupReportMapper();
+//        List<CheckupReport> serviceList = sm.getActiveReports(conn);
+//        for (int i = 0; i < serviceList.size(); i++) {
+//            System.out.println(i+": "+serviceList.get(i).getCreport_id());
+//        }
+//        
+//        CheckupReport cr = sm.getReportByID(1, conn);
+//        System.out.println(cr);
+//    }
     public List<CheckupReport> getActiveReports(Connection con){
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
@@ -57,8 +74,8 @@ public class CheckupReportMapper {
                 }
             
             return reports;
-        } catch (Exception e) {
-            System.out.println("Problem in CustomerMapper ");
+        } catch (SQLException e) {
+            System.out.println("Problem in CustomerMapper getActiveReports");
             System.out.println(e.getMessage());
             return null;
         }

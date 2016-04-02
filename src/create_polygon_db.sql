@@ -1,13 +1,11 @@
 -- create database Polygon;
 use Polygon;
 
-
-Drop table if exists City;
 Drop table if exists CheckupReport;
 Drop table if exists ServiceRequest;
 Drop table if exists Services;
-Drop table if exists Report;
 Drop table if exists Building;
+Drop table if exists City;
 Drop table if exists Employee;
 Drop table if exists Customer;
 
@@ -80,9 +78,10 @@ service_name varchar(40)
 
 
 
-
+select * from Building;
 INSERT INTO Building(street, zip, size, customer_id) VALUES('123 Fakestreet', 45692, 90, 1);
-INSERT INTO CheckupReport(building_id, checkDate, reportStatus) VALUES (2, current_date(),'pending');
+INSERT INTO Building(street, zip, size, customer_id) VALUES('546 Fakestreet', 45692, 90, 1);
+INSERT INTO CheckupReport(building_id, checkDate, reportStatus) VALUES (3, current_date(),'pending');
 INSERT INTO Employee(emp_id,fname, lname, username, pwd) VALUES (3,'Fixer','Worker','fworker', '123');
 -- get pending reports
 select reportStatus, street, zip, size, fname, lname, company_name, checkDate from CheckupReport
@@ -92,7 +91,7 @@ join Customer ON Customer.customer_id=Building.customer_id;
 -- get active/assigned 
 UPDATE CheckupReport
 SET reportStatus='active', employee_id=3, checkDate=current_date()
-WHERE creport_id=5;
+WHERE creport_id=9;
 -- after filling in report
 UPDATE CheckupReport
 SET checkDate=current_date(), condition_level=1, reportStatus='done', comments='everything is ok'

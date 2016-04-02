@@ -63,7 +63,7 @@ public class DBFacade {
     {
 	return customerMap.viewAllCustomers(con);
     }
-    public List<CheckupReport> showActiveCheckupReports() 
+    public List<CheckupReport> showActiveCheckupReports() throws SQLException
     {
 	return creportmap.getActiveReports(con);
     }

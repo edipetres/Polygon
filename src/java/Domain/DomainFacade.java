@@ -48,7 +48,7 @@ public class DomainFacade {
         List <Customer> allCustomers = dbf.showCustomers();
         return allCustomers;
     }
-    public List<CheckupReport> showActiveCheckupReports() {
+    public List<CheckupReport> showActiveCheckupReports() throws SQLException{
         List <CheckupReport> activeReports = dbf.showActiveCheckupReports();
         return activeReports;
     }

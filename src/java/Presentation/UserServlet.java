@@ -126,7 +126,7 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
     
-    private void showActiveCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    private void showActiveCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException, SQLException
     {
 	List<CheckupReport> reports = df.showActiveCheckupReports();
 	request.setAttribute("reports", reports);
