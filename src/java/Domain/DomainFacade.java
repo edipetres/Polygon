@@ -7,6 +7,7 @@ package Domain;
 
 import DataSource.DBFacade;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,4 +43,8 @@ public class DomainFacade {
         return allCustomers;
     }
 
+    public ArrayList<String> getAllServices() {
+        return dbf.getAllServices();
+    }
+    
 }
