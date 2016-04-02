@@ -51,5 +51,9 @@ public class DomainFacade {
         List <CheckupReport> activeReports = dbf.showActiveCheckupReports();
         return activeReports;
     }
+    
+    public CheckupReport getReportByID(int id) {
+        return dbf.getReportByID(id);
+    }
 
 }

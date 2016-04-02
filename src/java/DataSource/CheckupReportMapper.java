@@ -65,7 +65,11 @@ public class CheckupReportMapper {
     }
     public CheckupReport getReportByID(int reportid, Connection con){
     CheckupReport cr = null;
-    String sql = "SELECT * FROM CheckupReport WHERE creport_id=?";
+    String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+                    + "join Building ON Building.building_id=CheckupReport.building_id "
+                    + "join Customer ON Customer.customer_id=Building.customer_id "
+                    + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                    + "where creport_id=?";
     try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, reportid);
             ResultSet rs = statement.executeQuery();

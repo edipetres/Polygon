@@ -4,7 +4,11 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.CheckupReport"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+	CheckupReport report = (CheckupReport) request.getAttribute("report");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,8 +28,10 @@
         <div class="container">
   <h1>Check up report </h1>
 
-  Customer name
-  Building info
+  Customer: <%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%>
+  Building: <%= report.getBuilding().getStreet()%> <%= report.getBuilding().getZip()%>
+  <%= report.getBuilding().getSize()%>m2
+  
   <form role="form" action="UserServlet" method="post">
       <input type="hidden" name="command" value="updateCheckupReport">
     <div class="form-group">

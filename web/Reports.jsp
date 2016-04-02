@@ -32,7 +32,7 @@
     <%= reports.get(i).getEmployee().getFname()%>
     <%= reports.get(i).getEmployee().getLname()%> 
     
-    <a href="FillCheckupReport.jsp?reportid=<%= reports.get(i).getCreport_id()%>">Go</a>
+    <a href="UserServlet?command=selectReport&reportid=<%= reports.get(i).getCreport_id()%>">Go</a>
 
     <br>
  <%} //end of for loop%>

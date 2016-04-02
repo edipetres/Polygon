@@ -65,5 +65,10 @@ public class DBFacade {
 	return creportmap.getActiveReports(con);
     }
     
+    public CheckupReport getReportByID(int id) 
+    {
+	return creportmap.getReportByID(id, con);
+    }
+    
    
 }
