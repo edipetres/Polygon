@@ -10,30 +10,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+          <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     </head>
     <body>
         <div class="container">
   <h1>Check up report </h1>
+
   Customer name
   Building info
   <form role="form" action="UserServlet" method="post">
-      <input type="hidden" name="command" value="addChecupReport">
+      <input type="hidden" name="command" value="updateCheckupReport">
     <div class="form-group">
-      <label for="company_name">Municipality or association name:</label>
-      <input type="text" class="form-control" name="company_name">
+      <label for="condition_level">Condition of building:</label>
+      <input type="number" class="form-control" name="condition_level">
     </div>
     <div class="form-group">
-      <label for="fname">Contact person's first name:</label>
-      <input type="text" class="form-control" name="fname">
+      <label for="comments">Comments on check up:</label>
+      <textarea name="comments" class="form-control" rows="4" cols="20">
+      </textarea>
     </div>
-    <div class="form-group">
-      <label for="lname">Contact person's last name:</label>
-      <input type="text" class="form-control" name="lname">
-    </div>
-     
-      
     <button type="submit" class="btn btn-default">Submit</button>
+    <a href="UserServlet?command=showActiveCheckupReports" class="button">Back</a>
   </form>
 </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

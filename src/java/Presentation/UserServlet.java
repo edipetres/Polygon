@@ -6,6 +6,7 @@
 package Presentation;
 
 import Domain.Building;
+import Domain.CheckupReport;
 
 import Domain.Customer;
 
@@ -54,33 +55,30 @@ public class UserServlet extends HttpServlet {
             domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
         }
 
-        //-- Identify command and delegate job
-        String command = request.getParameter("command");
-        switch (command) {
-            case "addBuilding":
-                addBuilding(request, response, domainModel);
-                break;
-            case "addCustomer":
-                createCustomer(request, response, domainModel);
-                break;
-            case "showCustomers":
-                showCustomers(request, response, domainModel);
-                break;
-
-//                    
-//                //== exercise
-//                case "updateOrder":
-//                    updateOrder(request, response, domainModel);
-//                    break;
-//                //== exercise
-//                case "updateOrderDetail":
-//                    updateOrderDetail(request, response, domainModel);
-//                    break;
-                
-                //Assign elements
-            
-        }
-    }
+            //-- Identify command and delegate job
+            String command = request.getParameter("command");
+            switch (command)
+            {
+                case "addBuilding":
+                    addBuilding(request, response, domainModel);
+                    break;
+                case "addCustomer":
+                    createCustomer(request, response, domainModel);
+                    break;
+                case "showCustomers":
+                    showCustomers(request, response, domainModel);
+                    break;
+                case "updateCheckupReport":
+                    updateCheckupReport(request, response, domainModel);
+                    break;
+                case "showActiveCheckupReports":
+                    showActiveCheckupReports(request, response, domainModel);
+                    break;  
+                case "requestCheckup":
+                    requestCheckup(request, response, domainModel);
+                    break;  
+                    
+    }}
 
     private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         boolean result = false;
@@ -122,6 +120,14 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("customers", customers);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomers.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void showActiveCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<CheckupReport> reports = df.showActiveCheckupReports();
+	request.setAttribute("reports", reports);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -172,5 +178,21 @@ public class UserServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+
+        int condition_level = Integer.parseInt(request.getParameter("condition_level"));
+        String comments = request.getParameter("comments");
+
+        CheckupReport report = new CheckupReport(condition_level, comments);
+        domainModel.updateCheckupReport(report);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 
+        dispatcher.forward(request, response);
+    }
+
+    private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+        domainModel.createCheckupReport(2);
+    }
 
 }

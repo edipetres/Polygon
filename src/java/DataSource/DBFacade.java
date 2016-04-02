@@ -6,6 +6,7 @@
 package DataSource;
 
 import Domain.Building;
+import Domain.CheckupReport;
 import Domain.Customer;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,8 +24,8 @@ public class DBFacade {
     //add mappers here as private objects
     private BuildingMapper bm;
     private CustomerMapper customerMap;
+    private CheckupReportMapper creportmap;
     private ServiceMapper serviceMapper;
-
     //Singleton start
     private static DBFacade instance;
 
@@ -51,13 +52,24 @@ public class DBFacade {
     public boolean addBuilding(Building building) {
         return bm.addBuilding(con, building);
     }
-
-    public List<Customer> showCustomers() {
-        return customerMap.viewAllCustomers(con);
+    
+    public boolean createCheckupReport(int building_id) {
+        return creportmap.createCheckupReport(building_id, con);
     }
-
+    public boolean updateCheckupReport(CheckupReport checkuprreport) {
+        return creportmap.updateCheckupReport(checkuprreport, con);
+    }
+    public List<Customer> showCustomers() 
+    {
+	return customerMap.viewAllCustomers(con);
+    }
+    public List<CheckupReport> showActiveCheckupReports() 
+    {
+	return creportmap.getActiveReports(con);
+    }
+    
     public ArrayList<String> getAllServices() {
         return serviceMapper.getAllServices(con);
     }
-
+   
 }

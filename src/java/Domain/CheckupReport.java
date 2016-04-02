@@ -12,15 +12,44 @@ package Domain;
 public class CheckupReport {
     int creport_id;
     Building building;
+    Customer customer;
+    Employee employee;
     String checkDate;
     int condition_level;
     String reportStatus;
     String comments;
-    int employee_id; 
 
-    public CheckupReport(Building building, String checkDate, int condition_level, String comments) {
+    public CheckupReport(int creport_id, Building building, Customer customer, Employee employee, String reportStatus) {
+        this.creport_id = creport_id;
         this.building = building;
+        this.customer = customer;
+        this.employee = employee;
+        this.reportStatus = reportStatus;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public CheckupReport(String checkDate, int condition_level, String comments) {
         this.checkDate = checkDate;
+        this.condition_level = condition_level;
+        this.comments = comments;
+    }
+    
+    public CheckupReport(int condition_level, String comments) {
         this.condition_level = condition_level;
         this.comments = comments;
     }
@@ -73,13 +102,7 @@ public class CheckupReport {
         this.comments = comments;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
-    }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
-    }
     
     
 }

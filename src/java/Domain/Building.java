@@ -66,5 +66,11 @@ public class Building {
         this.lastCheckUp = lastCheckUp;
         this.zip = zip;
     }
+
+    public Building(String street, int size, int zip) {
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
     
 }
