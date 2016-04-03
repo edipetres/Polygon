@@ -36,5 +36,8 @@
 
     <br>
  <%} //end of for loop%>
+ 
+ <h1>Finished checkup reports</h1>
+ 
     </body>
 </html>
