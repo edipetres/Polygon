@@ -42,8 +42,8 @@ public class CheckupReportMapper {
                     rs.getString("lname")
                     );
                     Employee e = new Employee(
-                    rs.getString("fname"),
-                    rs.getString("lname")
+                    rs.getString("Employee.fname"),
+                    rs.getString("Employee.lname")
                     );
                     CheckupReport cr = new CheckupReport(
                     rs.getInt("creport_id"),
@@ -107,8 +107,8 @@ public class CheckupReportMapper {
     }
     public boolean createCheckupReport(int building_id, Connection con) {
         boolean result = false;
-        String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus) "
-                + "VALUES (?, current_date(),'pending') ";
+        String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus, employee_id) "
+                + "VALUES (?, current_date(),'active', 1) ";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
