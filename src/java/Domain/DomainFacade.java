@@ -58,6 +58,11 @@ public class DomainFacade {
         return doneReports;
     }
     
+    public List<Building> showBuildings() {
+        List <Building> buildings = dbf.showBuildings();
+        return buildings;
+    }
+    
     public CheckupReport getReportByID(int id) {
         return dbf.getReportByID(id);
     }
