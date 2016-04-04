@@ -51,6 +51,7 @@ public class BuildingMapper {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                     Building b = new Building(
+                    rs.getInt("building_id"),
                     rs.getString("street"),
                     rs.getInt("size"),
                     rs.getInt("zip"));

@@ -30,11 +30,8 @@
         %>
         <%= buildings.get(i).getStreet()%>
         <%= buildings.get(i).getZip()%>
-        <form action="UserServlet">
-            <input type="hidden" name="command" value="requestCheckup">
-            <input type="submit" value="Request Checkup" name="" />
-        </form>
 
+<a href="UserServlet?command=requestCheckup&building_id=<%= buildings.get(i).getBuildingID()%>">Request checkup</a>
     <br>
  <%} //end of for loop%>
     </body>

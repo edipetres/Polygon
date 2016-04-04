@@ -212,7 +212,8 @@ public class UserServlet extends HttpServlet {
     }
 
     private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
-        domainModel.createCheckupReport(2);
+        int id = Integer.parseInt(request.getParameter("building_id"));
+        domainModel.createCheckupReport(id);
     }
 
     private void selectReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
