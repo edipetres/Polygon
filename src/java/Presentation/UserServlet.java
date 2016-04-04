@@ -82,6 +82,8 @@ public class UserServlet extends HttpServlet {
                     break;  
                 case "requestCheckup":
                     requestCheckup(request, response, domainModel);
+                    dispatcher = request.getRequestDispatcher("index.html");
+                    dispatcher.forward(request, response);
                     break;  
                 case "selectReport":
                     selectReport(request, response, domainModel);
