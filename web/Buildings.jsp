@@ -58,7 +58,8 @@
             </div>
         </div>
         <br><br><br>
-        <h1>Hello World!</h1>
+        <div class="container">
+        <h1>Buildings</h1>
 
         <%
 
@@ -71,5 +72,6 @@
 <a href="UserServlet?command=requestCheckup&building_id=<%= buildings.get(i).getBuildingID()%>">Request checkup</a>
     <br>
  <%} //end of for loop%>
+        </div>
     </body>
 </html>
