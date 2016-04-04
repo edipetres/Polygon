@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Checkup Reports</title>
     </head>
     <body>
         <h1>Undone checkup reports</h1>
@@ -50,7 +50,7 @@
     <%= donereports.get(i).getEmployee().getFname()%>
     <%= donereports.get(i).getEmployee().getLname()%> 
     
-    <a href="UserServlet?command=selectReport&reportid=<%= donereports.get(i).getCreport_id()%>">Show more</a>
+    <a href="UserServlet?command=selectFinishedReport&reportid=<%= donereports.get(i).getCreport_id()%>">Show more</a>
 
     <br>
  <%} //end of for loop%>

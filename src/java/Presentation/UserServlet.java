@@ -86,6 +86,9 @@ public class UserServlet extends HttpServlet {
                 case "selectReport":
                     selectReport(request, response, domainModel);
                     break;  
+                case "selectFinishedReport":
+                    selectFinishedReport(request, response, domainModel);
+                    break;  
                     
     }
     }
@@ -217,6 +220,14 @@ public class UserServlet extends HttpServlet {
         CheckupReport report = domainModel.getReportByID(id);
         request.setAttribute("report", report);
         RequestDispatcher dispatcher = request.getRequestDispatcher("FillCheckupReport.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void selectFinishedReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("reportid"));
+        CheckupReport report = domainModel.getReportByID(id);
+        request.setAttribute("report", report);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowCheckupReport.jsp");
         dispatcher.forward(request, response);
     }
 
