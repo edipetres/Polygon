@@ -8,6 +8,8 @@ package DataSource;
 import Domain.Building;
 import Domain.CheckupReport;
 import Domain.Customer;
+import Domain.Service;
+import Domain.ServiceList;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -76,8 +78,13 @@ public class DBFacade {
     {
 	return creportmap.getReportByID(id, con);
     }
-    public ArrayList<String> getAllServices() {
-        return serviceMapper.getAllServices(con);
+    public ArrayList<ServiceList> getAllServices() {
+        return serviceMapper.getServiceList(con);
+    }
+    
+    public boolean saveServiceRequest(Service s) {
+        boolean result = serviceMapper.saveServiceRequest(con, s);
+        return result;
     }
    
 }

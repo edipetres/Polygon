@@ -60,7 +60,7 @@ FOREIGN KEY (employee_id) REFERENCES Employee(emp_id)
 
 
 create table ServiceRequest(
-srequest_id int primary key,
+srequest_id int primary key AUTO_INCREMENT,
 building_id int NOT NULL,
 employee_id int,
 requestDate DATE,

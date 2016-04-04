@@ -61,7 +61,11 @@ public class DomainFacade {
     public CheckupReport getReportByID(int id) {
         return dbf.getReportByID(id);
     }
-public ArrayList<String> getAllServices() {
+    public ArrayList<ServiceList> getAllServices() {
         return dbf.getAllServices();
+    }
+    
+    public boolean saveServiceRequest(Service service) {
+        return dbf.saveServiceRequest(service);
     }
 }

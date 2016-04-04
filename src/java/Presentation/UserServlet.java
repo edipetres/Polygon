@@ -12,6 +12,7 @@ import Domain.CheckupReport;
 import Domain.Customer;
 
 import Domain.DomainFacade;
+import Domain.Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -89,8 +90,26 @@ public class UserServlet extends HttpServlet {
                 case "selectFinishedReport":
                     selectFinishedReport(request, response, domainModel);
                     break;  
+                case "serviceRequest":
+                    saveServiceRequest(request,response,domainModel);
+                    break;
+                    
                     
     }
+    }
+    
+    private boolean saveServiceRequest (HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        boolean result = false;
+        int service_id = Integer.parseInt(request.getParameter("selectService"));
+        String description = request.getParameter("description");
+        
+        Service service = new Service(service_id,2,description,"pending");
+        result = domainModel.saveServiceRequest(service);
+        
+        request.setAttribute("message", "Service saved: "+result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ServiceRequest.jsp");
+        dispatcher.forward(request, response);
+        return result;
     }
     
     private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {

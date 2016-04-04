@@ -4,6 +4,7 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.ServiceList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Domain.DomainFacade"%>
 <%@page import="DataSource.DBFacade"%>
@@ -20,7 +21,7 @@
     <body>
         <%
             DomainFacade domainModel = DomainFacade.getInstance();
-            ArrayList<String> serviceList = domainModel.getAllServices();
+            ArrayList<ServiceList> serviceList = domainModel.getAllServices();
             request.setAttribute("serviceList", serviceList);
         %>
 
@@ -32,13 +33,14 @@
 
                             <!-- Form Name -->
                             <legend>Request a service</legend>
+                            <input type="hidden" name="command" value="serviceRequest">
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Choose a service</label>
                                 <div class="col-md-4">
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <select id="selectbasic" name="selectService" class="form-control">
                                         <c:forEach var="service" items="${serviceList}">
-                                            <option><c:out value="${service}"/></option>
+                                            <option value="${service.getService_id()}">${service.getService_name()}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -63,7 +65,7 @@
                     </form>
                 </div>
                 <div class="col-sm-4">
-
+                    ${message}
                 </div>
             </div>
         </div>
