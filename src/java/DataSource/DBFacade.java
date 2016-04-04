@@ -33,6 +33,7 @@ public class DBFacade {
         bm = new BuildingMapper();
         customerMap = new CustomerMapper();
         creportmap = new CheckupReportMapper();
+        serviceMapper = new ServiceMapper();
         //assign the mappers with a new object 
     }
     

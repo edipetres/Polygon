@@ -19,29 +19,31 @@
     </head>
     <body>
         <%
-        DomainFacade domainModel = DomainFacade.getInstance();
-        ArrayList<String> serviceList = domainModel.getAllServices();
-        request.setAttribute("serviceList", serviceList);
+            DomainFacade domainModel = DomainFacade.getInstance();
+            ArrayList<String> serviceList = domainModel.getAllServices();
+            request.setAttribute("serviceList", serviceList);
         %>
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" role="form" action="UserServlet" method="post">
                         <fieldset>
 
                             <!-- Form Name -->
                             <legend>Request a service</legend>
-                            
-                            Select a service:
-                            <!-- JSTL iterator-->
-                            <select>
-                                <c:forEach var="service" items="${serviceList}">
-                                    <option><c:out value="${service}"/></option>
-                                </c:forEach>
-                            </select>
-                            
-                            
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">Choose a service</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                        <c:forEach var="service" items="${serviceList}">
+                                            <option><c:out value="${service}"/></option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <!-- Textarea -->
                             <div class="form-group">
