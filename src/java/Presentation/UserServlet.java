@@ -74,8 +74,11 @@ public class UserServlet extends HttpServlet {
                 case "updateCheckupReport":
                     updateCheckupReport(request, response, domainModel);
                     break;
-                case "showActiveCheckupReports":
+                case "showCheckupReports":
                     showActiveCheckupReports(request, response, domainModel);
+                    showDoneCheckupReports(request, response, domainModel);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
+                    dispatcher.forward(request, response);
                     break;  
                 case "requestCheckup":
                     requestCheckup(request, response, domainModel);
@@ -135,8 +138,14 @@ public class UserServlet extends HttpServlet {
     {
 	List<CheckupReport> reports = df.showActiveCheckupReports();
 	request.setAttribute("reports", reports);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
-        dispatcher.forward(request, response);
+
+    }
+    
+    private void showDoneCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<CheckupReport> donereports = df.showDoneCheckupReports();
+	request.setAttribute("donereports", donereports);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

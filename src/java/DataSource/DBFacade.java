@@ -66,6 +66,10 @@ public class DBFacade {
     {
 	return creportmap.getActiveReports(con);
     }
+    public List<CheckupReport> showDoneCheckupReports() 
+    {
+	return creportmap.getDoneReports(con);
+    }
     
     public CheckupReport getReportByID(int id) 
     {

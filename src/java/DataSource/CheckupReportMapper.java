@@ -63,6 +63,47 @@ public class CheckupReportMapper {
             return null;
         }
     }
+    public List<CheckupReport> getDoneReports(Connection con){
+        ArrayList<CheckupReport> reports = new ArrayList<>();
+        String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+                    + "join Building ON Building.building_id=CheckupReport.building_id "
+                    + "join Customer ON Customer.customer_id=Building.customer_id "
+                    + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                    + "where reportStatus='done'";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                    Building b = new Building(
+                    rs.getString("street"),
+                    rs.getInt("size"),
+                    rs.getInt("zip"));
+                    Customer c = new Customer(
+                    rs.getString("company_name"),
+                    rs.getString("fname"),
+                    rs.getString("lname")
+                    );
+                    Employee e = new Employee(
+                    rs.getString("Employee.fname"),
+                    rs.getString("Employee.lname")
+                    );
+                    CheckupReport cr = new CheckupReport(
+                    rs.getInt("creport_id"),
+                    b,
+                    c,
+                    e,
+                    rs.getString("reportStatus")
+                    );
+                    reports.add(cr);
+                    System.out.println(cr);
+                }
+            
+            return reports;
+        } catch (Exception e) {
+            System.out.println("Problem in CustomerMapper ");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     public CheckupReport getReportByID(int reportid, Connection con){
     CheckupReport cr = null;
     String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
