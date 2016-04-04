@@ -10,33 +10,32 @@ import Domain.CheckupReport;
 import Domain.Customer;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.ArrayList;
 /**
  *
  * @author edipetres
  */
 public class DBFacade {
-
+    
     private Connection con;
-
-    //add mappers here as private objects
     private BuildingMapper bm;
+    //add mappers here as private objects
     private CustomerMapper customerMap;
     private CheckupReportMapper creportmap;
     private ServiceMapper serviceMapper;
+    
     //Singleton start
     private static DBFacade instance;
-
-    private DBFacade() {
+    
+    private DBFacade () {
         con = DBConnector.getInstance().getConnection();
         bm = new BuildingMapper();
         customerMap = new CustomerMapper();
-        serviceMapper = new ServiceMapper();
+        creportmap = new CheckupReportMapper();
         //assign the mappers with a new object 
     }
-
+    
     public static DBFacade getInstance() {
         if (instance == null) {
             instance = new DBFacade();
@@ -44,8 +43,8 @@ public class DBFacade {
         return instance;
     }
     //Singleton end
-
-    public boolean createCustomer(Customer c) throws SQLException {
+    
+    public boolean createCustomer(Customer c) throws SQLException{
         return customerMap.createCustomer(c, con);
     }
 
@@ -67,7 +66,15 @@ public class DBFacade {
     {
 	return creportmap.getActiveReports(con);
     }
+    public List<CheckupReport> showDoneCheckupReports() 
+    {
+	return creportmap.getDoneReports(con);
+    }
     
+    public CheckupReport getReportByID(int id) 
+    {
+	return creportmap.getReportByID(id, con);
+    }
     public ArrayList<String> getAllServices() {
         return serviceMapper.getAllServices(con);
     }

@@ -19,6 +19,17 @@ public class CheckupReport {
     String reportStatus;
     String comments;
 
+    public CheckupReport(int creport_id, Building building, Customer customer, Employee employee, String checkDate, int condition_level, String reportStatus, String comments) {
+        this.creport_id = creport_id;
+        this.building = building;
+        this.customer = customer;
+        this.employee = employee;
+        this.checkDate = checkDate;
+        this.condition_level = condition_level;
+        this.reportStatus = reportStatus;
+        this.comments = comments;
+    }
+
     public CheckupReport(int creport_id, Building building, Customer customer, Employee employee, String reportStatus) {
         this.creport_id = creport_id;
         this.building = building;
@@ -49,7 +60,8 @@ public class CheckupReport {
         this.comments = comments;
     }
     
-    public CheckupReport(int condition_level, String comments) {
+    public CheckupReport(int creport_id, int condition_level, String comments) {
+        this.creport_id = creport_id;
         this.condition_level = condition_level;
         this.comments = comments;
     }

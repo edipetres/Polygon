@@ -52,9 +52,16 @@ public class DomainFacade {
         List <CheckupReport> activeReports = dbf.showActiveCheckupReports();
         return activeReports;
     }
-
-    public ArrayList<String> getAllServices() {
-        return dbf.getAllServices();
+    
+    public List<CheckupReport> showDoneCheckupReports() {
+        List <CheckupReport> doneReports = dbf.showDoneCheckupReports();
+        return doneReports;
     }
     
+    public CheckupReport getReportByID(int id) {
+        return dbf.getReportByID(id);
+    }
+public ArrayList<String> getAllServices() {
+        return dbf.getAllServices();
+    }
 }

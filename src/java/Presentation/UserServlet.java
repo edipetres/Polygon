@@ -5,6 +5,7 @@
  */
 package Presentation;
 
+
 import Domain.Building;
 import Domain.CheckupReport;
 
@@ -45,15 +46,17 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         //-- Establish or reestablish application demainModeltext
-        HttpSession sessionObj = request.getSession();
-        DomainFacade domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
-        if (domainModel == null) {
-            // Session starts
-            domainModel = DomainFacade.getInstance();
-            sessionObj.setAttribute("Controller", domainModel);
-        } else {
-            domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
-        }
+            HttpSession sessionObj = request.getSession();
+            DomainFacade domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
+            if (domainModel == null)
+            {
+                // Session starts
+                domainModel = DomainFacade.getInstance();
+                sessionObj.setAttribute("Controller", domainModel);
+            } else
+            {
+                domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
+            }
 
             //-- Identify command and delegate job
             String command = request.getParameter("command");
@@ -71,32 +74,42 @@ public class UserServlet extends HttpServlet {
                 case "updateCheckupReport":
                     updateCheckupReport(request, response, domainModel);
                     break;
-                case "showActiveCheckupReports":
+                case "showCheckupReports":
                     showActiveCheckupReports(request, response, domainModel);
+                    showDoneCheckupReports(request, response, domainModel);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
+                    dispatcher.forward(request, response);
                     break;  
                 case "requestCheckup":
                     requestCheckup(request, response, domainModel);
                     break;  
+                case "selectReport":
+                    selectReport(request, response, domainModel);
+                    break;  
+                case "selectFinishedReport":
+                    selectFinishedReport(request, response, domainModel);
+                    break;  
                     
-    }}
-
+    }
+    }
+    
     private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         boolean result = false;
-
+        
         String name = request.getParameter("b_name");
         String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
-
-        Building tempBuild = new Building(1, name, street, size, 0, null, zip);
+        
+        Building tempBuild = new Building(1,name,street,size,0,null,zip);
         result = domainModel.addBuilding(tempBuild);
-
-        request.setAttribute("Message", "Building added: " + result);
+        
+        request.setAttribute("Message", "Building added: "+result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
         dispatcher.forward(request, response);
         return result;
     }
-
+    
     private void createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException, SQLException {
         String company_name = request.getParameter("company_name");
         String fname = request.getParameter("fname");
@@ -110,14 +123,15 @@ public class UserServlet extends HttpServlet {
         System.out.println(customer.getCompany_name());
         domainModel.createCustomer(customer);
 //        request.setAttribute("customer", customer);
-
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddCustomer.jsp");
         dispatcher.forward(request, response);
     }
-
-    private void showCustomers(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException {
-        List<Customer> customers = df.showCustomers();
-        request.setAttribute("customers", customers);
+    
+    private void showCustomers(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<Customer> customers = df.showCustomers();
+	request.setAttribute("customers", customers);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomers.jsp");
         dispatcher.forward(request, response);
@@ -127,8 +141,14 @@ public class UserServlet extends HttpServlet {
     {
 	List<CheckupReport> reports = df.showActiveCheckupReports();
 	request.setAttribute("reports", reports);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
-        dispatcher.forward(request, response);
+
+    }
+    
+    private void showDoneCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
+    {
+	List<CheckupReport> donereports = df.showDoneCheckupReports();
+	request.setAttribute("donereports", donereports);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -166,7 +186,7 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     /**
@@ -180,11 +200,11 @@ public class UserServlet extends HttpServlet {
     }// </editor-fold>
 
     private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
-
+        int creport_id = Integer.parseInt(request.getParameter("creport_id"));
         int condition_level = Integer.parseInt(request.getParameter("condition_level"));
         String comments = request.getParameter("comments");
 
-        CheckupReport report = new CheckupReport(condition_level, comments);
+        CheckupReport report = new CheckupReport(creport_id, condition_level, comments);
         domainModel.updateCheckupReport(report);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 
@@ -193,6 +213,22 @@ public class UserServlet extends HttpServlet {
 
     private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
         domainModel.createCheckupReport(2);
+    }
+
+    private void selectReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("reportid"));
+        CheckupReport report = domainModel.getReportByID(id);
+        request.setAttribute("report", report);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("FillCheckupReport.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void selectFinishedReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("reportid"));
+        CheckupReport report = domainModel.getReportByID(id);
+        request.setAttribute("report", report);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowCheckupReport.jsp");
+        dispatcher.forward(request, response);
     }
 
 }
