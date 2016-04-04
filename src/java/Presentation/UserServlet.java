@@ -103,7 +103,7 @@ public class UserServlet extends HttpServlet {
         
         Building tempBuild = new Building(1,name,street,size,0,null,zip);
         result = domainModel.addBuilding(tempBuild);
-        
+        System.out.println(tempBuild.getStreet());
         request.setAttribute("Message", "Building added: "+result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
         dispatcher.forward(request, response);

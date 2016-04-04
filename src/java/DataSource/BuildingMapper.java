@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 public class BuildingMapper {
     public boolean addBuilding(Connection con,Building building) {
         boolean result = false;
-        String sqlString = "INSERT INTO Building (building_id,name,street,zip,condition_level,customer_id) "
-                + "VALUES (?,?,?,?,?,?);";
+        String sqlString = "INSERT INTO Building (building_id,name,street,zip,size,condition_level,customer_id) "
+                + "VALUES (?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
@@ -32,15 +32,16 @@ public class BuildingMapper {
             stmt.setString(2, building.getName());
             stmt.setString(3, building.getStreet());
             stmt.setInt(4, building.getZip());
-            stmt.setInt(5, building.getCondition());
-            stmt.setInt(6, building.getCustomerID());
+            stmt.setInt(5, building.getSize());
+            stmt.setInt(6, building.getCondition());
+            stmt.setInt(7, building.getCustomerID());
             
             stmt.execute();
             stmt.close();
             result = true;
         } catch (SQLException ex) {
             result = false;
-            System.out.println("Exception in dbconnector. ex = " + ex);
+            System.out.println("Exception in BuildingMapper. ex = " + ex);
         }
         return result;
     }
