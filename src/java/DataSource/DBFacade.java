@@ -23,8 +23,8 @@ public class DBFacade {
     //add mappers here as private objects
     private CustomerMapper customerMap;
     private CheckupReportMapper creportmap;
-    
     private ServiceMapper serviceMapper;
+    
     //Singleton start
     private static DBFacade instance;
     
@@ -33,6 +33,7 @@ public class DBFacade {
         bm = new BuildingMapper();
         customerMap = new CustomerMapper();
         creportmap = new CheckupReportMapper();
+        serviceMapper = new ServiceMapper();
         //assign the mappers with a new object 
     }
     

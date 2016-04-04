@@ -22,15 +22,13 @@ import java.util.logging.Logger;
 
 public class ServiceMapper {
     
-    private static Connection conn;
-    private static ServiceMapper sm;
-    
-    ServiceMapper() {
-        conn = (Connection) DBConnector.getInstance().getConnection();
-        
-    }
-    
+//    private static Connection con;
+//    private static ServiceMapper sm;
 //    
+//    ServiceMapper() {
+//        con = (Connection) DBConnector.getInstance().getConnection();
+//        
+//    }
 //    public static void main(String[] args) {
 //        ServiceMapper sm = new ServiceMapper();
 //        ArrayList<String> serviceList = sm.getAllServices(conn);
