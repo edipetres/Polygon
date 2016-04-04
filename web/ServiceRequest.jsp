@@ -4,6 +4,9 @@
     Author     : edipetres
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Domain.DomainFacade"%>
+<%@page import="DataSource.DBFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -15,6 +18,12 @@
         <title>Service Request</title>
     </head>
     <body>
+        <%
+        DomainFacade domainModel = DomainFacade.getInstance();
+        ArrayList<String> serviceList = domainModel.getAllServices();
+        request.setAttribute("serviceList", serviceList);
+        %>
+        
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -23,66 +32,16 @@
 
                             <!-- Form Name -->
                             <legend>Request a service</legend>
-                            <form action="UIServlet"> 
-                                <input type="hidden" name="command" value="getAllServices">
-                                <input type="submit" value="Show all">
-                            </form>
-
+                            
+                            Select a service:
                             <!-- JSTL iterator-->
                             <select>
                                 <c:forEach var="service" items="${serviceList}">
                                     <option><c:out value="${service}"/></option>
                                 </c:forEach>
                             </select>
-
-                            <!-- Multiple Radios -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="servicesRadios">Select service</label>
-                                <div class="col-md-4">
-                                    <div class="radio">
-                                        <label for="servicesRadios-0">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-0" value="1" checked="checked">
-                                            Leak detection
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="servicesRadios-1">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-1" value="2">
-                                            Moisture testing
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="servicesRadios-2">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-2" value="3">
-                                            Drying services
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="servicesRadios-3">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-3" value="4">
-                                            Grafiti removal
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="servicesRadios-4">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-4" value="5">
-                                            Burglary restoration
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="servicesRadios-5">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-5" value="6">
-                                            Fire damage
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="servicesRadios-6">
-                                            <input type="radio" name="servicesRadios" id="servicesRadios-6" value="7">
-                                            Other...
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            
 
                             <!-- Textarea -->
                             <div class="form-group">
