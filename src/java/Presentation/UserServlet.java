@@ -83,6 +83,8 @@ public class UserServlet extends HttpServlet {
                     break;  
                 case "requestCheckup":
                     requestCheckup(request, response, domainModel);
+                    dispatcher = request.getRequestDispatcher("index.html");
+                    dispatcher.forward(request, response);
                     break;  
                 case "selectReport":
                     selectReport(request, response, domainModel);
@@ -122,7 +124,7 @@ public class UserServlet extends HttpServlet {
         
         Building tempBuild = new Building(1,name,street,size,0,null,zip);
         result = domainModel.addBuilding(tempBuild);
-        
+        System.out.println(tempBuild.getStreet());
         request.setAttribute("Message", "Building added: "+result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
         dispatcher.forward(request, response);
@@ -231,7 +233,8 @@ public class UserServlet extends HttpServlet {
     }
 
     private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
-        domainModel.createCheckupReport(2);
+        int id = Integer.parseInt(request.getParameter("building_id"));
+        domainModel.createCheckupReport(id);
     }
 
     private void selectReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {

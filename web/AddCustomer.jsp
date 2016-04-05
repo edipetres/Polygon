@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : AddCustomer
     Created on : Mar 30, 2016, 9:26:40 AM
     Author     : Minerva
@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Healthy Buildings</title>
         <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,6 +22,32 @@
     <![endif]-->
     </head>
     <body>
+        <div class="navbar navbar-fixed-top navbar-default">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand" href="#">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="glyphicon glyphicon-bar"></span>
+                        <span class="glyphicon glyphicon-bar"></span>
+                        <span class="glyphicon glyphicon-bar"></span>
+                    </a>
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="Buildings.jsp">Buildings</a>
+                        </li>
+                        <li><a href="AddBuilding.jsp">Add Building</a>
+                        </li>
+                        <li><a href="AddCustomer.jsp">Add Customer</a></li>
+                        <li><a href="UserServlet?command=showCustomers">Customers</a>
+                        </li>
+                        <li><a href="UserServlet?command=showCheckupReports">Checkup reports</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </div>
+        <br><br><br>
         <div class="container">
   <h1>Add new customer</h1>
   <form role="form" action="UserServlet" method="post">

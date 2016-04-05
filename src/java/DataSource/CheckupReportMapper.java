@@ -109,7 +109,7 @@ public class CheckupReportMapper {
     }
     public CheckupReport getReportByID(int reportid, Connection con){
     CheckupReport cr = null;
-    String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+    String sql = "select creport_id, reportStatus, checkDate, checkupreport.condition_level, comments, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
                     + "join Building ON Building.building_id=CheckupReport.building_id "
                     + "join Customer ON Customer.customer_id=Building.customer_id "
                     + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
@@ -136,7 +136,10 @@ public class CheckupReportMapper {
                     b,
                     c,
                     e,
-                    rs.getString("reportStatus")
+                    rs.getString("checkDate"),
+                    rs.getInt("checkupreport.condition_level"),
+                    rs.getString("reportStatus"),
+                    rs.getString("comments")
                     );
 
                 }

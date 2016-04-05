@@ -48,6 +48,9 @@ public class DomainFacade {
         List <Customer> allCustomers = dbf.showCustomers();
         return allCustomers;
     }
+    
+    
+    
     public List<CheckupReport> showActiveCheckupReports() {
         List <CheckupReport> activeReports = dbf.showActiveCheckupReports();
         return activeReports;
@@ -56,6 +59,11 @@ public class DomainFacade {
     public List<CheckupReport> showDoneCheckupReports() {
         List <CheckupReport> doneReports = dbf.showDoneCheckupReports();
         return doneReports;
+    }
+    
+    public List<Building> showBuildings() {
+        List <Building> buildings = dbf.showBuildings();
+        return buildings;
     }
     
     public CheckupReport getReportByID(int id) {

@@ -17,7 +17,7 @@
         <title>Add New Building</title>
     </head>
     <body>
-        <div class="navbar navbar-fixed-top navbar-default">
+       <div class="navbar navbar-fixed-top navbar-default">
             <div class="container">
                 <div class="navbar-header"><a class="navbar-brand" href="#">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="glyphicon glyphicon-bar"></span>
@@ -27,12 +27,14 @@
                 </div>
                 <div class="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">My Buildings</a>
+                        <li><a href="Buildings.jsp">Buildings</a>
+                        </li>
+                        <li><a href="AddBuilding.jsp">Add Building</a>
                         </li>
                         <li><a href="AddCustomer.jsp">Add Customer</a></li>
-                        <li><a href="#">My Account</a>
+                        <li><a href="UserServlet?command=showCustomers">Customers</a>
                         </li>
-                        <li><a href="#">Contact</a>
+                        <li><a href="UserServlet?command=showCheckupReports">Checkup reports</a>
                         </li>
                     </ul>
 

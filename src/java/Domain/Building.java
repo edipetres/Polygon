@@ -57,10 +57,10 @@ public class Building {
         return zip;
     }
 
-    public Building(int customerID, String name, String address, int size, int condition, String lastCheckUp, int zip) {
+    public Building(int customerID, String name, String street, int size, int condition, String lastCheckUp, int zip) {
         this.customerID = customerID;
         this.name = name;
-        this.address = address;
+        this.street = street;
         this.size = size;
         this.condition = condition;
         this.lastCheckUp = lastCheckUp;
@@ -68,6 +68,13 @@ public class Building {
     }
 
     public Building(String street, int size, int zip) {
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
+    
+    public Building(int buildingID, String street, int size, int zip) {
+        this.buildingID = buildingID;
         this.street = street;
         this.size = size;
         this.zip = zip;
