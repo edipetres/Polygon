@@ -11,7 +11,7 @@ Drop table if exists Customer;
 
 
 create table Employee(
-emp_id int primary key,
+emp_id int primary key auto_increment,
 fname varchar(30) NOT NULL,
 lname varchar(30) NOT NULL,
 username varchar(30) NOT NULL,
