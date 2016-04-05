@@ -74,6 +74,11 @@ public class DBFacade {
 	return creportmap.getDoneReports(con);
     }
     
+    public List<Building> showBuildings() 
+    {
+	return bm.getBuildings(con);
+    }
+    
     public CheckupReport getReportByID(int id) 
     {
 	return creportmap.getReportByID(id, con);
