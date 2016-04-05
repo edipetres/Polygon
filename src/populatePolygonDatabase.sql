@@ -8,5 +8,3 @@ INSERT INTO Services VALUES (14,'Grafiti removal');
 INSERT INTO Services VALUES (15,'Burglary restoration');
 INSERT INTO Services VALUES (16,'Fire damage');
 
-
-select * from Customer;
