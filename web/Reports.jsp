@@ -7,6 +7,7 @@
 <%@page import="Domain.CheckupReport"%>
 <%@page import="java.util.List"%>
 <%@page import="Presentation.UserServlet"%>
+<%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 	List<CheckupReport> reports = (List<CheckupReport>) request.getAttribute("reports");
@@ -29,31 +30,8 @@
     <![endif]-->
     </head>
     <body>
-        <div class="navbar navbar-fixed-top navbar-default">
-            <div class="container">
-                <div class="navbar-header"><a class="navbar-brand" href="#">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="glyphicon glyphicon-bar"></span>
-                        <span class="glyphicon glyphicon-bar"></span>
-                        <span class="glyphicon glyphicon-bar"></span>
-                    </a>
-                </div>
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="Buildings.jsp">Buildings</a>
-                        </li>
-                        <li><a href="AddBuilding.jsp">Add Building</a>
-                        </li>
-                        <li><a href="AddCustomer.jsp">Add Customer</a></li>
-                        <li><a href="UserServlet?command=showCustomers">Customers</a>
-                        </li>
-                        <li><a href="UserServlet?command=showCheckupReports">Checkup reports</a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!--/.navbar-collapse -->
-            </div>
-        </div>
+        
+        <mytags:navbar/>
         <br><br><br>
         <div class="container">
         <h1>Undone checkup reports</h1>

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,32 +18,8 @@
         <title>Add New Building</title>
     </head>
     <body>
-       <div class="navbar navbar-fixed-top navbar-default">
-            <div class="container">
-                <div class="navbar-header"><a class="navbar-brand" href="#">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="glyphicon glyphicon-bar"></span>
-                        <span class="glyphicon glyphicon-bar"></span>
-                        <span class="glyphicon glyphicon-bar"></span>
-                    </a>
-                </div>
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="Buildings.jsp">Buildings</a>
-                        </li>
-                        <li><a href="AddBuilding.jsp">Add Building</a>
-                        </li>
-                        <li><a href="AddCustomer.jsp">Add Customer</a></li>
-                        <li><a href="UserServlet?command=showCustomers">Customers</a>
-                        </li>
-                        <li><a href="UserServlet?command=showCheckupReports">Checkup reports</a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!--/.navbar-collapse -->
-            </div>
-        </div>
-        <br><br><br>
+       
+        <mytags:navbar/>
 
         <div class="container">
             <div class="row">
