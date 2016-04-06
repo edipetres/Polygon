@@ -25,3 +25,4 @@ VALUES ('Cozy Flats', 'Lyngbyvej 32',2800,1700,100,0,2);
 
 INSERT INTO ServiceRequest (building_id,employee_id,requestDate,service_id,description,reportStatus)
 VALUES (2,0,2016-04-01,11,'This is description for my service request.','pending');
+

@@ -63,16 +63,16 @@ public class ServiceMapper {
     
     public boolean saveServiceRequest(Connection con,ServiceRequest service) {
         boolean result = false;
-        String sqlString = "INSERT INTO ServiceRequest (building_id,employee_id,requestDate,service_id,description,reportStatus)\n" +
-"VALUES (?,?,current_date(),?,?,?);";
+        String sqlString = "INSERT INTO ServiceRequest (building_id,requestDate,service_id,description,reportStatus)\n" +
+"VALUES (?,current_date(),?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
             stmt.setInt(1, service.getBuilding_id());
-            stmt.setInt(2, service.getEmployee_id());
-            stmt.setInt(3, service.getService_id());
-            stmt.setString(4, service.getDescription());
-            stmt.setString(5, service.getReportStatus());
+//            stmt.setInt(2, service.getEmployee_id());
+            stmt.setInt(2, service.getService_id());
+            stmt.setString(3, service.getDescription());
+            stmt.setString(4, service.getReportStatus());
             result = true;
             
             stmt.execute();
