@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Fill out report</title>
           <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,24 +28,23 @@
         <div class="container">
   <h1>Check up report </h1>
 
-  Customer: <%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%>
-  Building: <%= report.getBuilding().getStreet()%> <%= report.getBuilding().getZip()%>
-  <%= report.getBuilding().getSize()%>m2
+  Customer: <%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%><br>
+  Building address: <%= report.getBuilding().getStreet()%>, <%= report.getBuilding().getZip()%><br>
+  Size: <%= report.getBuilding().getSize()%>m2
   
   <form role="form" action="UserServlet" method="post">
       <input type="hidden" name="command" value="updateCheckupReport">
     <div class="form-group">
       <label for="condition_level">Condition of building:</label>
-      <input type="number" class="form-control" name="condition_level">
+      <input type="number" class="form-control" name="condition_level" required>
     </div>
     <div class="form-group">
       <label for="comments">Comments on check up:</label>
-      <textarea name="comments" class="form-control" rows="4" cols="20">
-      </textarea>
+      <textarea name="comments" class="form-control" rows="4" cols="20" maxlength="255"></textarea>
     </div>
       <input type="hidden" name="creport_id" value="<%= report.getCreport_id()%>"/>
     <button type="submit" class="btn btn-default">Submit</button>
-    <a href="#" class="button">Back</a>
+    <a href="" class="button">Back</a>
   </form>
 </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

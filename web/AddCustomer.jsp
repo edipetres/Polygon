@@ -54,23 +54,23 @@
       <input type="hidden" name="command" value="addCustomer">
     <div class="form-group">
       <label for="company_name">Municipality or association name:</label>
-      <input type="text" class="form-control" name="company_name">
+      <input type="text" class="form-control" name="company_name" required>
     </div>
     <div class="form-group">
       <label for="fname">Contact person's first name:</label>
-      <input type="text" class="form-control" name="fname">
+      <input type="text" class="form-control" name="fname" required>
     </div>
     <div class="form-group">
       <label for="lname">Contact person's last name:</label>
-      <input type="text" class="form-control" name="lname">
+      <input type="text" class="form-control" name="lname" required>
     </div>
       <div class="form-group">
       <label for="username">Username:</label>
-      <input type="text" class="form-control" name="username">
+      <input type="text" class="form-control" name="username" required>
     </div>
       <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="text" class="form-control" name="pwd">
+      <input type="text" class="form-control" name="pwd" required>
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
