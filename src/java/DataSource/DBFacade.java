@@ -98,4 +98,12 @@ public class DBFacade {
     public boolean takeServiceRequest(int srequest_id, int employee_id) {
         return serviceMapper.takeServiceRequest(con, srequest_id, employee_id);
     }
+    
+    public Building getBuilding(int building_id) {
+        return bm.getBuilding(con, building_id);
+    }
+
+    public boolean saveBuildingEdits(Building tempBuilding) {
+        return bm.saveBuildingEdits(con, tempBuilding);
+    }
 }

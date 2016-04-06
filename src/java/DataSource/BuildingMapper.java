@@ -6,11 +6,13 @@
 package DataSource;
 
 import Domain.Building;
+import Domain.ServiceList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +23,22 @@ import java.util.logging.Logger;
  * @author edipetres
  */
 public class BuildingMapper {
-    public boolean addBuilding(Connection con,Building building) {
+
+//    private static Connection con;
+//    private static BuildingMapper bm;
+//
+//    BuildingMapper() {
+//        con = (Connection) DBConnector.getInstance().getConnection();
+//
+//    }
+//
+//    public static void main(String[] args) {
+//        bm = new BuildingMapper();
+//        
+//        Building b = new Building("");
+//    }
+
+    public boolean addBuilding(Connection con, Building building) {
         boolean result = false;
         String sqlString = "INSERT INTO Building (building_id,name,street,zip,size,condition_level,customer_id) "
                 + "VALUES (?,?,?,?,?,?,?);";
@@ -34,8 +51,8 @@ public class BuildingMapper {
             stmt.setInt(4, building.getZip());
             stmt.setInt(5, building.getSize());
             stmt.setInt(6, building.getCondition());
-            stmt.setInt(7, building.getCustomerID());
-            
+            stmt.setInt(7, 1);
+
             stmt.execute();
             stmt.close();
             result = true;
@@ -45,23 +62,24 @@ public class BuildingMapper {
         }
         return result;
     }
-        public List<Building> getBuildings(Connection con){
+
+    public List<Building> getBuildings(Connection con) {
         ArrayList<Building> buildings = new ArrayList<>();
         String sql = "select * from Building";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                    Building tempBuild = new Building(
-                    rs.getInt("building_id"),
-                    rs.getInt("customer_id"),
-                    rs.getString("name"),
-                    rs.getString("street"),
-                    rs.getInt("size"),
-                    rs.getInt("condition_level"),
-                    rs.getInt("zip"));
-                    buildings.add(tempBuild);
-                    
-                }
+                Building tempBuild = new Building(
+                        rs.getInt("building_id"),
+                        rs.getInt("customer_id"),
+                        rs.getString("name"),
+                        rs.getString("street"),
+                        rs.getInt("size"),
+                        rs.getInt("condition_level"),
+                        rs.getInt("zip"));
+                buildings.add(tempBuild);
+
+            }
         } catch (Exception e) {
             System.out.println("Problem in BuildingMapper ");
             System.out.println(e.getMessage());
@@ -69,55 +87,84 @@ public class BuildingMapper {
         }
         return buildings;
     }
-    
-    
-//    an result = false;
+
+    public Building getBuilding(Connection con, int building_id) {
+        Building building = null;
+        String sql = "select * from Building where building_id=?";
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, building_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                building = new Building(rs.getInt("building_id"),
+                        rs.getInt("customer_id"),
+                        rs.getString("name"),
+                        rs.getString("street"),
+                        rs.getInt("size"),
+                        rs.getInt("condition_level"),
+                        rs.getInt("zip"));
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BuildingMapper.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Problem in getBuilding. Exception = " + ex);
+        }
+        return building;
+    }
+
+    boolean saveBuildingEdits(Connection con, Building tempBuilding) {
+        boolean result = false;
+        String sqlString = "UPDATE Building "
+                + "SET `name`=?, "
+                + "`street`=?, "
+                + "`zip`=?,"
+                + "`size`=?,"
+                + "`condition_level`=?,"
+                + "`parcel_no`=? "
+                + "WHERE `building_id`=?;";
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(sqlString);
+            stmt.setString(1, tempBuilding.getName());
+            stmt.setString(2, tempBuilding.getStreet());
+            stmt.setInt(3, tempBuilding.getZip());
+            stmt.setInt(4, tempBuilding.getSize());
+            stmt.setInt(5, tempBuilding.getCondition());
+            stmt.setInt(6, tempBuilding.getParcel_no());
+            stmt.setInt(7, tempBuilding.getBuildingID());
+            stmt.execute();
+            stmt.close();
+            result = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(BuildingMapper.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Exception in updateBuilding(). Exception: "+ex);
+            result = false;
+        }
+        return result;
+    }
+
+//    public boolean updatePlayer(Connection conn, Player player ){
+//        
+//        //It should not be possible to change the playerid!
+//        
+//        
+//        String sql = "update player\n" +
+//        "set Player_name = ?,Player_position=?,Player_number=?,Team_id=?\n" +
+//        "where Player_id = ?;";
+//        PreparedStatement updateStatement;
 //        try {
-//            Class.forName(driver);
-//            Connection conn = DriverManager.getConnection(url, this.username, this.pwd);
-//            String sqlString = "insert into user(username, fullName,balance, pwd) VALUES (?,?,?,?)";
-//            PreparedStatement stmt = conn.prepareStatement(sqlString);
-//            stmt.setString(1, username);
-//            stmt.setString(2, fullName);
-//            stmt.setInt(3, balance);
-//            stmt.setString(4, password);
-//
-//            stmt.execute();
-//            stmt.close();
-//            conn.close();
-//            result = true;
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            System.out.println(ex);
-//            result = false;
-//        }
-//        return result;
-//    
-//    public Player getPlayer(int playerid, Connection conn){
-//        Player p = null;
-//        String sqlString = "select * from player where Player_id=?";
-//        PreparedStatement stmt = null;
-//        try {
-//            stmt = conn.prepareStatement(sqlString);
-//            stmt.setInt(1, playerid);
-//            ResultSet rs = stmt.executeQuery();
-//            while (rs.next()) {
-//                p = new Player(rs.getInt(1),
-//                        rs.getString(2),
-//                        rs.getString(3),
-//                        rs.getInt(4),
-//                        rs.getString(5));
-//            }
+//        updateStatement = conn.prepareStatement(sql);
+//        updateStatement.setString(1, player.getPlayerName());
+//        updateStatement.setString(2, player.getPlayerPos());
+//        updateStatement.setInt(3, player.getPlayerNumber());
+//        updateStatement.setString(4, player.getTeamid());
+//        updateStatement.setInt(5, player.getPlayerid());
+//        return updateStatement.execute();
 //        } catch (SQLException ex) {
-//            System.out.println("Error in soccerMapper getPlayer");
-//            System.out.println("Exception = " + ex);
-//        } finally {
-//            try {
-//                stmt.close();
-//            } catch (SQLException ex) {
-//                System.out.println("Error while trying to close stmt.");
-//                System.out.println("Exception = " + ex);
-//            }
+//            System.out.println("SQL EX IN Update Player" + ex);
 //        }
-//        return p;
+//        return false;
 //    }
 }

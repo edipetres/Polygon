@@ -10,13 +10,14 @@
 <%@page import="Domain.DomainFacade"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <%
     DomainFacade domainModel = DomainFacade.getInstance();
     List<Building> buildings = domainModel.showBuildings();
     request.setAttribute("buildings", buildings);
     if (buildings.isEmpty()) {
-            request.setAttribute("message","No buildings to show.");
-        }
+        request.setAttribute("message", "No buildings to show.");
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -28,61 +29,48 @@
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/styles.css" rel="stylesheet">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <%-- Java scrips for bootstrap here --%>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
-
-        <br><br><br>
+        <mytags:navbar/>
         <div class="container">
             <h1>Buildings</h1>
-            <div class="navbar navbar-fixed-top navbar-default">
-                <div class="container">
-                    <div class="navbar-header"><a class="navbar-brand" href="index.html">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="glyphicon glyphicon-bar"></span>
-                            <span class="glyphicon glyphicon-bar"></span>
-                            <span class="glyphicon glyphicon-bar"></span>
-                        </a>
-                    </div>
-                    <div class="navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="Buildings.jsp">Buildings</a></li>
-                            <li><a href="AddBuilding.jsp">Add Building</a></li>
-                            <li><a href="UserServlet?command=showCustomers">Customers</a></li>
-                            <li><a href="AddCustomer.jsp">Add Customer</a></li>
-                            <li><a href="UserServlet?command=showCheckupReports">Checkup reports</a></li>
-                            <li class="nav-divider"></li>
-                            <li><a href="ShowServiceRequests.jsp">Service Requests</a></li>
-                            <li><a href="ServiceRequest.jsp">Request new Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <c:forEach var="building" items="${buildings}" >
                     <div class="panel panel-info">
-                        <div class="panel-heading">Building ID:<c:out value="${building.getBuildingID()}"/></div>
+                        <div class="panel-heading"><b>Name: <c:out value="${building.getName()}"/></b> (ID: <c:out value="${building.getBuildingID()}"/>)</div>
                         <div class="panel-body">
-                            <b> Name: <c:out value="${building.getName()}"/> <c:out value="${building.getName()}"/></b> <br>
+                            <table class="table">
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-user"></span> Customer ID: </td> 
+                                    <td><c:out value="${building.getCustomerID()}"/> </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-home"></span> Address:</td> 
+                                    <td><c:out value="${building.getStreet()}"/>, <c:out value="${building.getZip()}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-signal"></span> Condition:</td> 
+                                    <td><c:out value="${building.getCondition()}"/> </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-resize-full"></span> Size:</td>
+                                    <td><c:out value="${building.getSize()}"/> m2</td>
+                                </tr>
+                            </table>
+                            <a class="btn btn-primary" href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request CheckUp</a>
+                            <a class="btn btn-primary" href="UserServlet?command=editBuilding&building_id=${building.getBuildingID()}">Edit</a>
                             
-                            <span class="glyphicon glyphicon-user"></span>Customer ID: <c:out value="${building.getCustomerID()}"/> <br>
-                            <span class="glyphicon glyphicon-home"></span>Building id: <c:out value="${building.getName()}"/><br>
-                            <span class="glyphicon glyphicon-envelope"></span>Condition <c:out value="${building.getCondition()}"/> <br>
-                            <span class="glyphicon glyphicon-earphone"></span>Size: <c:out value="${building.getSize()}"/><br>
-                            
-                            <a href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request checkup</a>
-                            <button type="button" class="btn btn-primary">View buildings</button>
                         </div>
                     </div><!-- single customer info end-->
 
                 </c:forEach> 
             </div>
             ${message}
-           
+            ${SaveSuccessMessage}
         </div>
     </body>
 </html>

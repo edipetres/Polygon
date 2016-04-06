@@ -10,6 +10,7 @@
 <%@page import="DataSource.DBFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +18,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <title>Service Request</title>
+                <%-- Java scrips for bootstrap here --%>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
         <%
@@ -24,29 +29,8 @@
             ArrayList<ServiceList> serviceList = domainModel.getAllServices();
             request.setAttribute("serviceList", serviceList);
         %>
-        <div class="navbar navbar-fixed-top navbar-default">
-                    <div class="container">
-                        <div class="navbar-header"><a class="navbar-brand" href="index.html">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="glyphicon glyphicon-bar"></span>
-                                <span class="glyphicon glyphicon-bar"></span>
-                                <span class="glyphicon glyphicon-bar"></span>
-                            </a>
-                        </div>
-                        <div class="navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="Buildings.jsp">Buildings</a></li>
-                                <li><a href="AddBuilding.jsp">Add Building</a></li>
-                                <li><a href="UserServlet?command=showCustomers">Customers</a></li>
-                                <li><a href="AddCustomer.jsp">Add Customer</a></li>
-                                <li><a href="UserServlet?command=showCheckupReports">Checkup reports</a></li>
-                                <li class="nav-divider"></li>
-                                <li><a href="ShowServiceRequests.jsp">Service Requests</a></li>
-                                <li><a href="ServiceRequest.jsp">Request new Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-        <br><br><br>
+        
+        <mytags:navbar/>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">

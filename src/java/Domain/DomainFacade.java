@@ -82,4 +82,12 @@ public class DomainFacade {
     public boolean takeServiceRequest(int srequest_id, int employee_id) {
         return dbf.takeServiceRequest(srequest_id, employee_id);
     }
+    public Building getBuilding(int building_id) {
+        return dbf.getBuilding(building_id);
+    }
+
+    public boolean saveBuildingEdits(Building tempBuilding) {
+        return dbf.saveBuildingEdits(tempBuilding);
+    }
+    
 }

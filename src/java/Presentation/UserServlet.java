@@ -99,8 +99,44 @@ public class UserServlet extends HttpServlet {
                     //get this parameter: srequest_id
                     takeServiceRequest(request,response,domainModel);
                     break;
+                case "editBuilding":
+                    editBuilding(request,response,domainModel);
+                    break;
+                case "saveBuildingEdits":
+                    saveBuildingEdits(request,response,domainModel);
+                    break;
                     
     }
+    }
+    
+    private void saveBuildingEdits(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        String b_name,street;
+        int zip,size,condition_level,parcel_no,buildingID;
+        buildingID = Integer.parseInt(request.getParameter("building_id"));
+        b_name = request.getParameter("b_name");
+        street = request.getParameter("street");
+        zip = Integer.parseInt(request.getParameter("zip"));
+        size = Integer.parseInt(request.getParameter("size"));
+        condition_level = Integer.parseInt(request.getParameter("condition_level"));
+        parcel_no = Integer.parseInt(request.getParameter("parcel_no"));
+        Building tempBuilding = new Building(buildingID,b_name,street,zip,size,condition_level,parcel_no);
+        
+        boolean result = domainModel.saveBuildingEdits(tempBuilding);
+        
+        request.setAttribute("SaveSuccessMessage", "Save successful: "+result);
+        RequestDispatcher rd = request.getRequestDispatcher("Buildings.jsp");
+        rd.forward(request, response);
+    }
+    
+    //Editing a certain building
+    private void editBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        int building_id = Integer.parseInt(request.getParameter("building_id"));
+        Building tempBuilding;
+        tempBuilding = domainModel.getBuilding(building_id);
+        request.setAttribute("building", tempBuilding);
+        request.setAttribute("building_id", building_id);
+        RequestDispatcher rd = request.getRequestDispatcher("EditBuilding.jsp");
+        rd.forward(request, response);
     }
     
     //This method makes the service request in the DB active based on it's ID 
@@ -268,5 +304,9 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("ShowCheckupReport.jsp");
         dispatcher.forward(request, response);
     }
+
+    
+
+    
 
 }
