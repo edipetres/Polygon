@@ -21,6 +21,12 @@ public class Building {
     private String lastCheckUp;
     private int zip;
 
+    public Building(String street, int size, int zip) {
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
+
     public int getBuildingID() {
         return buildingID;
     }
@@ -57,17 +63,19 @@ public class Building {
         return zip;
     }
 
-    public Building(int customerID, String name, String street, int size, int condition, String lastCheckUp, int zip) {
+    public Building(int buildingID,int customerID, String name, String street, int size, int condition, int zip) {
+        this.buildingID = buildingID;
         this.customerID = customerID;
         this.name = name;
         this.street = street;
         this.size = size;
         this.condition = condition;
-        this.lastCheckUp = lastCheckUp;
+        //this.lastCheckUp = lastCheckUp;
         this.zip = zip;
     }
 
-    public Building(String street, int size, int zip) {
+    public Building(String name,String street, int size, int zip) {
+        this.name = name;
         this.street = street;
         this.size = size;
         this.zip = zip;

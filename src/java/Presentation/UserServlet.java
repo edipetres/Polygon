@@ -138,7 +138,7 @@ public class UserServlet extends HttpServlet {
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
         
-        Building tempBuild = new Building(1,name,street,size,0,null,zip);
+        Building tempBuild = new Building(name,street,size,zip);
         result = domainModel.addBuilding(tempBuild);
         System.out.println(tempBuild.getStreet());
         request.setAttribute("Message", "Building added: "+result);

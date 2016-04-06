@@ -51,21 +51,23 @@ public class BuildingMapper {
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                    Building b = new Building(
+                    Building tempBuild = new Building(
                     rs.getInt("building_id"),
+                    rs.getInt("customer_id"),
+                    rs.getString("name"),
                     rs.getString("street"),
                     rs.getInt("size"),
+                    rs.getInt("condition_level"),
                     rs.getInt("zip"));
-                    buildings.add(b);
-
+                    buildings.add(tempBuild);
+                    
                 }
-            
-            return buildings;
         } catch (Exception e) {
             System.out.println("Problem in BuildingMapper ");
             System.out.println(e.getMessage());
             return null;
         }
+        return buildings;
     }
     
     

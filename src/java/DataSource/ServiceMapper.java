@@ -60,7 +60,7 @@ public class ServiceMapper {
         return serviceList;
     }
     
-    
+    //Takes a service  request as a Service object and saves it into the DB
     public boolean saveServiceRequest(Connection con,ServiceRequest service) {
         boolean result = false;
         String sqlString = "INSERT INTO ServiceRequest (building_id,employee_id,requestDate,service_id,description,reportStatus)\n" +
