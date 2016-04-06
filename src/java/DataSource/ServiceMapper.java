@@ -5,7 +5,7 @@
  */
 package DataSource;
 
-import Domain.Service;
+import Domain.ServiceRequest;
 import Domain.ServiceList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,14 +36,7 @@ public class ServiceMapper {
 //    }
 //    public static void main(String[] args) {
 //        ServiceMapper sm = new ServiceMapper();
-//        ArrayList<ServiceList> sl = sm.getServiceList(con);
-//        
-//        for (int i = 0; i < sl.size(); i++) {
-//            System.out.println(i+": "+sl.get(i).getService_id()+" name: "+sl.get(i).getService_name());
-//        }
-//        
-//        Service s = new Service(2, 11, "This is description.", "pending");
-//        boolean result = sm.saveServiceRequest(con, s);
+//        boolean result = sm.takeServiceRequest(con, 6, 1);
 //        System.out.println("result = " + result);
 //    }
     
@@ -68,7 +61,7 @@ public class ServiceMapper {
     }
     
     
-    public boolean saveServiceRequest(Connection con,Service service) {
+    public boolean saveServiceRequest(Connection con,ServiceRequest service) {
         boolean result = false;
         String sqlString = "INSERT INTO ServiceRequest (building_id,employee_id,requestDate,service_id,description,reportStatus)\n" +
 "VALUES (?,?,current_date(),?,?,?);";
@@ -88,6 +81,71 @@ public class ServiceMapper {
             Logger.getLogger(ServiceMapper.class.getName()).log(Level.SEVERE, null, ex);
             result = false;
         }
+        return result;
+    }
+
+    List<ServiceRequest> showPendingServiceRequests(Connection con) {
+        List<ServiceRequest> serviceRequests = new ArrayList();
+        String sqlString = "SELECT * FROM ServiceRequest where reportStatus='pending';";
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                serviceRequests.add(new ServiceRequest(
+                        rs.getInt("building_id"),
+                        rs.getInt("employee_id"),
+                        null,  //employee name at this point is not needed
+                        rs.getString("requestDate"),
+                        null,
+                        rs.getInt("service_id"),
+                        getService(con,rs.getInt("service_id")).getService_name(),
+                        rs.getString("description"),
+                        "pending",
+                        rs.getInt("srequest_id")));
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Exception in showPendingServiceRequests. Ex: "+ex);
+        }
+        return serviceRequests;
+    }
+    
+    ServiceList getService(Connection con, int service_id) {
+        ServiceList service = null;
+        String sqlString = "select * from Services where service_id='"+service_id+"'";
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                service = new ServiceList(rs.getInt("service_id"),rs.getString("service_name"));
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return service;
+    }
+    
+    boolean takeServiceRequest(Connection con,int srequest_id,int employee_id) {
+        boolean result = false;
+        String sqlString = "UPDATE `Polygon`.`ServiceRequest` SET `reportStatus`='active' ,employee_id=? \n" +
+"WHERE `srequest_id`=?;";
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(sqlString);
+            stmt.setInt(1, employee_id);
+            stmt.setInt(2, srequest_id);
+            stmt.execute();
+            result = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceMapper.class.getName()).log(Level.SEVERE, null, ex);
+            result = false;
+        }
+        
         return result;
     }
 }

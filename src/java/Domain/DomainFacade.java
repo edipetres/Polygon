@@ -73,7 +73,13 @@ public class DomainFacade {
         return dbf.getAllServices();
     }
     
-    public boolean saveServiceRequest(Service service) {
+    public boolean saveServiceRequest(ServiceRequest service) {
         return dbf.saveServiceRequest(service);
+    }
+    public List<ServiceRequest> showPendingServiceRequests() {
+        return dbf.showPendingServiceRequests();
+    }
+    public boolean takeServiceRequest(int srequest_id, int employee_id) {
+        return dbf.takeServiceRequest(srequest_id, employee_id);
     }
 }

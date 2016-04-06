@@ -31,7 +31,7 @@
     <body>
         <div class="navbar navbar-fixed-top navbar-default">
             <div class="container">
-                <div class="navbar-header"><a class="navbar-brand" href="#">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <div class="navbar-header"><a class="navbar-brand" href="index.html">Healthy Buildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="glyphicon glyphicon-bar"></span>
                         <span class="glyphicon glyphicon-bar"></span>
                         <span class="glyphicon glyphicon-bar"></span>
