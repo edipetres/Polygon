@@ -12,7 +12,7 @@ import Domain.CheckupReport;
 import Domain.Customer;
 
 import Domain.DomainFacade;
-import Domain.Service;
+import Domain.ServiceRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -95,9 +95,25 @@ public class UserServlet extends HttpServlet {
                 case "serviceRequest":
                     saveServiceRequest(request,response,domainModel);
                     break;
-                    
+                case "takeServiceRequest":
+                    //get this parameter: srequest_id
+                    takeServiceRequest(request,response,domainModel);
+                    break;
                     
     }
+    }
+    
+    //This method makes the service request in the DB active based on it's ID 
+    //and assigns an employee to it
+    private boolean takeServiceRequest(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        boolean result = false;
+        int srequest_id = Integer.parseInt(request.getParameter("srequest_id"));
+        int employee_id = 1;
+        result = domainModel.takeServiceRequest(srequest_id, employee_id);
+        request.setAttribute("takeServiceMessage", "Success: "+result);
+        RequestDispatcher rd = request.getRequestDispatcher("ShowServiceRequests.jsp");
+        rd.forward(request, response);
+        return result;
     }
     
     private boolean saveServiceRequest (HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
@@ -105,7 +121,7 @@ public class UserServlet extends HttpServlet {
         int service_id = Integer.parseInt(request.getParameter("selectService"));
         String description = request.getParameter("description");
         
-        Service service = new Service(service_id,2,description,"pending");
+        ServiceRequest service = new ServiceRequest(service_id,2,description,"pending");
         result = domainModel.saveServiceRequest(service);
         
         request.setAttribute("message", "Service saved: "+result);

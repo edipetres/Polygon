@@ -8,7 +8,7 @@ package DataSource;
 import Domain.Building;
 import Domain.CheckupReport;
 import Domain.Customer;
-import Domain.Service;
+import Domain.ServiceRequest;
 import Domain.ServiceList;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -87,9 +87,15 @@ public class DBFacade {
         return serviceMapper.getServiceList(con);
     }
     
-    public boolean saveServiceRequest(Service s) {
+    public boolean saveServiceRequest(ServiceRequest s) {
         boolean result = serviceMapper.saveServiceRequest(con, s);
         return result;
     }
-   
+
+    public List<ServiceRequest> showPendingServiceRequests() {
+        return serviceMapper.showPendingServiceRequests(con);
+    }
+    public boolean takeServiceRequest(int srequest_id, int employee_id) {
+        return serviceMapper.takeServiceRequest(con, srequest_id, employee_id);
+    }
 }
