@@ -61,14 +61,14 @@
                         <div class="form-group">
 
                             <label for="street">Street and No.:</label>
-                            <input type="text" class="form-control" name="street">
+                            <input type="text" class="form-control" name="street" required>
 
                         </div>
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="zip">Zip:</label>
-                                    <input type="text" class="form-control" name="zip">
+                                    <input type="text" class="form-control" name="zip" required>
                                 </div>
                                 <div class="col-xs-6">
                                     <label for="size">Size: (m2)</label>

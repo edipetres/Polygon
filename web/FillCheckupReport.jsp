@@ -36,7 +36,7 @@
       <input type="hidden" name="command" value="updateCheckupReport">
     <div class="form-group">
       <label for="condition_level">Condition of building:</label>
-      <input type="number" class="form-control" name="condition_level">
+      <input type="number" class="form-control" name="condition_level" required>
     </div>
     <div class="form-group">
       <label for="comments">Comments on check up:</label>
