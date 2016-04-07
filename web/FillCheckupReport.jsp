@@ -43,7 +43,7 @@
                 </div>
                 <input type="hidden" name="creport_id" value="<%= report.getCreport_id()%>"/>
                 <button type="submit" class="btn btn-default">Submit</button>
-                <a href="" class="button">Back</a>
+                <a href="UserServlet?command=showCheckupReports" class="button">Back</a>
             </form>
         </div>
     </body>
