@@ -89,5 +89,9 @@ public class DomainFacade {
     public boolean saveBuildingEdits(Building tempBuilding) {
         return dbf.saveBuildingEdits(tempBuilding);
     }
+
+    public UserPrefs authenticate(String email, String password) {
+        return dbf.authenticate(email, password);
+    }
     
 }

@@ -13,6 +13,7 @@ import Domain.Customer;
 
 import Domain.DomainFacade;
 import Domain.ServiceRequest;
+import Domain.UserPrefs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -169,12 +170,17 @@ public class UserServlet extends HttpServlet {
     private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         boolean result = false;
         
+        //Get userPrefs object from session
+        HttpSession session = request.getSession();
+        UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+        int customerID = userPrefs.getUserID();
+        
         String name = request.getParameter("b_name");
         String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
         
-        Building tempBuild = new Building(name,street,size,zip);
+        Building tempBuild = new Building(customerID,name,street,size,zip);
         result = domainModel.addBuilding(tempBuild);
         System.out.println(tempBuild.getStreet());
         request.setAttribute("Message", "Building added: "+result);

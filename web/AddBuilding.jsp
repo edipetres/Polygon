@@ -30,19 +30,14 @@
                     <h1>Add a new building:</h1>
                     <form class="form-horizontal" role="form" name="AddBuilding" action="UserServlet" method="POST">
                         <input type="hidden" name="command" value="addBuilding">
-
                         <div class="form-group">
-
                             <label for="b_name">Building name:</label>
                             <input type="text" class="form-control" name="b_name">
-
                         </div>
-
                         <div class="form-group">
 
                             <label for="street">Street and No.:</label>
                             <input type="text" class="form-control" name="street" required>
-
                         </div>
                         <div class="row">
                             <div class="form-group">
@@ -56,7 +51,6 @@
                                 </div>
                             </div>    
                             <div class="form-group">
-
                             </div>
                         </div>
                         <button type="submit" class="btn btn-default">Add Building</button>

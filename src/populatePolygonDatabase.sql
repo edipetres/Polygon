@@ -13,6 +13,11 @@ INSERT INTO Services VALUES (14,'Grafiti removal');
 INSERT INTO Services VALUES (15,'Burglary restoration');
 INSERT INTO Services VALUES (16,'Fire damage');
 
+INSERT INTO Building(street, zip, size, customer_id) VALUES('123 Fakestreet', 45692, 90, 1);
+INSERT INTO Building(street, zip, size, customer_id) VALUES('546 Fakestreet', 45692, 90, 1);
+INSERT INTO CheckupReport(building_id, checkDate, reportStatus) VALUES (3, current_date(),'pending');
+INSERT INTO Employee(emp_id,fname, lname, username, pwd) VALUES (1,'Fixer','Worker','fworker', '123');
+
 INSERT INTO Employee(fname,lname,username,pwd,email,phone_no) 
 VALUES ('John','Brown','johnbrown','pwd123','johnb@gmail.com',91007744);
 INSERT INTO Employee(fname,lname,username,pwd,email,phone_no) 

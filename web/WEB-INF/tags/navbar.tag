@@ -6,6 +6,7 @@
 
 <%@tag description="navigation bar" pageEncoding="UTF-8"%>
 
+
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="message"%>
 
@@ -22,34 +23,50 @@
             <ul class="nav navbar-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buildings <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-home"></span> Buildings <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="Buildings.jsp">All buildings</a></li>
-                        <li><a href="AddBuilding.jsp">Add new building</a></li>
+                        <li><a href="Buildings.jsp"><span class="glyphicon glyphicon-th-list"></span>  All buildings</a></li>
+                        <li><a href="AddBuilding.jsp"><span class="glyphicon glyphicon-plus"></span> Add new building</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customers <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Customers <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="UserServlet?command=showCustomers">All customers</a></li>
-                        <li><a href="AddCustomer.jsp">Add new customer</a></li>
+                        <li><a href="UserServlet?command=showCustomers"><span class="glyphicon glyphicon-th-list"></span>  All customers</a></li>
+                        <li><a href="AddCustomer.jsp"><span class="glyphicon glyphicon-plus"></span> Add new customer</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
                 <li class="nav-divider"></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> Services<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="ShowServiceRequests.jsp">Service Requests</a></li>
-                        <li><a href="ServiceRequest.jsp">Request new Service</a></li>
+                        <li><a href="ShowServiceRequests.jsp"><span class="glyphicon glyphicon-th-list"></span> Service Requests</a></li>
+                        <li><a href="ServiceRequest.jsp"><span class="glyphicon glyphicon-plus"></span> Request new Service</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="UserServlet?command=showCheckupReports">CheckUp Reports</a></li>
+                        <li><a href="UserServlet?command=showCheckupReports"><span class="glyphicon glyphicon-th-list"></span> CheckUp Reports</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> My Account<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="MyAccount.jsp"><span class="glyphicon glyphicon-th-list"></span> My account</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-plus"></span> none</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> none</a></li>
                     </ul>
                 </li>
                 
+                
+               
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="Login.jsp">Login</a></li>
+                <li><a href="Authenticate?command=logout">Log out</a></li>
             </ul>
         </div>
     </div>

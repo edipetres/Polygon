@@ -48,7 +48,7 @@
                             <span class="glyphicon glyphicon-earphone"></span> <c:out value="${service.getReportStatus()}"/><br>
                             <span class="glyphicon glyphicon-earphone"></span> id:<c:out value="${service.getSrequest_id()}"/><br>
                             <a href="UserServlet?command=takeServiceRequest&srequest_id=${service.getSrequest_id()}">Take this job</a>
-                            <button type="button" class="btn btn-primary">View buildings</button>
+                            
                         </div>
                     </div><!-- single customer info end-->
                 </c:forEach> 

@@ -10,6 +10,7 @@ import Domain.CheckupReport;
 import Domain.Customer;
 import Domain.ServiceRequest;
 import Domain.ServiceList;
+import Domain.UserPrefs;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,6 +27,7 @@ public class DBFacade {
     private CustomerMapper customerMap;
     private CheckupReportMapper creportmap;
     private ServiceMapper serviceMapper;
+    private UserMapper userMapper;
     
     //Singleton start
     private static DBFacade instance;
@@ -36,6 +38,7 @@ public class DBFacade {
         customerMap = new CustomerMapper();
         creportmap = new CheckupReportMapper();
         serviceMapper = new ServiceMapper();
+        userMapper = new UserMapper();
         //assign the mappers with a new object 
     }
     
@@ -105,5 +108,9 @@ public class DBFacade {
 
     public boolean saveBuildingEdits(Building tempBuilding) {
         return bm.saveBuildingEdits(con, tempBuilding);
+    }
+
+    public UserPrefs authenticate(String email, String password) {
+        return userMapper.authenticate(con,email,password);
     }
 }

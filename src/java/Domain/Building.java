@@ -10,7 +10,7 @@ package Domain;
  * @author edipetres
  */
 public class Building {
-    
+
     private int buildingID;
     private int customerID;
     private String name;
@@ -31,7 +31,7 @@ public class Building {
     public int getBuildingID() {
         return buildingID;
     }
-    
+
     public String getStreet() {
         return street;
     }
@@ -59,13 +59,21 @@ public class Building {
     public String getLastCheckUp() {
         return lastCheckUp;
     }
-    
+
     public int getZip() {
         return zip;
     }
-    
+
     public int getParcel_no() {
         return parcel_no;
+    }
+
+    public Building(int customerID, String name, String street, int size, int zip) {
+        this.customerID = customerID;
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
     }
 
     public Building(int buildingID, String name, String street, int zip, int size, int condition, int parcel_no) {
@@ -78,8 +86,7 @@ public class Building {
         this.parcel_no = parcel_no;
     }
 
-    
-    public Building(int buildingID,int customerID, String name, String street, int size, int condition, int zip) {
+    public Building(int buildingID, int customerID, String name, String street, int size, int condition, int zip) {
         this.buildingID = buildingID;
         this.customerID = customerID;
         this.name = name;
@@ -90,18 +97,11 @@ public class Building {
         this.zip = zip;
     }
 
-    public Building(String name,String street, int size, int zip) {
-        this.name = name;
-        this.street = street;
-        this.size = size;
-        this.zip = zip;
-    }
-    
     public Building(int buildingID, String street, int size, int zip) {
         this.buildingID = buildingID;
         this.street = street;
         this.size = size;
         this.zip = zip;
     }
-    
+
 }

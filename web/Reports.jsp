@@ -47,11 +47,11 @@
                         <table class="table table-bordered" cellspacing="0" width="100%">
                             <thread>
                                 <tr>
-                                    <th>Report ID</th> 
+                                    <th>ID</th> 
                                     <th>Customer</th> 
                                     <th>Employee</th>
                                     <th>Address</th>
-                                    <th>Perform CheckUp</th>
+                                    <th>Perform</th>
                                 </tr>
                             </thread>
                             <c:forEach var="request" items="${reports}">
@@ -60,7 +60,10 @@
                                     <td><c:out value="${request.getCustomer().getCompany_name()}"/></td>
                                     <td><c:out value="${request.getEmployee().getFname()}"/> <c:out value="${request.getEmployee().getLname()}"/></td>
                                     <td><c:out value="${request.getBuilding().getStreet()}"/> <br> <c:out value="${request.getBuilding().getZip()}"/></td>
-                                    <td><a href="UserServlet?command=selectReport&reportid=${request.getCreport_id()}">Fill out report</a></td>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil"></span> 
+                                        <a href="UserServlet?command=selectReport&reportid=${request.getCreport_id()}"> Fill out report</a>
+                                    </td>
                                 </tr>
 
                             </c:forEach>
@@ -73,39 +76,31 @@
             Size: <%= report.getBuilding().getSize()%>m2
                 --%>
                 <div class="col-sm-6">
-                    <h1>Undone checkup reports</h1>
-                    <%
-                        for (int i = 0; i < reports.size(); i++) {
-
-                    %>
-                    <%= reports.get(i).getCreport_id()%>
-                    <b>Customer: </b>
-                    <%= reports.get(i).getCustomer().getCompany_name()%>
-                    <b>Worker: </b>
-                    <%= reports.get(i).getEmployee().getFname()%>
-                    <%= reports.get(i).getEmployee().getLname()%> 
-
-                    <a href="UserServlet?command=selectReport&reportid=<%= reports.get(i).getCreport_id()%>">Fill out report</a>
-
-                    <br>
-                    <%} //end of for loop%>
-
-                    <h1>Finished checkup reports</h1>
-                    <%
-                        for (int i = 0; i < donereports.size(); i++) {
-
-                    %>
-                    <%= donereports.get(i).getCreport_id()%>
-                    <b>Customer: </b>
-                    <%= donereports.get(i).getCustomer().getCompany_name()%>
-                    <b>Worker: </b>
-                    <%= donereports.get(i).getEmployee().getFname()%>
-                    <%= donereports.get(i).getEmployee().getLname()%> 
-
-                    <a href="UserServlet?command=selectFinishedReport&reportid=<%= donereports.get(i).getCreport_id()%>">Show more</a>
-
-                    <br>
-                    <%} //end of for loop%>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Finished CheckUp Reports</h3>
+                        </div>
+                        <table class="table table-bordered" cellspacing="0" width="100%">
+                            <thread>
+                                <tr>
+                                    <th>ID</th> 
+                                    <th><span class="glyphicon glyphicon-user"></span> Customer</th> 
+                                    <th>Employee</th>
+                                    <th>Address</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thread>
+                            <c:forEach var="request" items="${donereports}">
+                                <tr>
+                                    <td><c:out value="${request.getCreport_id()}"/></td>
+                                    <td><c:out value="${request.getCustomer().getCompany_name()}"/></td>
+                                    <td><c:out value="${request.getEmployee().getFname()}"/> <c:out value="${request.getEmployee().getLname()}"/></td>
+                                    <td><c:out value="${request.getBuilding().getStreet()}"/> <br> <c:out value="${request.getBuilding().getZip()}"/></td>
+                                    <td><a href="UserServlet?command=selectFinishedReport&reportid=${request.getCreport_id()}">Show more</a></a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

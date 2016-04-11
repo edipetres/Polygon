@@ -51,8 +51,7 @@ public class BuildingMapper {
             stmt.setInt(4, building.getZip());
             stmt.setInt(5, building.getSize());
             stmt.setInt(6, building.getCondition());
-            stmt.setInt(7, 1);
-
+            stmt.setInt(7, building.getCustomerID());
             stmt.execute();
             stmt.close();
             result = true;

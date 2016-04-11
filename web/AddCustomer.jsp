@@ -13,11 +13,12 @@
         <title>Healthy Buildings</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
+        
     </head>
     <body>
         <mytags:navbar/>
         <div class="container">
+            <div class="col-sm-6">
             <h1>Add new customer</h1>
             <form role="form" action="UserServlet" method="post" data-toggle="validator">
                 <input type="hidden" name="command" value="addCustomer">
@@ -51,6 +52,10 @@
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
+            </div>
+            <div class="col-sm-6">
+                <img class="pull-left" src="images/helico2.gif" width="400" height="300" alt="building"/>
+            </div>
         </div>
 
                 <!-- Latest compiled JavaScript -->
