@@ -20,7 +20,7 @@
     //request.setAttribute("requestList", requestList);
     if (requestList == null || requestList.isEmpty()) {
         request.setAttribute("errorMessage", "requestList obj empty.");
-    } 
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -67,13 +67,13 @@
                         </table>
                     </div>
                 </div>
-                
+
                 <%-- 
                 Building address: <%= report.getBuilding().getStreet()%>, <%= report.getBuilding().getZip()%><br>
             Size: <%= report.getBuilding().getSize()%>m2
                 --%>
                 <div class="col-sm-6">
-                    <h1>Undone checkup reports</h1>
+                    <!-- <h1>Undone checkup reports</h1>
                     <%
                         for (int i = 0; i < reports.size(); i++) {
 
@@ -86,7 +86,7 @@
                     <%= reports.get(i).getEmployee().getLname()%> 
 
                     <a href="UserServlet?command=selectReport&reportid=<%= reports.get(i).getCreport_id()%>">Fill out report</a>
-
+                    -->
                     <br>
                     <%} //end of for loop%>
 

@@ -161,7 +161,7 @@ Author     : Minerva
                                         The building is new and just built
                                     </td>
                                     <td>
-                                        [CONTENT]
+                                        The function is as described
                                     </td>
                                     <td>
                                         <input type="radio" name="condition_level" value="0">
@@ -175,7 +175,7 @@ Author     : Minerva
                                         The building part is intact, but with the start of wear and <br>visible damage (only cosmetic damage)
                                     </td>
                                     <td>
-                                        [CONTENT]
+                                        The function is as described
                                     </td>
                                     <td>
                                         <input type="radio" name="condition_level" value="1">
@@ -189,7 +189,7 @@ Author     : Minerva
                                         The building part is beginning to decay, with individual <br>defective components
                                     </td>
                                     <td>
-                                        [CONTENT]
+                                        Function is impaired - <br>risk of consequential damages
                                     </td>
                                     <td>
                                         <input type="radio" name="condition_level" value="2">
@@ -203,7 +203,7 @@ Author     : Minerva
                                         The building element is broken and must be replaced
                                     </td>
                                     <td>
-                                        [CONTENT]
+                                        The function is terminated - <br>risk of consequential damages
                                     </td>
                                     <td>
 
@@ -213,28 +213,16 @@ Author     : Minerva
                             </tbody>
                         </table>
 
-                        <p>Denne rapport og bygningsgennemgang er lavet for at klarlægge umiddelbare visuelle problemstillinger. 
-                            Vores formål er at sikre, at 
-                            bygningens anvendelse kan opretholdes. 
-                            Vi udbedrer ikke skader som en del af bygningsgennemgangen/rapporten. Gennemgangen 
-                            af 
-                            bygningen indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i bygningen, hvis
-                            vi 
-                            finder  det  nødvendigt. Hvis vi finder kritiske områder i  bygningen vil vi fremlægge anbefalinger angående yderligere tiltag  s
-                            å 
-                            som 
-                            yderligere undersøgelser, reparationer eller bygningsopdateringer. 
-                            Bemærk at vi skal have adgang til hele bygningen for at kunne udføre en fuld gennemgang (dette inkluderer adgang til tag, tag
-                            rum, 
-                            kælder, krybekælder eller andre aflukkede områder). De
-                            nne bygningsgennemgang er ikke
-                            -
-                            destruktiv. Hvis der skal laves destruktive 
-                            indgreb,  skal  dette  først   godkendes  af  de  bygningsansvarlige.  Destruktive  indgreb  er  ikke   en  del  af  denne  rapport  eller 
-                            bygningsgennemgang.
-                            Den bygningsansvarlige skal udlevere plan
-                            tegning over bygningen inden bygningsgennemgangen kan foretages. </p>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <p>Denne rapport og bygningsgennemgang er lavet for at klarlægge umiddelbare visuelle problemstillinger. Vores formål er at sikre, at bygningens anvendelse kan opretholdes. 
+                            Vi udbedrer ikke skader som en del af bygningsgennemgangen/rapporten. Gennemgangen af bygningen indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i bygningen, hvis vi 
+                            finder  det  nødvendigt. Hvis vi finder kritiske områder i  bygningen vil vi fremlægge anbefalinger angående yderligere tiltag  så som 
+                            yderligere undersøgelser, reparationer eller bygningsopdateringer.  
+                            <br><br>
+                            Bemærk at vi skal have adgang til hele bygningen for at kunne udføre en fuld gennemgang (dette inkluderer adgang til tag, tag rum, kælder, krybekælder eller andre aflukkede områder). Denne bygningsgennemgang er ikke-destruktiv. Hvis der skal laves destruktive indgreb,  skal  dette  først   godkendes  af  de  bygningsansvarlige.  Destruktive  indgreb  er  ikke   en  del  af  denne  rapport  eller bygningsgennemgang.
+                            <br><br>
+                            Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages. 
+                        </p>
+                        <button type="submit" class="btn btn-info">Submit</button>
                     </div>
                 </div>
                 <input type="hidden" name="creport_id" value="<%= report.getCreport_id()%>"/>
