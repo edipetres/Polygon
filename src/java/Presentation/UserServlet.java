@@ -282,7 +282,7 @@ public class UserServlet extends HttpServlet {
         String damage_what = request.getParameter("damage_what");
         String damage_repaired = request.getParameter("damage_repaired");
         System.out.println(damaged + damage_when + damage_where);
-        CheckupReport report = new CheckupReport(creport_id, condition_level, comments);
+        CheckupReport report = new CheckupReport(creport_id, condition_level, comments, damaged, damage_when, damage_where, damage_what, damage_repaired);
         domainModel.updateCheckupReport(report);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 

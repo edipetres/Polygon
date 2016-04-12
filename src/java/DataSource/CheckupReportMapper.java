@@ -180,15 +180,20 @@ public class CheckupReportMapper {
     public boolean updateCheckupReport(CheckupReport cr, Connection con) {
         boolean result = false;
         String sqlString = "UPDATE CheckupReport  "
-                + "SET checkDate=current_date(), condition_level=?, reportStatus='done', comments=?, damaged='yes', damage_when='today', damage_where='at home', damage_what='ceileing', damage_repaired='nothing' "
+                + "SET checkDate=current_date(), condition_level=?, reportStatus='done', comments=?, damaged=?, damage_when=?, damage_where=?, damage_what=?, damage_repaired=? "
                 + "WHERE creport_id=?";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
             stmt.setInt(1, cr.getCondition_level());
             stmt.setString(2, cr.getComments());
-            stmt.setInt(3, cr.getCreport_id());
 
+            stmt.setString(3, cr.getDamaged());
+            stmt.setString(4, cr.getDamage_when());
+            stmt.setString(5, cr.getDamage_where());
+            stmt.setString(6, cr.getDamage_what());
+            stmt.setString(7, cr.getDamage_repaired());
+            stmt.setInt(8, cr.getCreport_id());
             stmt.execute();
             stmt.close();
             result = true;
