@@ -10,6 +10,7 @@ package Domain;
  * @author Minerva
  */
 public class CheckupReport {
+
     int creport_id;
     Building building;
     Customer customer;
@@ -18,6 +19,62 @@ public class CheckupReport {
     int condition_level;
     String reportStatus;
     String comments;
+    String damaged;
+    String damage_when;
+    String damage_where;
+    String damage_what;
+    String damage_repaired;
+
+    public CheckupReport(int creport_id, int condition_level, String comments, String damaged, String damage_when, String damage_where, String damage_what, String damage_repaired) {
+        this.creport_id = creport_id;
+        this.condition_level = condition_level;
+        this.comments = comments;
+        this.damaged = damaged;
+        this.damage_when = damage_when;
+        this.damage_where = damage_where;
+        this.damage_what = damage_what;
+        this.damage_repaired = damage_repaired;
+    }
+
+    public String getDamaged() {
+        return damaged;
+    }
+
+    public void setDamaged(String damaged) {
+        this.damaged = damaged;
+    }
+
+    public String getDamage_when() {
+        return damage_when;
+    }
+
+    public void setDamage_when(String damage_when) {
+        this.damage_when = damage_when;
+    }
+
+    public String getDamage_where() {
+        return damage_where;
+    }
+
+    public void setDamage_where(String damage_where) {
+        this.damage_where = damage_where;
+    }
+
+    public String getDamage_what() {
+        return damage_what;
+    }
+
+    public void setDamage_what(String damage_what) {
+        this.damage_what = damage_what;
+    }
+
+    public String getDamage_repaired() {
+        return damage_repaired;
+    }
+
+    public void setDamage_repaired(String damage_repaired) {
+        this.damage_repaired = damage_repaired;
+    }
 
     public CheckupReport(int creport_id, Building building, Customer customer, Employee employee, String checkDate, int condition_level, String reportStatus, String comments) {
         this.creport_id = creport_id;
@@ -28,6 +85,7 @@ public class CheckupReport {
         this.condition_level = condition_level;
         this.reportStatus = reportStatus;
         this.comments = comments;
+
     }
 
     public CheckupReport(int creport_id, Building building, Customer customer, Employee employee, String reportStatus) {
@@ -59,7 +117,7 @@ public class CheckupReport {
         this.condition_level = condition_level;
         this.comments = comments;
     }
-    
+
     public CheckupReport(int creport_id, int condition_level, String comments) {
         this.creport_id = creport_id;
         this.condition_level = condition_level;
@@ -114,7 +172,4 @@ public class CheckupReport {
         this.comments = comments;
     }
 
-
-    
-    
 }

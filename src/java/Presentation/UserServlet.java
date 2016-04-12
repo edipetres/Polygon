@@ -276,7 +276,12 @@ public class UserServlet extends HttpServlet {
         int creport_id = Integer.parseInt(request.getParameter("creport_id"));
         int condition_level = Integer.parseInt(request.getParameter("condition_level"));
         String comments = request.getParameter("comments");
-
+        String damaged = request.getParameter("damaged");
+        String damage_when = request.getParameter("damage_when");
+        String damage_where = request.getParameter("damage_where");
+        String damage_what = request.getParameter("damage_what");
+        String damage_repaired = request.getParameter("damage_repaired");
+        System.out.println(damaged + damage_when + damage_where);
         CheckupReport report = new CheckupReport(creport_id, condition_level, comments);
         domainModel.updateCheckupReport(report);
 
@@ -301,7 +306,7 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("reportid"));
         CheckupReport report = domainModel.getReportByID(id);
         request.setAttribute("report", report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowCheckupReport.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ReportExample.jsp");
         dispatcher.forward(request, response);
     }
 

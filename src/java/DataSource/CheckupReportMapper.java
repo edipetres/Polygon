@@ -21,41 +21,41 @@ import java.util.List;
  * @author Minerva
  */
 public class CheckupReportMapper {
-    
-    public List<CheckupReport> getActiveReports(Connection con){
+
+    public List<CheckupReport> getActiveReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
-                    + "join Building ON Building.building_id=CheckupReport.building_id "
-                    + "join Customer ON Customer.customer_id=Building.customer_id "
-                    + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
-                    + "where reportStatus='active'";
+                + "join Building ON Building.building_id=CheckupReport.building_id "
+                + "join Customer ON Customer.customer_id=Building.customer_id "
+                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                + "where reportStatus='active'";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                    Building b = new Building(
-                    rs.getString("street"),
-                    rs.getInt("size"),
-                    rs.getInt("zip"));
-                    Customer c = new Customer(
-                    rs.getString("company_name"),
-                    rs.getString("fname"),
-                    rs.getString("lname")
-                    );
-                    Employee e = new Employee(
-                    rs.getString("Employee.fname"),
-                    rs.getString("Employee.lname")
-                    );
-                    CheckupReport cr = new CheckupReport(
-                    rs.getInt("creport_id"),
-                    b,
-                    c,
-                    e,
-                    rs.getString("reportStatus")
-                    );
-                    reports.add(cr);
-                    System.out.println(cr);
-                }
-            
+                Building b = new Building(
+                        rs.getString("street"),
+                        rs.getInt("size"),
+                        rs.getInt("zip"));
+                Customer c = new Customer(
+                        rs.getString("company_name"),
+                        rs.getString("fname"),
+                        rs.getString("lname")
+                );
+                Employee e = new Employee(
+                        rs.getString("Employee.fname"),
+                        rs.getString("Employee.lname")
+                );
+                CheckupReport cr = new CheckupReport(
+                        rs.getInt("creport_id"),
+                        b,
+                        c,
+                        e,
+                        rs.getString("reportStatus")
+                );
+                reports.add(cr);
+                System.out.println(cr);
+            }
+
             return reports;
         } catch (Exception e) {
             System.out.println("Problem in CustomerMapper ");
@@ -63,43 +63,44 @@ public class CheckupReportMapper {
             return null;
         }
     }
-    public List<CheckupReport> getDoneReports(Connection con){
+
+    public List<CheckupReport> getDoneReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select creport_id, reportStatus, checkDate, checkupreport.condition_level, comments, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
-                    + "join Building ON Building.building_id=CheckupReport.building_id "
-                    + "join Customer ON Customer.customer_id=Building.customer_id "
-                    + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
-                    + "where reportStatus='done'";
+                + "join Building ON Building.building_id=CheckupReport.building_id "
+                + "join Customer ON Customer.customer_id=Building.customer_id "
+                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                + "where reportStatus='done'";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                    Building b = new Building(
-                    rs.getString("street"),
-                    rs.getInt("size"),
-                    rs.getInt("zip"));
-                    Customer c = new Customer(
-                    rs.getString("company_name"),
-                    rs.getString("fname"),
-                    rs.getString("lname")
-                    );
-                    Employee e = new Employee(
-                    rs.getString("Employee.fname"),
-                    rs.getString("Employee.lname")
-                    );
-                    CheckupReport cr = new CheckupReport(
-                    rs.getInt("creport_id"),
-                    b,
-                    c,
-                    e,
-                    rs.getString("checkDate"),
-                    rs.getInt("checkupreport.condition_level"),
-                    rs.getString("reportStatus"),
-                    rs.getString("comments")
-                    );
-                    reports.add(cr);
-                    System.out.println(cr);
-                }
-            
+                Building b = new Building(
+                        rs.getString("street"),
+                        rs.getInt("size"),
+                        rs.getInt("zip"));
+                Customer c = new Customer(
+                        rs.getString("company_name"),
+                        rs.getString("fname"),
+                        rs.getString("lname")
+                );
+                Employee e = new Employee(
+                        rs.getString("Employee.fname"),
+                        rs.getString("Employee.lname")
+                );
+                CheckupReport cr = new CheckupReport(
+                        rs.getInt("creport_id"),
+                        b,
+                        c,
+                        e,
+                        rs.getString("checkDate"),
+                        rs.getInt("checkupreport.condition_level"),
+                        rs.getString("reportStatus"),
+                        rs.getString("comments")
+                );
+                reports.add(cr);
+                System.out.println(cr);
+            }
+
             return reports;
         } catch (Exception e) {
             System.out.println("Problem in CustomerMapper ");
@@ -107,43 +108,47 @@ public class CheckupReportMapper {
             return null;
         }
     }
-    public CheckupReport getReportByID(int reportid, Connection con){
-    CheckupReport cr = null;
-    String sql = "select creport_id, reportStatus, checkDate, checkupreport.condition_level, comments, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
-                    + "join Building ON Building.building_id=CheckupReport.building_id "
-                    + "join Customer ON Customer.customer_id=Building.customer_id "
-                    + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
-                    + "where creport_id=?";
-    try (PreparedStatement statement = con.prepareStatement(sql)) {
+
+    public CheckupReport getReportByID(int reportid, Connection con) {
+        CheckupReport cr = null;
+        String sql = "select creport_id, reportStatus, checkDate, checkupreport.condition_level, comments, name, street, zip, size, year, buildingUse, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+                + "join Building ON Building.building_id=CheckupReport.building_id "
+                + "join Customer ON Customer.customer_id=Building.customer_id "
+                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                + "where creport_id=?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, reportid);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                    Building b = new Building(
-                    rs.getString("street"),
-                    rs.getInt("size"),
-                    rs.getInt("zip"));
-                    Customer c = new Customer(
-                    rs.getString("company_name"),
-                    rs.getString("fname"),
-                    rs.getString("lname")
-                    );
-                    Employee e = new Employee(
-                    rs.getString("fname"),
-                    rs.getString("lname")
-                    );
-                    cr = new CheckupReport(
-                    rs.getInt("creport_id"),
-                    b,
-                    c,
-                    e,
-                    rs.getString("checkDate"),
-                    rs.getInt("checkupreport.condition_level"),
-                    rs.getString("reportStatus"),
-                    rs.getString("comments")
-                    );
+                Building b = new Building(
+                        rs.getString("name"),
+                        rs.getString("street"),
+                        rs.getInt("size"),
+                        rs.getInt("zip"),
+                        rs.getInt("year"),
+                        rs.getString("buildingUse"));
+                Customer c = new Customer(
+                        rs.getString("company_name"),
+                        rs.getString("Customer.fname"),
+                        rs.getString("Customer.lname")
+                );
+                Employee e = new Employee(
+                        rs.getString("Employee.fname"),
+                        rs.getString("Employee.lname")
+                );
+                cr = new CheckupReport(
+                        rs.getInt("creport_id"),
+                        b,
+                        c,
+                        e,
+                        rs.getString("checkDate"),
+                        rs.getInt("checkupreport.condition_level"),
+                        rs.getString("reportStatus"),
+                        rs.getString("comments")
+                );
 
-                }
-            
+            }
+
             return cr;
         } catch (Exception e) {
             System.out.println("Problem in CustomerMapper ");
@@ -152,6 +157,7 @@ public class CheckupReportMapper {
         }
 
     }
+
     public boolean createCheckupReport(int building_id, Connection con) {
         boolean result = false;
         String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus, employee_id) "
@@ -170,11 +176,11 @@ public class CheckupReportMapper {
         }
         return result;
     }
-    
-     public boolean updateCheckupReport(CheckupReport cr, Connection con) {
+
+    public boolean updateCheckupReport(CheckupReport cr, Connection con) {
         boolean result = false;
         String sqlString = "UPDATE CheckupReport  "
-                + "SET checkDate=current_date(), condition_level=?, reportStatus='done', comments=? "
+                + "SET checkDate=current_date(), condition_level=?, reportStatus='done', comments=?, damaged='yes', damage_when='today', damage_where='at home', damage_what='ceileing', damage_repaired='nothing' "
                 + "WHERE creport_id=?";
         PreparedStatement stmt = null;
         try {

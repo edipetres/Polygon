@@ -4,7 +4,11 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.CheckupReport"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    CheckupReport report = (CheckupReport) request.getAttribute("report");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,11 +34,13 @@
     <body>
         <div class="container report">
             <!--report header-->
+            <form role="form" action="UserServlet" method="post">
+                <input type="hidden" name="command" value="updateCheckupReport">
             <div class="row">
                 <div class="col-sm-4">
                     <img src="images/polygon-logo.PNG" alt=""/>
                     <br>
-                    <p>Report number:</p>
+                    <p>Report number: <%= report.getCreport_id()%></p>
                 </div>
                 <div class="col-sm-4"><h2>Building review</h2></div>
                 <div class="col-sm-4">
@@ -45,17 +51,17 @@
             <div class="row">
                 <div class="col-sm-4">
                     <p>
-                        Name of building:
+                        Name of building: <%= report.getBuilding().getName()%>
                         <br>
-                        Address:
+                        Address: <%= report.getBuilding().getStreet()%>
                         <br>
-                        Postnr./City:
+                        Postnr./City: <%= report.getBuilding().getZip()%>
                     </p>
                 </div>    
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
                     <p>
-                        Date:
+                        Date: <%= report.getCheckDate()%>
                     </p>
                     <p class="contact-info">
                         <br><br>
@@ -77,20 +83,37 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h4>General information of building</h4>
-                    Age: <br>
-                    Size in m2: <br>
-                    Use of building:
+                    Year built: <%= report.getBuilding().getYear()%><br>
+                    Size in m2: <%= report.getBuilding().getSize()%><br>
+                    Use of building: <%= report.getBuilding().getBuildingUse()%>
 
                     <h4>Examination of the building</h4>
                     <h4>Damage and repair</h4>
+                    Has there been damage in the building? 
+                    <input type="checkbox" name="damaged" value="yes" /> Yes
+                    <input type="checkbox" name="damaged" value="no" /> No
+                    <br>
+                    When? <input type="text" name="damage-when">
+                    <br>
+                    Where? <input type="text" name="damage-where">
+                    <br>
+                    What happened? <input type="text" name="damage-what"><br>
+                    What is repaired? <input type="text" name="damage-repaired"><br>
                     <h4>Reviewing of...</h4>
-                    Walls
-                    Ceiling
-                    Floor
-                    Windows/doors
+                    Walls <input type="text" name="" value="" /><br>
+                    Ceiling <input type="text" name="" value="" /><br>
+                    Floor <input type="text" name="" value="" /><br>
+                    Windows/doors <input type="text" name="" value="" />
                     <h4>Moisture scanning</h4>
+                    Has there been moisture scanning? 
+                    <input type="checkbox" name="moisture" value="yes" />Yes
+                    <input type="checkbox" name="moisture" value="no" />No
+                    <br>
+                    Measuring point: <input type="text" name="" value="" />
                     <h4>Conclusion</h4>
-                    Building review was conducted by ..., Polygon in cooperation with ... (building resposible)
+                    Recommendations<br>
+                    <textarea name="comments" rows="4" cols="100"></textarea><br>
+                    Building review was conducted by <i><%= report.getEmployee().getFname()%> <%= report.getEmployee().getLname()%></i>, Polygon in cooperation with <i><%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%></i> (building resposible)
                     <h4>The building is categorized as</h4>
                     <table class="table table-responsive">
                         <thead>
@@ -191,8 +214,11 @@
                         bygningsgennemgang.
                         Den bygningsansvarlige skal udlevere plan
                         tegning over bygningen inden bygningsgennemgangen kan foretages. </p>
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </div>
             </div>
+                    <input type="hidden" name="creport_id" value="<%= report.getCreport_id()%>"/>
+                    </form>
         </div> <!--container end-->
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
