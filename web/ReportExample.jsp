@@ -164,7 +164,7 @@ Author     : Minerva
 
                         <h4>Moisture scanning</h4>
                         <div class="checkbox">
-                            <label for="damaged" class="col-sm-2 form-control-label">Has there been moisture scanning? </label>
+                            <label for="moisture_scanning" class="col-sm-2 form-control-label">Has there been moisture scanning? </label>
                             <label><input type="checkbox" name="moisture_scanning" value="yes" id="moisture_checkbox"> Yes</label>
                         </div>
                         <div class="checkbox">
@@ -275,7 +275,8 @@ Author     : Minerva
                             <br><br>
                             Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages. 
                         </p>
-                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="submit" class="btn btn-info center-block">Submit</button>
+                        <hr>
                     </div>
                 </div>
                 <input type="hidden" name="creport_id" value="<%= report.getCreport_id()%>"/>
