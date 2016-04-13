@@ -273,15 +273,28 @@ public class UserServlet extends HttpServlet {
     }// </editor-fold>
 
     private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        //conclusion
         int creport_id = Integer.parseInt(request.getParameter("creport_id"));
         int condition_level = Integer.parseInt(request.getParameter("condition_level"));
+        //outside examination
+        String roof = request.getParameter("roof");
+        String walls_outside = request.getParameter("walls_outside");
+        //damage and repair
         String comments = request.getParameter("comments");
         String damaged = request.getParameter("damaged");
         String damage_when = request.getParameter("damage_when");
         String damage_where = request.getParameter("damage_where");
         String damage_what = request.getParameter("damage_what");
         String damage_repaired = request.getParameter("damage_repaired");
-        System.out.println(damaged + damage_when + damage_where);
+        //inside examination
+        String walls = request.getParameter("walls");
+        String ceiling = request.getParameter("ceiling");
+        String floor = request.getParameter("floor");
+        String window_door = request.getParameter("window_door");
+        //moisture scanning
+        String moisture_scanning = request.getParameter("moisture_scanning");
+        String moisture_measure = request.getParameter("moisture_measure");
+        
         CheckupReport report = new CheckupReport(creport_id, condition_level, comments, damaged, damage_when, damage_where, damage_what, damage_repaired);
         domainModel.updateCheckupReport(report);
 

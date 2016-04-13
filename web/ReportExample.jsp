@@ -88,51 +88,104 @@ Author     : Minerva
                         Size in m2: <%= report.getBuilding().getSize()%><br>
                         Use of building: <%= report.getBuilding().getBuildingUse()%>
 
-                        <h4>Examination of the building</h4>
-
+                        <h4>Examination of the building outside</h4>
+                        <div class="form-group row">
+                            <label for="roof" class="col-sm-2 form-control-label">Roof</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="roof" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="walls_outside" class="col-sm-2 form-control-label">Outside walls</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="walls_outside" class="form-control">
+                            </div>
+                        </div>
                         <h4>Damage and repair</h4>
-                        Has there been damage in the building? 
-                        <input type="checkbox" name="damaged" value="yes" /> Yes
-                        <input type="checkbox" name="damaged" value="no" /> No
-                        <div class="form-group row">
-                            <label for="damage_when" class="col-sm-2 form-control-label">When?</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="damage_when" class="form-control">
-                            </div>
+                        <div class="checkbox">
+                            <label for="damaged" class="col-sm-2 form-control-label">Has there been damage in the building? </label>
+                            <label><input type="checkbox" name="damaged" value="yes" id="damage_checkbox"> Yes</label>
                         </div>
-                        <div class="form-group row">
-                            <label for="damage_where" class="col-sm-2 form-control-label">Where?</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="damage_where" class="form-control">
-                            </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="damaged" value="no"> No</label>
                         </div>
-                        <div class="form-group row">
-                            <label for="damage_what" class="col-sm-2 form-control-label">What happened?</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="damage_what" class="form-control">
+                        <div id="delivery" style="display:none;">
+                            <div class="form-group row">
+                                <label for="damage_when" class="col-sm-2 form-control-label">When?</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="damage_when" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="damage_repaired" class="col-sm-2 form-control-label">What is repaired?</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="damage_repaired" class="form-control">
+                            <div class="form-group row">
+                                <label for="damage_where" class="col-sm-2 form-control-label">Where?</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="damage_where" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="damage_what" class="col-sm-2 form-control-label">What happened?</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="damage_what" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="damage_repaired" class="col-sm-2 form-control-label">What is repaired?</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="damage_repaired" class="form-control">
+                                </div>
                             </div>
                         </div>
 
                         <h4>Reviewing of...</h4>
-                        Walls <input type="text" name="walls"/><br>
-                        Ceiling <input type="text" name="ceiling"/><br>
-                        Floor <input type="text" name="floor"/><br>
-                        Windows/doors <input type="text" name="windowAndDoor"/>
+                        <div class="form-group row">
+                            <label for="walls" class="col-sm-2 form-control-label">Walls</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="walls" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ceiling" class="col-sm-2 form-control-label">Ceiling</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="ceiling" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="floor" class="col-sm-2 form-control-label">Floor</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="floor" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="window_door" class="col-sm-2 form-control-label">Windows/doors</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="window_door" class="form-control">
+                            </div>
+                        </div>
+
                         <h4>Moisture scanning</h4>
-                        Has there been moisture scanning? 
-                        <input type="checkbox" name="moisture" value="yes" />Yes
-                        <input type="checkbox" name="moisture" value="no" />No
-                        <br>
-                        Measuring point: <input type="text" name="moisture_measure"/>
+                        <div class="checkbox">
+                            <label for="damaged" class="col-sm-2 form-control-label">Has there been moisture scanning? </label>
+                            <label><input type="checkbox" name="moisture_scanning" value="yes" id="moisture_checkbox"> Yes</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="moisture_scanning" value="no"> No</label>
+                        </div>
+                        <div id="moisture_delivery" style="display:none;">
+                        <div class="form-group row">
+                            <label for="moisture_measure" class="col-sm-2 form-control-label">Measuring point:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="moisture_measure" class="form-control">
+                            </div>
+                        </div>
+                        </div>
+
                         <h4>Conclusion</h4>
                         Recommendations<br>
-                        <textarea name="comments" rows="4" cols="100"></textarea><br>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <textarea name="comments" rows="4" cols="100" class="form-control"></textarea>
+                            </div>
+                        </div>
                         Building review was conducted by <i><%= report.getEmployee().getFname()%> <%= report.getEmployee().getLname()%></i>, Polygon in cooperation with <i><%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%></i> (building resposible)
                         <h4>The building is categorized as</h4>
                         <table class="table table-responsive">
@@ -228,7 +281,29 @@ Author     : Minerva
                 <input type="hidden" name="creport_id" value="<%= report.getCreport_id()%>"/>
             </form>
         </div> <!--container end-->
-
+        <script>
+            var checkbox = document.getElementById('damage_checkbox');
+            var moisture_checkbox = document.getElementById('moisture_checkbox');
+            var delivery_div = document.getElementById('delivery');
+            var moisture_delivery_div = document.getElementById('moisture_delivery');
+            checkbox.onclick = function () {
+                console.log(this);
+                if (this.checked) {
+                    delivery_div.style['display'] = 'block';
+                } else {
+                    delivery_div.style['display'] = 'none';
+                }
+            };
+            
+            moisture_checkbox.onclick = function () {
+                console.log(this);
+                if (this.checked) {
+                    moisture_delivery_div.style['display'] = 'block';
+                } else {
+                    moisture_delivery_div.style['display'] = 'none';
+                }
+            };
+        </script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
