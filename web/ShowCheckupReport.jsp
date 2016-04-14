@@ -80,6 +80,7 @@
                     Size: <%= report.getBuilding().getSize()%>m2<br>
                     Condition:   <%= report.getCondition_level()%><br>
                     Comments   <%= report.getComments()%>
+                    Moisture scanning   <%= report.getMoisture_scanning()%>
                 </div>
             </div>
         </div>

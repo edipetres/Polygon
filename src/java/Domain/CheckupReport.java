@@ -126,6 +126,30 @@ public class CheckupReport {
         this.moisture_measure = moisture_measure;
     }
 
+    public CheckupReport(int creport_id, Building building, Customer customer, Employee employee, String checkDate, int condition_level, String reportStatus, String comments, String roof, String walls_outside, String damaged, String damage_when, String damage_where, String damage_what, String damage_repaired, String walls, String ceiling, String floor, String windows_doors, String moisture_scanning, String moisture_measure) {
+        this.creport_id = creport_id;
+        this.building = building;
+        this.customer = customer;
+        this.employee = employee;
+        this.checkDate = checkDate;
+        this.condition_level = condition_level;
+        this.reportStatus = reportStatus;
+        this.comments = comments;
+        this.roof = roof;
+        this.walls_outside = walls_outside;
+        this.damaged = damaged;
+        this.damage_when = damage_when;
+        this.damage_where = damage_where;
+        this.damage_what = damage_what;
+        this.damage_repaired = damage_repaired;
+        this.walls = walls;
+        this.ceiling = ceiling;
+        this.floor = floor;
+        this.windows_doors = windows_doors;
+        this.moisture_scanning = moisture_scanning;
+        this.moisture_measure = moisture_measure;
+    }
+
     public String getDamaged() {
         return damaged;
     }

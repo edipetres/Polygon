@@ -111,7 +111,7 @@ public class CheckupReportMapper {
 
     public CheckupReport getReportByID(int reportid, Connection con) {
         CheckupReport cr = null;
-        String sql = "select creport_id, reportStatus, checkDate, checkupreport.condition_level, comments, name, street, zip, size, year, buildingUse, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+        String sql = "select * from CheckupReport "
                 + "join Building ON Building.building_id=CheckupReport.building_id "
                 + "join Customer ON Customer.customer_id=Building.customer_id "
                 + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
@@ -144,7 +144,20 @@ public class CheckupReportMapper {
                         rs.getString("checkDate"),
                         rs.getInt("checkupreport.condition_level"),
                         rs.getString("reportStatus"),
-                        rs.getString("comments")
+                        rs.getString("comments"),
+                        rs.getString("roof"),
+                        rs.getString("walls_outside"),
+                        rs.getString("damaged"),
+                        rs.getString("damage_when"),
+                        rs.getString("damage_where"),
+                        rs.getString("damage_what"),
+                        rs.getString("damage_repaired"),
+                        rs.getString("walls"),
+                        rs.getString("ceiling"),
+                        rs.getString("floor"),
+                        rs.getString("windows_doors"),
+                        rs.getString("moisture_scanning"),
+                        rs.getString("moisture_measure")
                 );
 
             }
