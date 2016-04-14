@@ -22,6 +22,7 @@
         <title>My Account</title>
     </head>
     <body>
+        <br><br><br>
         ${errorMessage}
         <%
             UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
@@ -76,17 +77,27 @@
                             </ul>
                         </li>
                         <li> <a href="#">Logged in as: <b>
-                        <%
-                            if (userPrefs != null) {
-                                String username = userPrefs.getUsername();
-                                out.print(username);
-                            }
-                        %>
-                            </b></a></li>
+                                    <%
+                                        if (userPrefs != null) {
+                                            String username = userPrefs.getUsername();
+                                            out.print(username);
+                                        }
+                                    %>
+                                </b></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <br><br><br>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Welcome, <%=userPrefs.getFname()%></h3>
+            </div>
+            <div class="panel-body">
+                <div class="table">
+                    
+                </div>
+            </div>
+        </div>
     </body>
 </html>

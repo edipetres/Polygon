@@ -17,7 +17,7 @@ public class UserPrefs {
     
     private int accessLevel;
     private int userID;
-    private String fname;
+    String fname;
     private String lname;
     private String username;
     private String email;
