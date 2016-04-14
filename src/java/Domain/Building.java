@@ -23,6 +23,7 @@ public class Building {
     private int parcel_no;
     private int year;
     private String buildingUse;
+    private String city;
 
     public Building(String street, int size, int zip) {
         this.street = street;
@@ -91,14 +92,23 @@ public class Building {
         //this.lastCheckUp = lastCheckUp;
         this.zip = zip;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
     
-    public Building(String name, String street, int size, int zip, int year, String buildingUse) {
+    public Building(String name, String street, int size, int zip, int year, String buildingUse, String city) {
         this.name = name;
         this.street = street;
         this.size = size;
         this.zip = zip;
         this.year = year;
         this.buildingUse = buildingUse;
+        this.city = city;
     }
 
     public int getYear() {
