@@ -21,11 +21,20 @@ public class Building {
     private String lastCheckUp;
     private int zip;
     private int parcel_no;
+    private int year;
+    private String buildingUse;
+    private String city;
 
     public Building(String street, int size, int zip) {
         this.street = street;
         this.size = size;
         this.zip = zip;
+    }
+    public Building(String street, int size, int zip, String city) {
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+        this.city = city;
     }
 
     public int getBuildingID() {
@@ -97,6 +106,47 @@ public class Building {
         this.zip = zip;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
+    public Building(String name, String street, int size, int zip, int year, String buildingUse, String city) {
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+        this.year = year;
+        this.buildingUse = buildingUse;
+        this.city = city;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public String getBuildingUse() {
+        return buildingUse;
+    }
+
+    public void setBuildingUse(String buildingUse) {
+        this.buildingUse = buildingUse;
+    }
+
+    public Building(String name,String street, int size, int zip) {
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
+    
     public Building(int buildingID, String street, int size, int zip) {
         this.buildingID = buildingID;
         this.street = street;

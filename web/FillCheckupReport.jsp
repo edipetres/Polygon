@@ -28,7 +28,7 @@
             <h1>Check up report </h1>
 
             Customer: <%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%><br>
-            Building address: <%= report.getBuilding().getStreet()%>, <%= report.getBuilding().getZip()%><br>
+            Building address: <%= report.getBuilding().getStreet()%>, <%= report.getBuilding().getZip()%> <br>
             Size: <%= report.getBuilding().getSize()%>m2
 
             <form role="form" action="UserServlet" method="post">

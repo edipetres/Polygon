@@ -4,6 +4,7 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.DomainFacade"%>
 <%@page import="Domain.CheckupReport"%>
 <%@page import="java.util.List"%>
 <%@page import="Presentation.UserServlet"%>
@@ -16,11 +17,16 @@
     List<CheckupReport> requestList = (List<CheckupReport>) request.getAttribute("reports");
     List<CheckupReport> reports = (List<CheckupReport>) request.getAttribute("reports");
     List<CheckupReport> donereports = (List<CheckupReport>) request.getAttribute("donereports");
-
+    DomainFacade dm = DomainFacade.getInstance();
+   
     //request.setAttribute("requestList", requestList);
     if (requestList == null || requestList.isEmpty()) {
         request.setAttribute("errorMessage", "requestList obj empty.");
-    } 
+        reports = dm.showActiveCheckupReports();
+        donereports = dm.showDoneCheckupReports();
+        request.setAttribute("reports", reports);
+        request.setAttribute("donereports", donereports);
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -59,11 +65,8 @@
                                     <td><c:out value="${request.getCreport_id()}"/></td>
                                     <td><c:out value="${request.getCustomer().getCompany_name()}"/></td>
                                     <td><c:out value="${request.getEmployee().getFname()}"/> <c:out value="${request.getEmployee().getLname()}"/></td>
-                                    <td><c:out value="${request.getBuilding().getStreet()}"/> <br> <c:out value="${request.getBuilding().getZip()}"/></td>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil"></span> 
-                                        <a href="UserServlet?command=selectReport&reportid=${request.getCreport_id()}"> Fill out report</a>
-                                    </td>
+                                    <td><c:out value="${request.getBuilding().getStreet()}"/> <br> <c:out value="${request.getBuilding().getZip()}"/> <c:out value="${request.getBuilding().getCity()}"/></td>
+                                    <td><a href="UserServlet?command=selectReport&reportid=${request.getCreport_id()}">Fill out report</a></td>
                                 </tr>
 
                             </c:forEach>
@@ -71,13 +74,10 @@
                     </div>
                 </div>
                 
-                <%-- 
-                Building address: <%= report.getBuilding().getStreet()%>, <%= report.getBuilding().getZip()%><br>
-            Size: <%= report.getBuilding().getSize()%>m2
-                --%>
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+
                             <h3 class="panel-title">Finished CheckUp Reports</h3>
                         </div>
                         <table class="table table-bordered" cellspacing="0" width="100%">
@@ -101,6 +101,11 @@
                             </c:forEach>
                         </table>
                     </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

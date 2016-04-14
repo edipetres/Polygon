@@ -84,7 +84,7 @@ public class UserServlet extends HttpServlet {
                     break;  
                 case "requestCheckup":
                     requestCheckup(request, response, domainModel);
-                    dispatcher = request.getRequestDispatcher("index.html");
+                    dispatcher = request.getRequestDispatcher("Reports.jsp");
                     dispatcher.forward(request, response);
                     break;  
                 case "selectReport":
@@ -279,14 +279,32 @@ public class UserServlet extends HttpServlet {
     }// </editor-fold>
 
     private void updateCheckupReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        //conclusion
         int creport_id = Integer.parseInt(request.getParameter("creport_id"));
         int condition_level = Integer.parseInt(request.getParameter("condition_level"));
+        //outside examination
+        String roof = request.getParameter("roof");
+        String walls_outside = request.getParameter("walls_outside");
+        //damage and repair
         String comments = request.getParameter("comments");
-
-        CheckupReport report = new CheckupReport(creport_id, condition_level, comments);
+        String damaged = request.getParameter("damaged");
+        String damage_when = request.getParameter("damage_when");
+        String damage_where = request.getParameter("damage_where");
+        String damage_what = request.getParameter("damage_what");
+        String damage_repaired = request.getParameter("damage_repaired");
+        //inside examination
+        String walls = request.getParameter("walls");
+        String ceiling = request.getParameter("ceiling");
+        String floor = request.getParameter("floor");
+        String windows_doors = request.getParameter("window_door");
+        //moisture scanning
+        String moisture_scanning = request.getParameter("moisture_scanning");
+        String moisture_measure = request.getParameter("moisture_measure");
+        
+        CheckupReport report = new CheckupReport(creport_id, condition_level, comments, roof, walls_outside, damaged, damage_when, damage_where, damage_what, damage_repaired, walls, ceiling, floor, windows_doors, moisture_scanning, moisture_measure);
         domainModel.updateCheckupReport(report);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp"); //wanted to redirect to Reports.jsp but wont work 
         dispatcher.forward(request, response);
     }
 
@@ -299,13 +317,16 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("reportid"));
         CheckupReport report = domainModel.getReportByID(id);
         request.setAttribute("report", report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("FillCheckupReport.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ReportExample.jsp");
         dispatcher.forward(request, response);
     }
     
     private void selectFinishedReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("reportid"));
         CheckupReport report = domainModel.getReportByID(id);
+        if (report == null) {
+            System.out.println("Problem in selectFinishedReport(). Report object null.");
+        }
         request.setAttribute("report", report);
         RequestDispatcher dispatcher = request.getRequestDispatcher("ShowCheckupReport.jsp");
         dispatcher.forward(request, response);

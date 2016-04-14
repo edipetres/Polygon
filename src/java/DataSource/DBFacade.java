@@ -7,6 +7,7 @@ package DataSource;
 
 import Domain.Building;
 import Domain.CheckupReport;
+import Domain.CityList;
 import Domain.Customer;
 import Domain.ServiceRequest;
 import Domain.ServiceList;
@@ -88,6 +89,10 @@ public class DBFacade {
     }
     public ArrayList<ServiceList> getAllServices() {
         return serviceMapper.getServiceList(con);
+    }
+    
+    public ArrayList<CityList> getCities() {
+        return bm.getCityList(con);
     }
     
     public boolean saveServiceRequest(ServiceRequest s) {
