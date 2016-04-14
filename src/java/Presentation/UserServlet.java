@@ -295,7 +295,7 @@ public class UserServlet extends HttpServlet {
         String moisture_scanning = request.getParameter("moisture_scanning");
         String moisture_measure = request.getParameter("moisture_measure");
         
-        CheckupReport report = new CheckupReport(creport_id, condition_level, roof, walls_outside, comments, damaged, damage_when, damage_where, damage_what, damage_repaired, walls, ceiling, floor, windows_doors, moisture_scanning, moisture_measure);
+        CheckupReport report = new CheckupReport(creport_id, condition_level, comments, roof, walls_outside, damaged, damage_when, damage_where, damage_what, damage_repaired, walls, ceiling, floor, windows_doors, moisture_scanning, moisture_measure);
         domainModel.updateCheckupReport(report);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.html"); //wanted to redirect to Reports.jsp but wont work 

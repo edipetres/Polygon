@@ -30,6 +30,12 @@ public class Building {
         this.size = size;
         this.zip = zip;
     }
+    public Building(String street, int size, int zip, String city) {
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+        this.city = city;
+    }
 
     public int getBuildingID() {
         return buildingID;

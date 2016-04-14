@@ -24,10 +24,11 @@ public class CheckupReportMapper {
 
     public List<CheckupReport> getActiveReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
-        String sql = "select creport_id, reportStatus, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+        String sql = "select * from CheckupReport "
                 + "join Building ON Building.building_id=CheckupReport.building_id "
                 + "join Customer ON Customer.customer_id=Building.customer_id "
                 + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                + "join City ON Building.zip=City.zip "
                 + "where reportStatus='active'";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
@@ -35,7 +36,8 @@ public class CheckupReportMapper {
                 Building b = new Building(
                         rs.getString("street"),
                         rs.getInt("size"),
-                        rs.getInt("zip"));
+                        rs.getInt("zip"),
+                        rs.getString("city"));
                 Customer c = new Customer(
                         rs.getString("company_name"),
                         rs.getString("fname"),
@@ -66,10 +68,11 @@ public class CheckupReportMapper {
 
     public List<CheckupReport> getDoneReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
-        String sql = "select creport_id, reportStatus, checkDate, checkupreport.condition_level, comments, street, zip, size, Customer.fname, Customer.lname, company_name, Employee.fname, Employee.lname from CheckupReport "
+        String sql = "select * from CheckupReport "
                 + "join Building ON Building.building_id=CheckupReport.building_id "
                 + "join Customer ON Customer.customer_id=Building.customer_id "
                 + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                + "join City ON Building.zip=City.zip "
                 + "where reportStatus='done'";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
@@ -77,7 +80,8 @@ public class CheckupReportMapper {
                 Building b = new Building(
                         rs.getString("street"),
                         rs.getInt("size"),
-                        rs.getInt("zip"));
+                        rs.getInt("zip"),
+                        rs.getString("city"));
                 Customer c = new Customer(
                         rs.getString("company_name"),
                         rs.getString("fname"),

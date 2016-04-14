@@ -6,6 +6,7 @@
 package DataSource;
 
 import Domain.Building;
+import Domain.CityList;
 import Domain.ServiceList;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -143,6 +144,25 @@ public class BuildingMapper {
             result = false;
         }
         return result;
+    }
+    
+        public ArrayList<CityList> getCityList(Connection con) {
+        ArrayList<CityList> cityList = new ArrayList();
+        String sqlString = "select * from City";
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                cityList.add(new CityList(rs.getInt(1),rs.getString(2)));
+            }
+            
+            stmt.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Error in getCityList() method; exception: "+ex);
+        }
+        return cityList;
     }
 
 //    public boolean updatePlayer(Connection conn, Player player ){

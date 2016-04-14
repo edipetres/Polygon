@@ -73,6 +73,10 @@ public class DomainFacade {
         return dbf.getAllServices();
     }
     
+    public ArrayList<CityList> getCities() {
+        return dbf.getCities();
+    }
+    
     public boolean saveServiceRequest(ServiceRequest service) {
         return dbf.saveServiceRequest(service);
     }
