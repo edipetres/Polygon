@@ -49,7 +49,10 @@ public class DomainFacade {
         return allCustomers;
     }
     
-    
+    public List<CheckupReport> showPendingCheckupReports() {
+        List <CheckupReport> pendingReports = dbf.showPendingCheckupReports();
+        return pendingReports;
+    }
     
     public List<CheckupReport> showActiveCheckupReports() {
         List <CheckupReport> activeReports = dbf.showActiveCheckupReports();

@@ -69,6 +69,10 @@ public class DBFacade {
     {
 	return customerMap.viewAllCustomers(con);
     }
+    public List<CheckupReport> showPendingCheckupReports() 
+    {
+	return creportmap.getPendingReports(con);
+    }
     public List<CheckupReport> showActiveCheckupReports() 
     {
 	return creportmap.getActiveReports(con);
