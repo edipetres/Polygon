@@ -72,7 +72,7 @@ public class UserMapper {
                 rs.getString("company_name"));
             }
             stmt.close();
-            rs.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Problem in customerLogin(). ex= "+ex);
@@ -86,10 +86,11 @@ public class UserMapper {
         UserPrefs userPrefs = null;
         String sqlString = "select * from Employee where email=?";
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             stmt = con.prepareStatement(sqlString);
             stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 String pwd = rs.getString("pwd");
                 //If data matches, employee login is successful:
@@ -102,13 +103,14 @@ public class UserMapper {
                             rs.getString("email"),
                             rs.getInt("phone_no"));
                 }
+               
                 stmt.close();
-                rs.close();
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Problem in employeeLogin(). Ex= "+ex);
-        }
+        } 
         return userPrefs;
     }
     

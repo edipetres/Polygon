@@ -59,7 +59,24 @@ public class UserServlet extends HttpServlet {
             {
                 domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
             }
-
+            
+//            //Check if logged in
+//            UserPrefs userPrefs = (UserPrefs) sessionObj.getAttribute("UserPrefs");
+//            if (userPrefs != null) {
+//                request.setAttribute("username", userPrefs.getUsername());
+//                switch (userPrefs.getAccessLevel()) {
+//                    case 1:
+//                        request.setAttribute("accessLevel", "admin");
+//                        break;
+//                    case 2:
+//                        request.setAttribute("accessLevel", "employee");
+//                        break;
+//                    case 3:
+//                        request.setAttribute("accessLevel", "customer");
+//                        break;
+//                }
+//            }
+            
             //-- Identify command and delegate job
             String command = request.getParameter("command");
             switch (command)
@@ -183,8 +200,8 @@ public class UserServlet extends HttpServlet {
         Building tempBuild = new Building(customerID,name,street,size,zip);
         result = domainModel.addBuilding(tempBuild);
         System.out.println(tempBuild.getStreet());
-        request.setAttribute("Message", "Building added: "+result);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
+        request.setAttribute("result",result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Buildings.jsp");
         dispatcher.forward(request, response);
         return result;
     }
@@ -200,10 +217,10 @@ public class UserServlet extends HttpServlet {
 
         Customer customer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
         System.out.println(customer.getCompany_name());
-        domainModel.createCustomer(customer);
+        boolean result = domainModel.createCustomer(customer);
 //        request.setAttribute("customer", customer);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("AddCustomer.jsp");
+        request.setAttribute("result",result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("UserServlet?command=showCustomers");
         dispatcher.forward(request, response);
     }
     

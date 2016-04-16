@@ -4,6 +4,7 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page import="java.util.List"%>
 <%@page import="Domain.Building"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,10 +36,38 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
         <div class="container">
             <h1>Buildings</h1>
+
             <div class="col-sm-4">
+                <c:choose>
+                    <c:when test="${result}">
+                        <div class="alert alert-success fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Building was added.
+                        </div>
+                    </c:when>
+                    <c:when test="${result}">
+                        <div class="alert alert-warning fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Failure!</strong> Building was not added.
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+
+                    </c:otherwise>
+                </c:choose>
                 <c:forEach var="building" items="${buildings}" >
                     <div class="panel panel-info">
                         <div class="panel-heading"><b>Name: <c:out value="${building.getName()}"/></b> (ID: <c:out value="${building.getBuildingID()}"/>)</div>
@@ -63,7 +92,7 @@
                             </table>
                             <a class="btn btn-primary" href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request CheckUp</a>
                             <a class="btn btn-primary" href="UserServlet?command=editBuilding&building_id=${building.getBuildingID()}">Edit</a>
-                            
+
                         </div>
                     </div><!-- single customer info end-->
 

@@ -4,6 +4,7 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page import="Domain.ServiceRequest"%>
 <%@page import="java.util.List"%>
 <%@page import="Domain.DomainFacade"%>
@@ -33,6 +34,16 @@
                 request.setAttribute("nothingToShowMessage", "No service requests to show");
             }
         %>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
         <div class="container">
             <h1>Pending Service Requests</h1>
@@ -48,7 +59,7 @@
                             <span class="glyphicon glyphicon-earphone"></span> <c:out value="${service.getReportStatus()}"/><br>
                             <span class="glyphicon glyphicon-earphone"></span> id:<c:out value="${service.getSrequest_id()}"/><br>
                             <a href="UserServlet?command=takeServiceRequest&srequest_id=${service.getSrequest_id()}">Take this job</a>
-                            
+
                         </div>
                     </div><!-- single customer info end-->
                 </c:forEach> 

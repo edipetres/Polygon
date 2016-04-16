@@ -4,6 +4,7 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page import="java.util.List"%>
 <%@page import="Domain.Customer"%>
 <%@page import="Domain.Customer"%>
@@ -27,9 +28,36 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
         <div class="container">
             <div class="col-sm-4">
+                <c:choose>
+                    <c:when test="${result}">
+                        <div class="alert alert-success fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Customer added.
+                        </div>
+                    </c:when>
+                    <c:when test="${result}">
+                        <div class="alert alert-warning fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Failure!</strong> Data was not saved.
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+
+                    </c:otherwise>
+                </c:choose>
                 <h1>Customers</h1>
                 <!--single customer info start-->
                 <c:forEach var="customer" items="${customers}" >

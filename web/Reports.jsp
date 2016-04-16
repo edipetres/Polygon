@@ -6,6 +6,7 @@
 
 <%@page import="Domain.DomainFacade"%>
 <%@page import="Domain.CheckupReport"%>
+<%@page import="Domain.UserPrefs"%>
 <%@page import="java.util.List"%>
 <%@page import="Presentation.UserServlet"%>
 <%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
@@ -18,7 +19,7 @@
     List<CheckupReport> reports = (List<CheckupReport>) request.getAttribute("reports");
     List<CheckupReport> donereports = (List<CheckupReport>) request.getAttribute("donereports");
     DomainFacade dm = DomainFacade.getInstance();
-   
+
     //request.setAttribute("requestList", requestList);
     if (requestList == null || requestList.isEmpty()) {
         request.setAttribute("errorMessage", "requestList obj empty.");
@@ -42,6 +43,16 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
         <div class="container">
             <div class="row">
@@ -73,7 +84,7 @@
                         </table>
                     </div>
                 </div>
-                
+
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -101,14 +112,14 @@
                             </c:forEach>
                         </table>
                     </div>
-                            
-                        </div>
-                        
-                    </div>
+
                 </div>
-                </div>
+
             </div>
         </div>
-        ${errorMessage}
-    </body>
+    </div>
+</div>
+</div>
+${errorMessage}
+</body>
 </html>

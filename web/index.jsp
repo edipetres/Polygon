@@ -4,8 +4,10 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="mytags" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +26,16 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
 
         <div class="container">

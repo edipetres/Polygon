@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,8 +47,19 @@
                 </form>
             </div>
         </div>
-        <br><br>
-
-        <h1>Hello World!</h1>
+        <br><br><br>
+        <%
+        //boolean login = Boolean.getBoolean(request.getParameter("login"));
+        String login = request.getParameter("login");
+        request.setAttribute("login", login);
+        %>
+        <c:if test="${login == true}">
+            <div class="col-sm-3 col-sm-offset-2">
+                <div class="alert alert-warning fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Not logged in.</strong><br> Please log in first.
+                </div>
+            </div>
+        </c:if>
     </body>
 </html>

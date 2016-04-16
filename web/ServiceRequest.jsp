@@ -4,6 +4,7 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page import="Domain.ServiceList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Domain.DomainFacade"%>
@@ -18,7 +19,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <title>Service Request</title>
-                <%-- Java scrips for bootstrap here --%>
+        <%-- Java scrips for bootstrap here --%>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -29,7 +30,16 @@
             ArrayList<ServiceList> serviceList = domainModel.getAllServices();
             request.setAttribute("serviceList", serviceList);
         %>
-        
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
         <div class="container">
             <div class="row">

@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class DBFacade {
     
     private Connection con;
-    private BuildingMapper bm;
     //add mappers here as private objects
+    private BuildingMapper bm;
     private CustomerMapper customerMap;
     private CheckupReportMapper creportmap;
     private ServiceMapper serviceMapper;

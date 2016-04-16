@@ -4,6 +4,7 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page import="Domain.CityList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Domain.DomainFacade"%>
@@ -31,7 +32,16 @@
         <title>Add New Building</title>
     </head>
     <body>
-
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>  
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
         <mytags:navbar/>
         <div class="container">
             <div class="row">
@@ -55,16 +65,16 @@
                                     <input type="text" class="form-control" name="zip" required>
                                 </div>-->
                                 <div class="col-xs-6">
-                                <label for="zip">City</label>
-                                <select name="zip" class="form-control">
-                                    <c:forEach var="city" items="${cityList}">
-                                        <option value="<c:out value="${city.getZip()}"/>"><c:out value="${city.getZip()}"/> <c:out value="${city.getCity()}"/></option>
-                                    </c:forEach>
-                                </select>
+                                    <label for="zip">City</label>
+                                    <select name="zip" class="form-control">
+                                        <c:forEach var="city" items="${cityList}">
+                                            <option value="<c:out value="${city.getZip()}"/>"><c:out value="${city.getZip()}"/> <c:out value="${city.getCity()}"/></option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="col-xs-6">
                                     <label for="size">Size: (m2)</label>
-                                    <input type="text" class="form-control" name="size">
+                                    <input type="text" class="form-control" name="size" required>
                                 </div>
                             </div>    
                             <div class="form-group">
