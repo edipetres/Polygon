@@ -10,6 +10,7 @@
 <%@page import="Domain.DomainFacade"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <%
     DomainFacade domainModel = DomainFacade.getInstance();
     List<CheckupReport> reports = domainModel.showPendingCheckupReports();
@@ -25,7 +26,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Bootstrap 101 Template</title>
+        <title>Healthy Buildings</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +40,7 @@
     </head>
     <body>
 
+        <mytags:navbar/>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
