@@ -21,14 +21,27 @@ import java.util.List;
  * @author Minerva
  */
 public class CheckupReportMapper {
-    
+//        private static Connection con;
+//    private static CheckupReportMapper bm;
+//
+//    CheckupReportMapper() {
+//        con = (Connection) DBConnector.getInstance().getConnection();
+//
+//    }
+//
+//    public static void main(String[] args) {
+//        bm = new CheckupReportMapper();
+//        
+//        List<CheckupReport> reports = bm.getPendingReports(con);
+//        System.out.println(reports);
+//    }
     // Shows recently created reports. Marked as pending.
     public List<CheckupReport> getPendingReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
                 + "join Building ON Building.building_id=CheckupReport.building_id "
                 + "join Customer ON Customer.customer_id=Building.customer_id "
-                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+//                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
                 + "join City ON Building.zip=City.zip "
                 + "where reportStatus='pending'";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
@@ -45,8 +58,7 @@ public class CheckupReportMapper {
                         rs.getString("lname")
                 );
                 Employee e = new Employee(
-                        rs.getString("Employee.fname"),
-                        rs.getString("Employee.lname")
+                        " ", " "
                 );
                 CheckupReport cr = new CheckupReport(
                         rs.getInt("creport_id"),
@@ -232,8 +244,8 @@ public class CheckupReportMapper {
     // Creates a report after customer requests for checkup for their building. Marked as pending.
     public boolean createCheckupReport(int building_id, Connection con) {
         boolean result = false;
-        String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus, employee_id) "
-                + "VALUES (?, current_date(),'active', 1) ";
+        String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus) "
+                + "VALUES (?, current_date(),'pending') ";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);

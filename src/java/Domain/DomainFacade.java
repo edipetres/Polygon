@@ -44,6 +44,9 @@ public class DomainFacade {
     public boolean updateCheckupReport(CheckupReport checkupreport) {
         return dbf.updateCheckupReport(checkupreport);
     }
+    public boolean assignEmployee(int creport_id, int employee_id) {
+        return dbf.assignEmployee(creport_id, employee_id);
+    }
     public List<Customer> showCustomers() {
         List <Customer> allCustomers = dbf.showCustomers();
         return allCustomers;

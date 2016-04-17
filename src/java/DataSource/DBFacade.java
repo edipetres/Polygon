@@ -65,6 +65,9 @@ public class DBFacade {
     public boolean updateCheckupReport(CheckupReport checkuprreport) {
         return creportmap.updateCheckupReport(checkuprreport, con);
     }
+    public boolean assignEmployee(int creport_id, int employee_id) {
+        return creportmap.assignEmployee(creport_id, employee_id, con);
+    }
     public List<Customer> showCustomers() 
     {
 	return customerMap.viewAllCustomers(con);

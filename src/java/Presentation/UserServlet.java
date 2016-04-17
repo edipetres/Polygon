@@ -106,6 +106,9 @@ public class UserServlet extends HttpServlet {
                 case "saveBuildingEdits":
                     saveBuildingEdits(request,response,domainModel);
                     break;
+                case "assignEmployee":
+                    assignEmployee(request,response,domainModel);
+                    break;
                     
     }
     }
@@ -330,6 +333,13 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("report", report);
         RequestDispatcher dispatcher = request.getRequestDispatcher("ShowCheckupReport.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+        int employee_id = 1;
+        int creport_id = Integer.parseInt(request.getParameter("reportid"));
+        
+        domainModel.assignEmployee(creport_id, employee_id);
     }
 
     
