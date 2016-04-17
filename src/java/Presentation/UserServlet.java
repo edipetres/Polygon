@@ -336,7 +336,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
-        int employee_id = 1;
+        int employee_id = Integer.parseInt(request.getParameter("employeeid"));
         int creport_id = Integer.parseInt(request.getParameter("reportid"));
         
         domainModel.assignEmployee(creport_id, employee_id);

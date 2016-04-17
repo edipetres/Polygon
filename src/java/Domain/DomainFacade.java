@@ -51,7 +51,10 @@ public class DomainFacade {
         List <Customer> allCustomers = dbf.showCustomers();
         return allCustomers;
     }
-    
+    public List<Employee> showEmployees() {
+        List <Employee> allEmployees = dbf.showEmployees();
+        return allEmployees;
+    }
     public List<CheckupReport> showPendingCheckupReports() {
         List <CheckupReport> pendingReports = dbf.showPendingCheckupReports();
         return pendingReports;
