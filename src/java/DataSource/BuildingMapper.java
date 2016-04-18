@@ -64,6 +64,25 @@ public class BuildingMapper {
         }
         return result;
     }
+    
+        public boolean addRoom(Connection con, int b_id, int size) {
+        boolean result = false;
+        String sqlString = "INSERT INTO Room (building_id,size) "
+                + "VALUES (?,?);";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sqlString);
+            stmt.setInt(1, b_id);
+            stmt.setInt(2, size);
+            stmt.execute();
+            stmt.close();
+            result = true;
+        } catch (SQLException ex) {
+            result = false;
+            System.out.println("Exception in BuildingMapper. ex = " + ex);
+        }
+        return result;
+    }
 
     public List<Building> getBuildings(Connection con) {
         ArrayList<Building> buildings = new ArrayList<>();

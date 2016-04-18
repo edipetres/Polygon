@@ -104,6 +104,9 @@ public class UserServlet extends HttpServlet {
             case "saveBuildingEdits":
                 saveBuildingEdits(request, response, domainModel);
                 break;
+            case "addRoom":
+                addRoom(request, response, domainModel);
+                break;
 
         }
     }
@@ -346,6 +349,17 @@ public class UserServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void addRoom(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        int size = Integer.parseInt(request.getParameter("size"));
+        int b_id = Integer.parseInt(request.getParameter("b_id"));
+        
+        System.out.println(size + " " + b_id);
+        domainModel.addRoom(b_id, size);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
+        
     }
 
 }

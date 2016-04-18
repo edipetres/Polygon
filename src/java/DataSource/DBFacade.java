@@ -64,7 +64,9 @@ public class DBFacade {
     public boolean addBuilding(Building building) {
         return bm.addBuilding(con, building);
     }
-    
+    public boolean addRoom(int b_id, int size) {
+        return bm.addRoom(con, b_id, size);
+    }
     public boolean createCheckupReport(int building_id) {
         return creportmap.createCheckupReport(building_id, con);
     }

@@ -42,6 +42,9 @@ public class DomainFacade {
     public boolean addBuilding(Building building) {
         return dbf.addBuilding(building);
     }
+    public boolean addRoom(int b_id, int size) {
+        return dbf.addRoom(b_id, size);
+    }
     public boolean createCheckupReport(int building_id) {
         return dbf.createCheckupReport(building_id);
     }
