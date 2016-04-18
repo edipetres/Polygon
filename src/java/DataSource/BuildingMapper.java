@@ -43,8 +43,8 @@ public class BuildingMapper {
 
     public boolean addBuilding(Connection con, Building building) {
         boolean result = false;
-        String sqlString = "INSERT INTO Building (building_id,name,street,zip,size,condition_level,customer_id) "
-                + "VALUES (?,?,?,?,?,?,?);";
+        String sqlString = "INSERT INTO Building (building_id,name,street,zip,size,year,buildingUse,condition_level,customer_id) "
+                + "VALUES (?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
@@ -53,8 +53,10 @@ public class BuildingMapper {
             stmt.setString(3, building.getStreet());
             stmt.setInt(4, building.getZip());
             stmt.setInt(5, building.getSize());
-            stmt.setInt(6, building.getCondition());
-            stmt.setInt(7, building.getCustomerID());
+            stmt.setInt(6, building.getYear());
+            stmt.setString(7, building.getBuildingUse());
+            stmt.setInt(8, building.getCondition());
+            stmt.setInt(9, building.getCustomerID());
             stmt.execute();
             stmt.close();
             result = true;

@@ -186,8 +186,11 @@ public class UserServlet extends HttpServlet {
         String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
+        int year = Integer.parseInt(request.getParameter("year"));
+        String usage = request.getParameter("usage");
 
-        Building tempBuild = new Building(customerID, name, street, size, zip);
+//        Building tempBuild = new Building(customerID, name, street, size, zip);
+        Building tempBuild = new Building(0, name, street, zip, 0, size, year, usage, 0, customerID);
         result = domainModel.addBuilding(tempBuild);
         System.out.println(tempBuild.getStreet());
         RequestDispatcher dispatcher = request.getRequestDispatcher("Buildings.jsp");
