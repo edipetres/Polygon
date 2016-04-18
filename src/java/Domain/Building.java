@@ -105,7 +105,17 @@ public class Building {
         //this.lastCheckUp = lastCheckUp;
         this.zip = zip;
     }
-
+public Building(int buildingID, int customerID, String name, String street, int size, int condition, int zip, String city) {
+        this.buildingID = buildingID;
+        this.customerID = customerID;
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.condition = condition;
+        //this.lastCheckUp = lastCheckUp;
+        this.zip = zip;
+        this.city = city;
+    }
     public String getCity() {
         return city;
     }

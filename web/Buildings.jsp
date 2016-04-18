@@ -48,7 +48,7 @@
                                 </tr>
                                 <tr>
                                     <td><span class="glyphicon glyphicon-home"></span> Address:</td> 
-                                    <td><c:out value="${building.getStreet()}"/>, <c:out value="${building.getZip()}"/></td>
+                                    <td><c:out value="${building.getStreet()}"/>, <c:out value="${building.getZip()}"/> <c:out value="${building.getCity()}"/></td>
                                 </tr>
                                 <tr>
                                     <td><span class="glyphicon glyphicon-signal"></span> Condition:</td> 

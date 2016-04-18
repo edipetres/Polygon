@@ -4,10 +4,18 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.CityList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Domain.DomainFacade"%>
 <%@page import="Domain.Building"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+    DomainFacade domainModel = DomainFacade.getInstance();
+    ArrayList<CityList> cityList = domainModel.getCities();
+    request.setAttribute("cityList", cityList);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,9 +53,17 @@
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <div class="col-xs-6">
+                                <!--<div class="col-xs-6">
                                     <label for="zip">Zip:</label>
                                     <input type="text" class="form-control" name="zip" required value="${building.getZip()}">
+                                </div>-->
+                                <div class="col-xs-6">
+                                <label for="zip">City</label>
+                                <select name="zip" class="form-control">
+                                    <c:forEach var="city" items="${cityList}">
+                                        <option value="<c:out value="${city.getZip()}"/>"><c:out value="${city.getZip()}"/> <c:out value="${city.getCity()}"/></option>
+                                    </c:forEach>
+                                </select>
                                 </div>
                                 <div class="col-xs-6">
                                     <label for="size">Size: (m2)</label>
