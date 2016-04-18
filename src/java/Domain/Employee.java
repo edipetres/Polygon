@@ -84,5 +84,14 @@ public class Employee {
     public void setLname(String lname) {
         this.lname = lname;
     }
+
+    public Employee(String fname, String lname, String username, String pwd, String email, String phone_no) {
+        this.fname = fname;
+        this.lname = lname;
+        this.username = username;
+        this.pwd = pwd;
+        this.email = email;
+        this.phone_no = phone_no;
+    }
     
 }

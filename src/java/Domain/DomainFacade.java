@@ -34,6 +34,10 @@ public class DomainFacade {
     {
         return dbf.createCustomer(c);
     }
+    public boolean createEmployee(Employee e) throws SQLException
+    {
+        return dbf.createEmployee(e);
+    }
 
     public boolean addBuilding(Building building) {
         return dbf.addBuilding(building);

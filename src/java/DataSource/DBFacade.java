@@ -57,6 +57,9 @@ public class DBFacade {
     public boolean createCustomer(Customer c) throws SQLException{
         return customerMap.createCustomer(c, con);
     }
+    public boolean createEmployee(Employee e) throws SQLException{
+        return employeeMap.createEmployee(e, con);
+    }
 
     public boolean addBuilding(Building building) {
         return bm.addBuilding(con, building);

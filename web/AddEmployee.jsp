@@ -27,12 +27,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="UserServlet" method="post">
             <fieldset>
 
                 <!-- Form Name -->
                 <legend>Add employee</legend>
-
+                
+                <input type="hidden" name="command" value="addEmployee"/>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fname">First name</label>  
