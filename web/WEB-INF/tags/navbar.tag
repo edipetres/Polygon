@@ -63,6 +63,15 @@
                                 <li><a href="#">Separated link</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Employees <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="UserServlet?command=showCustomers"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
+                                <li><a href="AddEmployee.jsp"><span class="glyphicon glyphicon-plus"></span> Add new employee</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-divider"></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> Services<span class="caret"></span></a>
@@ -71,6 +80,7 @@
                                 <li><a href="ServiceRequest.jsp"><span class="glyphicon glyphicon-plus"></span> Request new Service</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="UserServlet?command=showCheckupReports"><span class="glyphicon glyphicon-th-list"></span> CheckUp Reports</a></li>
+                                <li><a href="AssignEmployee.jsp"><span class="glyphicon glyphicon-th-list"></span> Assign employee to job</a></li>
                             </ul>
                         </li>
                     </c:when>
