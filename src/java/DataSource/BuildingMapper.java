@@ -67,7 +67,8 @@ public class BuildingMapper {
 
     public List<Building> getBuildings(Connection con) {
         ArrayList<Building> buildings = new ArrayList<>();
-        String sql = "select * from Building";
+        String sql = "select * from Building "
+                + "join city on building.zip = city.zip";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -78,7 +79,8 @@ public class BuildingMapper {
                         rs.getString("street"),
                         rs.getInt("size"),
                         rs.getInt("condition_level"),
-                        rs.getInt("zip"));
+                        rs.getInt("zip"),
+                        rs.getString("city"));
                 buildings.add(tempBuild);
 
             }

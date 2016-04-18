@@ -91,11 +91,11 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h4>Examination of the building outside</h4>
-                    Roof: <%= report.getRoof()%> <br>
-                    Outside walls: <%= report.getWalls_outside()%>
+                    <b>Roof: </b><%= report.getRoof()%> <br>
+                    <b>Outside walls: </b><%= report.getWalls_outside()%>
                     <h4>Damage and repair</h4>
 
-                    Has there been damage in the building? <%= report.getDamaged()%><br>
+                    <b>Has there been damage in the building?</b> <%= report.getDamaged()%><br>
                     <c:set var="damage" value="<%= report.getDamaged()%>"/>
                     <c:choose> 
                         <c:when test="${damage == 'yes'}">
@@ -111,12 +111,12 @@
 
 
                     <h4>Reviewing of...</h4>
-                    Walls <%= report.getWalls()%> <br>
-                    Ceiling <%= report.getCeiling()%> <br>
-                    Floor <%= report.getFloor()%> <br>
-                    Windows/doors <%= report.getWindows_doors()%>
+                    <b>Walls: </b> <%= report.getWalls()%> <br>
+                    <b>Ceiling: </b> <%= report.getCeiling()%> <br>
+                    <b>Floor: </b><%= report.getFloor()%> <br>
+                    <b>Windows/doors: </b><%= report.getWindows_doors()%>
                     <h4>Moisture scanning</h4>
-                    Has there been moisture scanning done? <%= report.getMoisture_scanning()%> <br>
+                    <b>Has there been moisture scanning done?</b> <%= report.getMoisture_scanning()%> <br>
                     <c:set var="scanning" value="<%= report.getMoisture_scanning()%>"/>
                     <c:choose> 
                         <c:when test="${scanning == 'yes'}">
@@ -130,7 +130,7 @@
                 </div>
 
                 <h4>Conclusion</h4>
-                Recommendations<br>
+                <b>Recommendations</b><br>
                 <%= report.getComments()%> <br>
                 Building review was conducted by <i><%= report.getEmployee().getFname()%> <%= report.getEmployee().getLname()%></i>, Polygon in cooperation with <i><%= report.getCustomer().getFname()%> <%= report.getCustomer().getLname()%></i> (building resposible)
                 <h4>The building is categorized as</h4>

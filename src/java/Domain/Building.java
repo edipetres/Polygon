@@ -28,7 +28,7 @@ public class Building {
     //We are going to need one constructor only. Please use the upper one with 10 parameteres
     public Building(int building_id, String name, String street, int zip, int parcel_no,
             int size, int year, String buildingUse, int condition_level, int customer_id) {
-        
+
         this.buildingID = building_id;
         this.name = name;
         this.street = street;
@@ -40,8 +40,7 @@ public class Building {
         this.condition = condition_level;
         this.customerID = customer_id;
     }
-    
-    
+
     //Try to avoid using the constructors below. They are not deleted for possible usage somewhere.
     public Building(String name, String street, int size, int zip, int year, String buildingUse, String city) {
         this.name = name;
@@ -147,6 +146,18 @@ public class Building {
 
     public int getParcel_no() {
         return parcel_no;
+    }
+
+    public Building(int buildingID, int customerID, String name, String street, int size, int condition, int zip, String city) {
+        this.buildingID = buildingID;
+        this.customerID = customerID;
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.condition = condition;
+        //this.lastCheckUp = lastCheckUp;
+        this.zip = zip;
+        this.city = city;
     }
 
     public String getCity() {

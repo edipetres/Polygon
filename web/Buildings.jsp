@@ -21,11 +21,9 @@
 
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <!-- Custom css -->
         <link href="css/styles.css" rel="stylesheet">
-        <%-- Java scrips for bootstrap here --%>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        
     </head>
     <body>
         <%
@@ -43,6 +41,9 @@
         %>
         <c:if test="${username == null}">
             <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
+        <c:if test="${accessLevel == 3}">
+            <jsp:forward page="index.jsp" />
         </c:if>
         <mytags:navbar/>
         <div class="container">
@@ -105,5 +106,9 @@
             ${message}
             ${SaveSuccessMessage}
         </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

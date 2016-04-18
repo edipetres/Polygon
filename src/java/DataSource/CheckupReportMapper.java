@@ -21,7 +21,67 @@ import java.util.List;
  * @author Minerva
  */
 public class CheckupReportMapper {
+//        private static Connection con;
+//    private static CheckupReportMapper bm;
+//
+//    CheckupReportMapper() {
+//        con = (Connection) DBConnector.getInstance().getConnection();
+//
+//    }
+//
+//    public static void main(String[] args) {
+//        bm = new CheckupReportMapper();
+//        
+//        List<CheckupReport> reports = bm.getPendingReports(con);
+//        System.out.println(reports);
+//    }
+    // Shows recently created reports. Marked as pending.
+    public List<CheckupReport> getPendingReports(Connection con) {
+        ArrayList<CheckupReport> reports = new ArrayList<>();
+        String sql = "select * from CheckupReport "
+                + "join Building ON Building.building_id=CheckupReport.building_id "
+                + "join Customer ON Customer.customer_id=Building.customer_id "
+//                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
+                + "join City ON Building.zip=City.zip "
+                + "where reportStatus='pending'";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Building b = new Building(
+                        rs.getString("street"),
+                        rs.getInt("size"),
+                        rs.getInt("zip"),
+                        rs.getString("city"));
+                Customer c = new Customer(
+                        rs.getString("company_name"),
+                        rs.getString("fname"),
+                        rs.getString("lname")
+                );
+                Employee e = new Employee(
+                        " ", " "
+                );
+                CheckupReport cr = new CheckupReport(
+                        rs.getInt("creport_id"),
+                        b,
+                        c,
+                        e,
+                        rs.getString("checkDate"),
+                        rs.getInt("checkupreport.condition_level"),
+                        rs.getString("reportStatus"),
+                        rs.getString("comments")
+                );
+                reports.add(cr);
+                System.out.println(cr);
+            }
 
+            return reports;
+        } catch (Exception e) {
+            System.out.println("Problem in CheckupReportMapper.getPendingReports ");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    // Shows reports which have been assigned for an employee to fill in.
     public List<CheckupReport> getActiveReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
@@ -62,12 +122,13 @@ public class CheckupReportMapper {
 
             return reports;
         } catch (Exception e) {
-            System.out.println("Problem in CustomerMapper ");
+            System.out.println("Problem in CheckupReportMapper.getActiveReports ");
             System.out.println(e.getMessage());
             return null;
         }
     }
 
+    // Shows filled in reports.
     public List<CheckupReport> getDoneReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
@@ -109,12 +170,13 @@ public class CheckupReportMapper {
 
             return reports;
         } catch (Exception e) {
-            System.out.println("Problem in CustomerMapper ");
+            System.out.println("Problem in CheckupReportMapper.getDoneReports ");
             System.out.println(e.getMessage());
             return null;
         }
     }
 
+    // Shows an individual report.
     public CheckupReport getReportByID(int reportid, Connection con) {
         CheckupReport cr = null;
         String sql = "select * from CheckupReport "
@@ -172,17 +234,18 @@ public class CheckupReportMapper {
 
             return cr;
         } catch (Exception e) {
-            System.out.println("Problem in CustomerMapper ");
+            System.out.println("Problem in CheckupReportMapper.getReportByID ");
             System.out.println(e.getMessage());
             return null;
         }
 
     }
 
+    // Creates a report after customer requests for checkup for their building. Marked as pending.
     public boolean createCheckupReport(int building_id, Connection con) {
         boolean result = false;
-        String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus, employee_id) "
-                + "VALUES (?, current_date(),'active', 1) ";
+        String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus) "
+                + "VALUES (?, current_date(),'pending') ";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sqlString);
@@ -197,7 +260,29 @@ public class CheckupReportMapper {
         }
         return result;
     }
-
+    
+    // Assigns an employee to do a checkup on requested building. Marked as active.
+    public boolean assignEmployee (int report_id, int employee_id, Connection con) {
+    boolean result = false;
+        String sqlString = "UPDATE CheckupReport  "
+                + "SET employee_id=?, reportStatus='active' "
+                + "WHERE creport_id=?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sqlString);
+            stmt.setInt(1, employee_id);
+            stmt.setInt(2, report_id);
+            stmt.execute();
+            stmt.close();
+            result = true;
+        } catch (SQLException ex) {
+            result = false;
+            System.out.println("Exception in CheckupReportMapper. ex = " + ex);
+        }
+        return result;
+    }
+    
+    // Saves information filled in during checkup. Marked as done. 
     public boolean updateCheckupReport(CheckupReport cr, Connection con) {
         boolean result = false;
         String sqlString = "UPDATE CheckupReport  "

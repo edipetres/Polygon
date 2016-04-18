@@ -5,13 +5,13 @@
  */
 package Presentation;
 
-
 import Domain.Building;
 import Domain.CheckupReport;
 
 import Domain.Customer;
 
 import Domain.DomainFacade;
+import Domain.Employee;
 import Domain.ServiceRequest;
 import Domain.UserPrefs;
 import java.io.IOException;
@@ -43,93 +43,74 @@ public class UserServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         //-- Establish or reestablish application demainModeltext
-            HttpSession sessionObj = request.getSession();
-            DomainFacade domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
-            if (domainModel == null)
-            {
-                // Session starts
-                domainModel = DomainFacade.getInstance();
-                sessionObj.setAttribute("Controller", domainModel);
-            } else
-            {
-                domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
-            }
-            
-//            //Check if logged in
-//            UserPrefs userPrefs = (UserPrefs) sessionObj.getAttribute("UserPrefs");
-//            if (userPrefs != null) {
-//                request.setAttribute("username", userPrefs.getUsername());
-//                switch (userPrefs.getAccessLevel()) {
-//                    case 1:
-//                        request.setAttribute("accessLevel", "admin");
-//                        break;
-//                    case 2:
-//                        request.setAttribute("accessLevel", "employee");
-//                        break;
-//                    case 3:
-//                        request.setAttribute("accessLevel", "customer");
-//                        break;
-//                }
-//            }
-            
-            //-- Identify command and delegate job
-            String command = request.getParameter("command");
-            switch (command)
-            {
-                case "addBuilding":
-                    addBuilding(request, response, domainModel);
-                    break;
-                case "addCustomer":
-                    createCustomer(request, response, domainModel);
-                    break;
-                case "showCustomers":
-                    showCustomers(request, response, domainModel);
-                    break;
-                case "updateCheckupReport":
-                    updateCheckupReport(request, response, domainModel);
-                    break;
-                case "showCheckupReports":
-                    showActiveCheckupReports(request, response, domainModel);
-                    showDoneCheckupReports(request, response, domainModel);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
-                    dispatcher.forward(request, response);
-                    break;  
-                case "requestCheckup":
-                    requestCheckup(request, response, domainModel);
-                    dispatcher = request.getRequestDispatcher("Reports.jsp");
-                    dispatcher.forward(request, response);
-                    break;  
-                case "selectReport":
-                    selectReport(request, response, domainModel);
-                    break;  
-                case "selectFinishedReport":
-                    selectFinishedReport(request, response, domainModel);
-                    break;  
-                case "serviceRequest":
-                    saveServiceRequest(request,response,domainModel);
-                    break;
-                case "takeServiceRequest":
-                    //get this parameter: srequest_id
-                    takeServiceRequest(request,response,domainModel);
-                    break;
-                case "editBuilding":
-                    editBuilding(request,response,domainModel);
-                    break;
-                case "saveBuildingEdits":
-                    saveBuildingEdits(request,response,domainModel);
-                    break;
-                    
+        HttpSession sessionObj = request.getSession();
+        DomainFacade domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
+        if (domainModel == null) {
+            // Session starts
+            domainModel = DomainFacade.getInstance();
+            sessionObj.setAttribute("Controller", domainModel);
+        } else {
+            domainModel = (DomainFacade) sessionObj.getAttribute("Controller");
+        }
+
+        //-- Identify command and delegate job
+        String command = request.getParameter("command");
+        switch (command) {
+            case "addBuilding":
+                addBuilding(request, response, domainModel);
+                break;
+            case "addCustomer":
+                createCustomer(request, response, domainModel);
+                break;
+            case "showCustomers":
+                showCustomers(request, response, domainModel);
+                break;
+            case "updateCheckupReport":
+                updateCheckupReport(request, response, domainModel);
+                break;
+            case "showCheckupReports":
+                showActiveCheckupReports(request, response, domainModel);
+                showDoneCheckupReports(request, response, domainModel);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
+                dispatcher.forward(request, response);
+                break;
+            case "requestCheckup":
+                requestCheckup(request, response, domainModel);
+                dispatcher = request.getRequestDispatcher("Reports.jsp");
+                dispatcher.forward(request, response);
+                break;
+            case "selectReport":
+                selectReport(request, response, domainModel);
+                break;
+            case "selectFinishedReport":
+                selectFinishedReport(request, response, domainModel);
+                break;
+            case "serviceRequest":
+                saveServiceRequest(request, response, domainModel);
+                break;
+            case "takeServiceRequest":
+                //get this parameter: srequest_id
+                takeServiceRequest(request, response, domainModel);
+                break;
+            case "editBuilding":
+                editBuilding(request, response, domainModel);
+                break;
+            case "saveBuildingEdits":
+                saveBuildingEdits(request, response, domainModel);
+                break;
+
+        }
     }
-    }
-    
+
     private void saveBuildingEdits(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
-        String b_name,street;
-        int zip,size,condition_level,parcel_no,buildingID;
+        String b_name, street;
+        int zip, size, condition_level, parcel_no, buildingID;
         buildingID = Integer.parseInt(request.getParameter("building_id"));
         b_name = request.getParameter("b_name");
         street = request.getParameter("street");
@@ -137,15 +118,15 @@ public class UserServlet extends HttpServlet {
         size = Integer.parseInt(request.getParameter("size"));
         condition_level = Integer.parseInt(request.getParameter("condition_level"));
         parcel_no = Integer.parseInt(request.getParameter("parcel_no"));
-        Building tempBuilding = new Building(buildingID,b_name,street,zip,size,condition_level,parcel_no);
-        
+        Building tempBuilding = new Building(buildingID, b_name, street, zip, size, condition_level, parcel_no);
+
         boolean result = domainModel.saveBuildingEdits(tempBuilding);
-        
-        request.setAttribute("SaveSuccessMessage", "Save successful: "+result);
+
+        request.setAttribute("SaveSuccessMessage", "Save successful: " + result);
         RequestDispatcher rd = request.getRequestDispatcher("Buildings.jsp");
         rd.forward(request, response);
     }
-    
+
     //Editing a certain building
     private void editBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int building_id = Integer.parseInt(request.getParameter("building_id"));
@@ -156,7 +137,7 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("EditBuilding.jsp");
         rd.forward(request, response);
     }
-    
+
     //This method makes the service request in the DB active based on it's ID 
     //and assigns an employee to it
     private boolean takeServiceRequest(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
@@ -164,50 +145,47 @@ public class UserServlet extends HttpServlet {
         int srequest_id = Integer.parseInt(request.getParameter("srequest_id"));
         int employee_id = 1;
         result = domainModel.takeServiceRequest(srequest_id, employee_id);
-        request.setAttribute("takeServiceMessage", "Success: "+result);
+        request.setAttribute("takeServiceMessage", "Success: " + result);
         RequestDispatcher rd = request.getRequestDispatcher("ShowServiceRequests.jsp");
         rd.forward(request, response);
         return result;
     }
-    
-    private boolean saveServiceRequest (HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+
+    private boolean saveServiceRequest(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         boolean result = false;
         int service_id = Integer.parseInt(request.getParameter("selectService"));
         String description = request.getParameter("description");
         int customerID = Integer.parseInt(request.getParameter("customerID"));
         int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-        
-        ServiceRequest service = new ServiceRequest(service_id,buildingID,customerID,description,"pending");
+        ServiceRequest service = new ServiceRequest(service_id, buildingID, customerID, description, "pending");
         result = domainModel.saveServiceRequest(service);
-        
-        request.setAttribute("message", "Service saved: "+result);
+        request.setAttribute("message", "Service saved: " + result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("ServiceRequest.jsp");
         dispatcher.forward(request, response);
         return result;
     }
-    
+
     private boolean addBuilding(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         boolean result = false;
-        
+
         //Get userPrefs object from session
         HttpSession session = request.getSession();
         UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
         int customerID = userPrefs.getUserID();
-        
+
         String name = request.getParameter("b_name");
         String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
-        
-        Building tempBuild = new Building(customerID,name,street,size,zip);
+
+        Building tempBuild = new Building(customerID, name, street, size, zip);
         result = domainModel.addBuilding(tempBuild);
         System.out.println(tempBuild.getStreet());
-        request.setAttribute("result",result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Buildings.jsp");
         dispatcher.forward(request, response);
         return result;
     }
-    
+
     private void createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException, SQLException {
         String company_name = request.getParameter("company_name");
         String fname = request.getParameter("fname");
@@ -220,33 +198,29 @@ public class UserServlet extends HttpServlet {
         Customer customer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
         System.out.println(customer.getCompany_name());
         boolean result = domainModel.createCustomer(customer);
-//        request.setAttribute("customer", customer);
-        request.setAttribute("result",result);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("UserServlet?command=showCustomers");
+        request.setAttribute("Message", "Building added: " + result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
         dispatcher.forward(request, response);
     }
-    
-    private void showCustomers(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
-    {
-	List<Customer> customers = df.showCustomers();
-	request.setAttribute("customers", customers);
+
+    private void showCustomers(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException {
+        List<Customer> customers = df.showCustomers();
+        request.setAttribute("customers", customers);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomers.jsp");
         dispatcher.forward(request, response);
     }
-    
-    private void showActiveCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
-    {
-	List<CheckupReport> reports = df.showActiveCheckupReports();
-	request.setAttribute("reports", reports);
+
+    private void showActiveCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException {
+        List<CheckupReport> reports = df.showActiveCheckupReports();
+        request.setAttribute("reports", reports);
 
     }
-    
-    private void showDoneCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException
-    {
-	List<CheckupReport> donereports = df.showDoneCheckupReports();
-	request.setAttribute("donereports", donereports);
-        
+
+    private void showDoneCheckupReports(HttpServletRequest request, HttpServletResponse response, DomainFacade df) throws ServletException, IOException {
+        List<CheckupReport> donereports = df.showDoneCheckupReports();
+        request.setAttribute("donereports", donereports);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -284,7 +258,7 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     /**
@@ -319,7 +293,7 @@ public class UserServlet extends HttpServlet {
         //moisture scanning
         String moisture_scanning = request.getParameter("moisture_scanning");
         String moisture_measure = request.getParameter("moisture_measure");
-        
+
         CheckupReport report = new CheckupReport(creport_id, condition_level, comments, roof, walls_outside, damaged, damage_when, damage_where, damage_what, damage_repaired, walls, ceiling, floor, windows_doors, moisture_scanning, moisture_measure);
         domainModel.updateCheckupReport(report);
 
@@ -339,7 +313,7 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("ReportExample.jsp");
         dispatcher.forward(request, response);
     }
-    
+
     private void selectFinishedReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("reportid"));
         CheckupReport report = domainModel.getReportByID(id);
@@ -351,8 +325,27 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    
+    private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+        int employee_id = Integer.parseInt(request.getParameter("employeeid"));
+        int creport_id = Integer.parseInt(request.getParameter("reportid"));
 
-    
+        domainModel.assignEmployee(creport_id, employee_id);
+    }
+
+    private void addEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws SQLException, ServletException, IOException {
+
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String username = request.getParameter("username");
+        String pwd = request.getParameter("pwd");
+        String email = request.getParameter("email");
+        String phone_no = request.getParameter("phone_no");
+
+        Employee employee = new Employee(fname, lname, username, pwd, email, phone_no);
+        domainModel.createEmployee(employee);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
+    }
 
 }

@@ -9,6 +9,7 @@ import Domain.Building;
 import Domain.CheckupReport;
 import Domain.CityList;
 import Domain.Customer;
+import Domain.Employee;
 import Domain.ServiceRequest;
 import Domain.ServiceList;
 import Domain.UserPrefs;
@@ -26,6 +27,7 @@ public class DBFacade {
     //add mappers here as private objects
     private BuildingMapper bm;
     private CustomerMapper customerMap;
+    private EmployeeMapper employeeMap;
     private CheckupReportMapper creportmap;
     private ServiceMapper serviceMapper;
     private UserMapper userMapper;
@@ -40,6 +42,7 @@ public class DBFacade {
         creportmap = new CheckupReportMapper();
         serviceMapper = new ServiceMapper();
         userMapper = new UserMapper();
+        employeeMap = new EmployeeMapper();
         //assign the mappers with a new object 
     }
     
@@ -54,6 +57,9 @@ public class DBFacade {
     public boolean createCustomer(Customer c) throws SQLException{
         return customerMap.createCustomer(c, con);
     }
+    public boolean createEmployee(Employee e) throws SQLException{
+        return employeeMap.createEmployee(e, con);
+    }
 
     public boolean addBuilding(Building building) {
         return bm.addBuilding(con, building);
@@ -65,9 +71,20 @@ public class DBFacade {
     public boolean updateCheckupReport(CheckupReport checkuprreport) {
         return creportmap.updateCheckupReport(checkuprreport, con);
     }
+    public boolean assignEmployee(int creport_id, int employee_id) {
+        return creportmap.assignEmployee(creport_id, employee_id, con);
+    }
     public List<Customer> showCustomers() 
     {
 	return customerMap.viewAllCustomers(con);
+    }
+    public List<Employee> showEmployees() 
+    {
+	return employeeMap.viewAllEmployees(con);
+    }
+    public List<CheckupReport> showPendingCheckupReports() 
+    {
+	return creportmap.getPendingReports(con);
     }
     public List<CheckupReport> showActiveCheckupReports() 
     {
