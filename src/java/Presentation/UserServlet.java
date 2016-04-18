@@ -350,7 +350,6 @@ public class UserServlet extends HttpServlet {
 
         Employee employee = new Employee(fname, lname, username, pwd, email, phone_no);
         domainModel.createEmployee(employee);
-//        request.setAttribute("customer", customer);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
