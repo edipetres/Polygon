@@ -17,6 +17,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Buildings</title>
+        <link rel="icon" href="images/polygon_icon.png">
         <link rel="icon" href="http://example.com/favicon.png">
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">

@@ -17,6 +17,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fill out report</title>
+        <link rel="icon" href="images/polygon_icon.png">
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <%-- Java scrips for bootstrap here --%>

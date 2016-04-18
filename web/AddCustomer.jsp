@@ -19,7 +19,7 @@
         <!-- Custom css -->
         <link href="css/styles.css" rel="stylesheet">
         <title>Healthy Buildings</title>
-        
+        <link rel="icon" href="images/polygon_icon.png">
         
     </head>
     <body>

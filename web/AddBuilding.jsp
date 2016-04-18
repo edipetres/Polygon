@@ -28,6 +28,7 @@
         <link href="css/styles.css" rel="stylesheet">
 
         <title>Add New Building</title>
+        <link rel="icon" href="images/polygon_icon.png">
     </head>
     <body>
         <%

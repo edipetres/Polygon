@@ -16,7 +16,11 @@
 <%-- any content can be specified here e.g.: --%>
 <div class="navbar navbar-fixed-top navbar-default">
     <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="index.jsp">HealthyBuildings</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+        <div class="navbar-header">
+            <a href="index.jsp" class="pull-left"><img class="img-responsive" src="images/polygon_icon.png" height="30"></a>
+            <a class="navbar-brand" href="index.jsp">HealthyBuildings</a>
+            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="glyphicon glyphicon-bar">Menu</span>
             </a>
         </div>

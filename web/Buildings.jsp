@@ -18,7 +18,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>All Buildings</title>
-
+        <link rel="icon" href="images/polygon_icon.png">
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <!-- Custom css -->
