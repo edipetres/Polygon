@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Buildings
-    Created on : Apr 4, 2016, 10:53:09 AM
-    Author     : Minerva
+    Document   : MyBuildings
+    Created on : 17-Apr-2016, 14:26:36
+    Author     : edipetres
 --%>
 
 <%@page import="Domain.UserPrefs"%>
@@ -16,9 +16,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <title>All Buildings</title>
-
+        <title>My Buildings</title>
+        <link rel="icon" href="http://example.com/favicon.png">
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/styles.css" rel="stylesheet">
@@ -29,24 +28,30 @@
     </head>
     <body>
         <%
-            DomainFacade domainModel = DomainFacade.getInstance();
-            List<Building> buildings = domainModel.showBuildings();
-            request.setAttribute("buildings", buildings);
-            if (buildings.isEmpty()) {
-                request.setAttribute("message", "No buildings to show.");
-            }
             UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
             if (userPrefs != null) {
                 request.setAttribute("username", userPrefs.getUsername());
                 request.setAttribute("accessLevel", userPrefs.getAccessLevel());
             }
         %>
+
         <c:if test="${username == null}">
             <jsp:forward page="Login.jsp?login=true" />
         </c:if>
+        
+        <%
+            DomainFacade domainModel = DomainFacade.getInstance();
+            List<Building> buildings = domainModel.getMyBuildings(userPrefs.getUserID());
+
+            if (buildings.isEmpty() || buildings == null) {
+                request.setAttribute("message", "No buildings to show.");
+            } else {
+                request.setAttribute("buildings", buildings);
+            }
+        %>
         <mytags:navbar/>
         <div class="container">
-            <h1>Buildings</h1>
+            <h1>My Buildings</h1>
 
             <div class="col-sm-12">
                 <div class="panel panel-group">
@@ -82,6 +87,7 @@
                                 <th>Year</th>
                                 <th>CheckUp</th>
                                 <th>Edit</th>
+                                <th>Report Damage</th>
                             </tr>
                         </thead>
                         <c:forEach var="building" items="${buildings}" >
@@ -97,6 +103,7 @@
                                 <td>n/a</td>
                                 <td><a class="btn btn-default btn-xs" href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request CheckUp</a></td>
                                 <td><a class="btn btn-default btn-xs" href="UserServlet?command=editBuilding&building_id=${building.getBuildingID()}">Edit</a></td>
+                                <td><a class="btn btn-default btn-xs" href="ServiceRequest.jsp?buildingID=${building.getBuildingID()}">Damage Report</a></td>
                             </tr>
                         </c:forEach>
                     </table>

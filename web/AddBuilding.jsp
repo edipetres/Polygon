@@ -80,7 +80,7 @@
                             <div class="form-group">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-default">Add Building</button>
+                        <button type="submit" class="btn btn-success">Add Building</button>
                     </form>
 
                 </div>

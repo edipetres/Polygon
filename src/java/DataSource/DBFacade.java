@@ -118,4 +118,8 @@ public class DBFacade {
     public UserPrefs authenticate(String email, String password) {
         return userMapper.authenticate(con,email,password);
     }
+
+    public List<Building> getMyBuildings(int customerID) {
+        return bm.getMyBuildings(con,customerID);
+    }
 }

@@ -21,7 +21,7 @@ public class ServiceRequest {
     private String description;
     private String reportStatus;
 
-    public ServiceRequest(int service_id,int building_id, String description, String reportStatus) {
+    public ServiceRequest(int service_id,int building_id, int customerID, String description, String reportStatus) {
         this.building_id = building_id;
         this.service_id = service_id;
         this.description = description;

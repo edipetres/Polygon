@@ -62,7 +62,7 @@
                         <label for="phone_no">Phone number:</label>
                         <input type="text" class="form-control" name="phone_no" placeholder="Phone number">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
             <div class="col-sm-6">

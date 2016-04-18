@@ -31,10 +31,17 @@
             request.setAttribute("serviceList", serviceList);
         %>
         <%
+            int buildingID = 0;
+            if (request.getParameter("buildingID") != null) {
+                    buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                }
+            
             UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
             if (userPrefs != null) {
                 request.setAttribute("username", userPrefs.getUsername());
                 request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+                request.setAttribute("customerID", userPrefs.getUserID());
+                request.setAttribute("buildingID", buildingID);
             }
         %>
         <c:if test="${username == null}">
@@ -50,6 +57,16 @@
                             <!-- Form Name -->
                             <legend>Request a service</legend>
                             <input type="hidden" name="command" value="serviceRequest">
+                            <input type="hidden" name="customerID" value="${customerID}">
+                            <c:if test="${buildingID != 0}">
+                                <input type="hidden" name="buildingID" value="${buildingID}">
+                            </c:if>
+                            <c:if test="${buildingID == 0}">
+                                <select id="selectbasic" name="selectBuilding" class="form-control">
+                                    <option></option>
+                                    </select>
+                            </c:if>
+
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Choose a service</label>

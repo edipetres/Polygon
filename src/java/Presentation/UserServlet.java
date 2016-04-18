@@ -174,8 +174,10 @@ public class UserServlet extends HttpServlet {
         boolean result = false;
         int service_id = Integer.parseInt(request.getParameter("selectService"));
         String description = request.getParameter("description");
+        int customerID = Integer.parseInt(request.getParameter("customerID"));
+        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
         
-        ServiceRequest service = new ServiceRequest(service_id,2,description,"pending");
+        ServiceRequest service = new ServiceRequest(service_id,buildingID,customerID,description,"pending");
         result = domainModel.saveServiceRequest(service);
         
         request.setAttribute("message", "Service saved: "+result);

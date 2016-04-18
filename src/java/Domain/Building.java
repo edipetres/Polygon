@@ -25,16 +25,88 @@ public class Building {
     private String buildingUse;
     private String city;
 
+    //We are going to need one constructor only. Please use the upper one with 10 parameteres
+    public Building(int building_id, String name, String street, int zip, int parcel_no,
+            int size, int year, String buildingUse, int condition_level, int customer_id) {
+        
+        this.buildingID = building_id;
+        this.name = name;
+        this.street = street;
+        this.zip = zip;
+        this.parcel_no = parcel_no;
+        this.size = size;
+        this.year = year;
+        this.buildingUse = buildingUse;
+        this.condition = condition_level;
+        this.customerID = customer_id;
+    }
+    
+    
+    //Try to avoid using the constructors below. They are not deleted for possible usage somewhere.
+    public Building(String name, String street, int size, int zip, int year, String buildingUse, String city) {
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+        this.year = year;
+        this.buildingUse = buildingUse;
+        this.city = city;
+    }
+
     public Building(String street, int size, int zip) {
         this.street = street;
         this.size = size;
         this.zip = zip;
     }
+
     public Building(String street, int size, int zip, String city) {
         this.street = street;
         this.size = size;
         this.zip = zip;
         this.city = city;
+    }
+
+    public Building(String name, String street, int size, int zip) {
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
+
+    public Building(int buildingID, String street, int size, int zip) {
+        this.buildingID = buildingID;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
+
+    public Building(int customerID, String name, String street, int size, int zip) {
+        this.customerID = customerID;
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.zip = zip;
+    }
+
+    public Building(int buildingID, String name, String street, int zip, int size, int condition, int parcel_no) {
+        this.buildingID = buildingID;
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.condition = condition;
+        this.zip = zip;
+        this.parcel_no = parcel_no;
+    }
+
+    public Building(int buildingID, int customerID, String name, String street, int size, int condition, int zip) {
+        this.buildingID = buildingID;
+        this.customerID = customerID;
+        this.name = name;
+        this.street = street;
+        this.size = size;
+        this.condition = condition;
+        //this.lastCheckUp = lastCheckUp;
+        this.zip = zip;
     }
 
     public int getBuildingID() {
@@ -77,50 +149,11 @@ public class Building {
         return parcel_no;
     }
 
-    public Building(int customerID, String name, String street, int size, int zip) {
-        this.customerID = customerID;
-        this.name = name;
-        this.street = street;
-        this.size = size;
-        this.zip = zip;
-    }
-
-    public Building(int buildingID, String name, String street, int zip, int size, int condition, int parcel_no) {
-        this.buildingID = buildingID;
-        this.name = name;
-        this.street = street;
-        this.size = size;
-        this.condition = condition;
-        this.zip = zip;
-        this.parcel_no = parcel_no;
-    }
-
-    public Building(int buildingID, int customerID, String name, String street, int size, int condition, int zip) {
-        this.buildingID = buildingID;
-        this.customerID = customerID;
-        this.name = name;
-        this.street = street;
-        this.size = size;
-        this.condition = condition;
-        //this.lastCheckUp = lastCheckUp;
-        this.zip = zip;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
-        this.city = city;
-    }
-    
-    public Building(String name, String street, int size, int zip, int year, String buildingUse, String city) {
-        this.name = name;
-        this.street = street;
-        this.size = size;
-        this.zip = zip;
-        this.year = year;
-        this.buildingUse = buildingUse;
         this.city = city;
     }
 
@@ -138,20 +171,6 @@ public class Building {
 
     public void setBuildingUse(String buildingUse) {
         this.buildingUse = buildingUse;
-    }
-
-    public Building(String name,String street, int size, int zip) {
-        this.name = name;
-        this.street = street;
-        this.size = size;
-        this.zip = zip;
-    }
-    
-    public Building(int buildingID, String street, int size, int zip) {
-        this.buildingID = buildingID;
-        this.street = street;
-        this.size = size;
-        this.zip = zip;
     }
 
 }

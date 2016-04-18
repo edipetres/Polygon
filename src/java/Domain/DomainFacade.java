@@ -97,5 +97,7 @@ public class DomainFacade {
     public UserPrefs authenticate(String email, String password) {
         return dbf.authenticate(email, password);
     }
-    
+    public List<Building> getMyBuildings(int customerID){
+        return dbf.getMyBuildings(customerID);
+    }
 }

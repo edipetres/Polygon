@@ -40,7 +40,7 @@
         </c:if>
         <mytags:navbar/>
         <div class="container">
-            <div class="col-sm-4">
+            <div class="col-md-12">
                 <c:choose>
                     <c:when test="${result}">
                         <div class="alert alert-success fade in">
@@ -59,21 +59,31 @@
                     </c:otherwise>
                 </c:choose>
                 <h1>Customers</h1>
-                <!--single customer info start-->
-                <c:forEach var="customer" items="${customers}" >
-                    <div class="panel panel-info">
-                        <div class="panel-heading"><c:out value="${customer.company_name}"/></div>
-                        <div class="panel-body">
-                            <b> <c:out value="${customer.fname}"/> <c:out value="${customer.lname}"/></b> <br>
-                            <span class="glyphicon glyphicon-envelope"></span> <c:out value="${customer.email}"/> <br>
-                            <span class="glyphicon glyphicon-earphone"></span> <c:out value="${customer.phone_no}"/><br>
-                            <button type="button" class="btn btn-primary">View buildings</button>
-                        </div>
-                    </div><!-- single customer info end-->
-
-                </c:forEach> 
+                <div class="panel">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Phone number</th>
+                                <th><span class="glyphicon glyphicon-home"></span> Company</th>
+                            </tr>
+                        </thead>
+                        <c:forEach var="customer" items="${customers}" >
+                            <tr>
+                                <td><c:out value="${customer.getCustomer_id()}"/></td>
+                                <td><c:out value="${customer.getFname()}"/> <c:out value="${customer.getLname()}"/></td>
+                                <td><c:out value="${customer.getUsername()}"/></td>
+                                <td><c:out value="${customer.getEmail()}"/></td> 
+                                <td><c:out value="${customer.getPhone_no()}"/></td>
+                                <td><c:out value="${customer.getCompany_name()}"/></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
-            <div class="col-sm-4"></div>
         </div>
     </body>
 </html>

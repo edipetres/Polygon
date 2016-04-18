@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author edipetres
  */
 public class BuildingMapper {
-
+//
 //    private static Connection con;
 //    private static BuildingMapper bm;
 //
@@ -35,8 +35,10 @@ public class BuildingMapper {
 //
 //    public static void main(String[] args) {
 //        bm = new BuildingMapper();
-//        
-//        Building b = new Building("");
+//        List<Building> myBuildingList = bm.getMyBuildings(con, 1);
+//        for (int i = 0; i < myBuildingList.size(); i++) {
+//            System.out.println("Building: " + myBuildingList.get(i).getStreet());
+//        }
 //    }
 
     public boolean addBuilding(Connection con, Building building) {
@@ -139,13 +141,13 @@ public class BuildingMapper {
             result = true;
         } catch (SQLException ex) {
             Logger.getLogger(BuildingMapper.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Exception in updateBuilding(). Exception: "+ex);
+            System.out.println("Exception in updateBuilding(). Exception: " + ex);
             result = false;
         }
         return result;
     }
-    
-        public ArrayList<CityList> getCityList(Connection con) {
+
+    public ArrayList<CityList> getCityList(Connection con) {
         ArrayList<CityList> cityList = new ArrayList();
         String sqlString = "select * from City";
         Statement stmt = null;
@@ -153,37 +155,44 @@ public class BuildingMapper {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sqlString);
             while (rs.next()) {
-                cityList.add(new CityList(rs.getInt(1),rs.getString(2)));
+                cityList.add(new CityList(rs.getInt(1), rs.getString(2)));
             }
-            
+
             stmt.close();
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Error in getCityList() method; exception: "+ex);
+            System.out.println("Error in getCityList() method; exception: " + ex);
         }
         return cityList;
     }
 
-//    public boolean updatePlayer(Connection conn, Player player ){
-//        
-//        //It should not be possible to change the playerid!
-//        
-//        
-//        String sql = "update player\n" +
-//        "set Player_name = ?,Player_position=?,Player_number=?,Team_id=?\n" +
-//        "where Player_id = ?;";
-//        PreparedStatement updateStatement;
-//        try {
-//        updateStatement = conn.prepareStatement(sql);
-//        updateStatement.setString(1, player.getPlayerName());
-//        updateStatement.setString(2, player.getPlayerPos());
-//        updateStatement.setInt(3, player.getPlayerNumber());
-//        updateStatement.setString(4, player.getTeamid());
-//        updateStatement.setInt(5, player.getPlayerid());
-//        return updateStatement.execute();
-//        } catch (SQLException ex) {
-//            System.out.println("SQL EX IN Update Player" + ex);
-//        }
-//        return false;
-//    }
+    List<Building> getMyBuildings(Connection con, int customerID) {
+        ArrayList<Building> myBuildings = new ArrayList<>();
+        String sql = "select * from Building where customer_id=?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setInt(1, customerID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Building tempBuild = new Building(
+                        rs.getInt("building_id"),
+                        rs.getString("name"),
+                        rs.getString("street"),
+                        rs.getInt("zip"),
+                        rs.getInt("parcel_no"),
+                        rs.getInt("size"),
+                        rs.getInt("year"),
+                        rs.getString("buildingUse"),
+                        rs.getInt("condition_level"),
+                        rs.getInt("customer_id"));
+                myBuildings.add(tempBuild);
+            }
+            statement.close();
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Problem in BuildingMapper, getMyBuildings().");
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return myBuildings;
+    }
 }
