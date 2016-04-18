@@ -59,7 +59,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">CheckUp requests</h3>
+                            <h3 class="panel-title">Reports waiting to be filled in</h3>
                         </div>
                         <table class="table table-bordered" cellspacing="0" width="100%">
                             <thread>

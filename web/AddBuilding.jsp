@@ -52,7 +52,6 @@
                             <input type="text" class="form-control" name="b_name">
                         </div>
                         <div class="form-group">
-
                             <label for="street">Street and No.:</label>
                             <input type="text" class="form-control" name="street" required>
                         </div>
@@ -74,9 +73,16 @@
                                     <label for="size">Size: (m2)</label>
                                     <input type="text" class="form-control" name="size" required>
                                 </div>
+                                <div class="col-xs-6">
+                                    <label for="year">Year built: </label>
+                                    <input type="text" class="form-control" name="year" required>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="usage">Use of building: </label>
+                                    <input type="text" class="form-control" name="usage" required>
+                                </div>
                             </div>    
-                            <div class="form-group">
-                            </div>
+                            
                         </div>
                         <button type="submit" class="btn btn-success">Add Building</button>
                     </form>

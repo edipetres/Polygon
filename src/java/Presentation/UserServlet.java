@@ -107,6 +107,12 @@ public class UserServlet extends HttpServlet {
             case "addRoom":
                 addRoom(request, response, domainModel);
                 break;
+            case "assignEmployee":
+                assignEmployee(request, response, domainModel);
+                break;
+            case "addEmployee":
+                addEmployee(request, response, domainModel);
+                break;
 
         }
     }
@@ -328,11 +334,14 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+    private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int employee_id = Integer.parseInt(request.getParameter("employeeid"));
         int creport_id = Integer.parseInt(request.getParameter("reportid"));
 
         domainModel.assignEmployee(creport_id, employee_id);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void addEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws SQLException, ServletException, IOException {
@@ -354,12 +363,12 @@ public class UserServlet extends HttpServlet {
     private void addRoom(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int size = Integer.parseInt(request.getParameter("size"));
         int b_id = Integer.parseInt(request.getParameter("b_id"));
-        
+
         System.out.println(size + " " + b_id);
         domainModel.addRoom(b_id, size);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
 }
