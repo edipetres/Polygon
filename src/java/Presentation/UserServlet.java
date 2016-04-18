@@ -104,9 +104,16 @@ public class UserServlet extends HttpServlet {
             case "saveBuildingEdits":
                 saveBuildingEdits(request, response, domainModel);
                 break;
-            case "assignEmployee":
-                assignEmployee(request,response,domainModel);
+            case "addRoom":
+                addRoom(request, response, domainModel);
                 break;
+            case "assignEmployee":
+                assignEmployee(request, response, domainModel);
+                break;
+            case "addEmployee":
+                addEmployee(request, response, domainModel);
+                break;
+
         }
     }
 
@@ -185,8 +192,11 @@ public class UserServlet extends HttpServlet {
         String street = request.getParameter("street");
         int size = Integer.parseInt(request.getParameter("size"));
         int zip = Integer.parseInt(request.getParameter("zip"));
+        int year = Integer.parseInt(request.getParameter("year"));
+        String usage = request.getParameter("usage");
 
-        Building tempBuild = new Building(customerID, name, street, size, zip);
+//        Building tempBuild = new Building(customerID, name, street, size, zip);
+        Building tempBuild = new Building(0, name, street, zip, 0, size, year, usage, 0, customerID);
         result = domainModel.addBuilding(tempBuild);
         System.out.println(tempBuild.getStreet());
         RequestDispatcher dispatcher = request.getRequestDispatcher("Buildings.jsp");
@@ -338,8 +348,8 @@ public class UserServlet extends HttpServlet {
         int creport_id = Integer.parseInt(request.getParameter("reportid"));
 
         domainModel.assignEmployee(creport_id, employee_id);
-        RequestDispatcher rd = request.getRequestDispatcher("Reports.jsp");
-        rd.forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void addEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws SQLException, ServletException, IOException {
@@ -356,6 +366,17 @@ public class UserServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void addRoom(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        int size = Integer.parseInt(request.getParameter("size"));
+        int b_id = Integer.parseInt(request.getParameter("b_id"));
+
+        System.out.println(size + " " + b_id);
+        domainModel.addRoom(b_id, size);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
+
     }
 
 }
