@@ -113,7 +113,8 @@ public class Authenticate extends HttpServlet {
             request.setAttribute("errorMessage","Logged in. All good.");
         }
         else {
-            request.setAttribute("errorMessage", "Login Unsuccessful. userPrefs null");
+            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp?mismatch=true");
+            rd.forward(request, response);
         }
         
         RequestDispatcher rd = request.getRequestDispatcher("MyAccount.jsp");

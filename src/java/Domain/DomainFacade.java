@@ -113,4 +113,7 @@ public class DomainFacade {
     public List<Building> getMyBuildings(int customerID){
         return dbf.getMyBuildings(customerID);
     }
+    public List<CheckupReport> getMyReports(int employeeID) {
+        return dbf.getMyReports(employeeID);
+    }
 }

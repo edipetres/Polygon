@@ -104,7 +104,9 @@ public class UserServlet extends HttpServlet {
             case "saveBuildingEdits":
                 saveBuildingEdits(request, response, domainModel);
                 break;
-
+            case "assignEmployee":
+                assignEmployee(request,response,domainModel);
+                break;
         }
     }
 
@@ -156,7 +158,13 @@ public class UserServlet extends HttpServlet {
         int service_id = Integer.parseInt(request.getParameter("selectService"));
         String description = request.getParameter("description");
         int customerID = Integer.parseInt(request.getParameter("customerID"));
-        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+        int buildingID;
+        if (request.getParameter("buildingID") == null) {
+            buildingID = Integer.parseInt(request.getParameter("selectBuilding"));
+        }
+        else {
+            buildingID = Integer.parseInt(request.getParameter("buildingID"));
+        }
         ServiceRequest service = new ServiceRequest(service_id, buildingID, customerID, description, "pending");
         result = domainModel.saveServiceRequest(service);
         request.setAttribute("message", "Service saved: " + result);
@@ -325,11 +333,13 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+    private void assignEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int employee_id = Integer.parseInt(request.getParameter("employeeid"));
         int creport_id = Integer.parseInt(request.getParameter("reportid"));
 
         domainModel.assignEmployee(creport_id, employee_id);
+        RequestDispatcher rd = request.getRequestDispatcher("Reports.jsp");
+        rd.forward(request, response);
     }
 
     private void addEmployee(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws SQLException, ServletException, IOException {

@@ -139,4 +139,7 @@ public class DBFacade {
     public List<Building> getMyBuildings(int customerID) {
         return bm.getMyBuildings(con,customerID);
     }
+    public List<CheckupReport> getMyReports(int employeeID) {
+        return creportmap.getMyReports(employeeID, con);
+    }
 }

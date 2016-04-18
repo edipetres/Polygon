@@ -4,6 +4,9 @@
     Author     : edipetres
 --%>
 
+<%@page import="Domain.Building"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page import="Domain.UserPrefs"%>
 <%@page import="Domain.ServiceList"%>
 <%@page import="java.util.ArrayList"%>
@@ -29,19 +32,23 @@
             DomainFacade domainModel = DomainFacade.getInstance();
             ArrayList<ServiceList> serviceList = domainModel.getAllServices();
             request.setAttribute("serviceList", serviceList);
-        %>
-        <%
+
             int buildingID = 0;
             if (request.getParameter("buildingID") != null) {
-                    buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                }
-            
+                buildingID = Integer.parseInt(request.getParameter("buildingID"));
+            }
+
             UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
             if (userPrefs != null) {
                 request.setAttribute("username", userPrefs.getUsername());
                 request.setAttribute("accessLevel", userPrefs.getAccessLevel());
                 request.setAttribute("customerID", userPrefs.getUserID());
                 request.setAttribute("buildingID", buildingID);
+            }
+
+            List<Building> buildingList = domainModel.getMyBuildings(userPrefs.getUserID());
+            if (buildingList != null) {
+                request.setAttribute("buildingList", buildingList);
             }
         %>
         <c:if test="${username == null}">
@@ -61,10 +68,19 @@
                             <c:if test="${buildingID != 0}">
                                 <input type="hidden" name="buildingID" value="${buildingID}">
                             </c:if>
+
+                            <!-- Selecting the building yourself -->
                             <c:if test="${buildingID == 0}">
-                                <select id="selectbasic" name="selectBuilding" class="form-control">
-                                    <option></option>
-                                    </select>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="selectBuilding">Select a building</label>
+                                        <div class="col-md-4">
+                                            <select id="selectBuilding" name="selectBuilding" class="form-control">
+                                                <c:forEach var="building" items="${buildingList}">
+                                                    <option value="${building.getBuildingID()}">${building.getName()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                </div>
                             </c:if>
 
                             <!-- Select Basic -->

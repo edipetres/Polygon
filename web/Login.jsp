@@ -37,7 +37,9 @@
         <br><br><br><br>
         <%
             String login = request.getParameter("login");
+            String mismatch = request.getParameter("mismatch");
             request.setAttribute("login", login);
+            request.setAttribute("mismatch", mismatch);
         %>
 
 
@@ -55,6 +57,12 @@
                                 <div class="alert alert-warning fade in">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                     <strong>You are not logged in.</strong><br> Please log in first.
+                                </div>
+                            </c:if>
+                            <c:if test="${mismatch == true}">
+                                <div class="alert alert-danger fade in">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Wrong username or password.</strong><br> Try again.
                                 </div>
                             </c:if>
                             <div id="div-login-msg">

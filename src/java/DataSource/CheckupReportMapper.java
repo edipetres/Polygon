@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -174,6 +176,26 @@ public class CheckupReportMapper {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+    
+    //Gives back the list of building IDs that an employee has assign as a job
+    public List<CheckupReport> getMyReports(int employeeID, Connection con) {
+        List<CheckupReport> myReports = new ArrayList();
+        String sqlString = "SELECT creport_id FROM CheckupReport where reportStatus='active' and employee_id=?";
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(sqlString);
+            stmt.setInt(1, employeeID);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                myReports.add(getReportByID(rs.getInt("creport_id"),con));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CheckupReportMapper.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println( "Problem in getMyReports. ex = " + ex);
+        }
+        
+        return myReports;
     }
 
     // Shows an individual report.
