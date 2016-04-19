@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class DBFacade {
     
     private Connection con;
+    
     //add mappers here as private objects
     private BuildingMapper bm;
     private CustomerMapper customerMap;

@@ -328,7 +328,7 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("reportid"));
         CheckupReport report = domainModel.getReportByID(id);
         request.setAttribute("report", report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ReportExample.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("FillCheckupReport.jsp");
         dispatcher.forward(request, response);
     }
 
