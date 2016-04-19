@@ -27,7 +27,11 @@ public class EmployeeMapper {
                     Employee e = new Employee(
                     rs.getString("fname"),
                     rs.getString("lname"),
-                    rs.getInt("emp_id")
+                    rs.getInt("emp_id"),
+                    rs.getString("username"),
+                    rs.getString("pwd"),
+                    rs.getString("email"),
+                    rs.getString("phone_no")
                     );
                     employees.add(e);
                 }

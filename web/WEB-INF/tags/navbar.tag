@@ -70,7 +70,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Employees <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="UserServlet?command=showCustomers"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
+                                <li><a href="ViewEmployees.jsp"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
                                 <li><a href="AddEmployee.jsp"><span class="glyphicon glyphicon-plus"></span> Add new employee</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Separated link</a></li>

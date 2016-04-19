@@ -50,10 +50,14 @@ public class Employee {
         this.phone_no = phone_no;
     }
 
-    public Employee(String fname, String lname, int employee_id) {
+    public Employee(String fname, String lname, int employee_id, String username, String pwd, String email, String phone_no) {
         this.fname = fname;
         this.lname = lname;
         this.employee_id = employee_id;
+        this.username = username;
+        this.pwd = pwd;
+        this.email = email;
+        this.phone_no = phone_no;
     }
 
     public int getEmployee_id() {
