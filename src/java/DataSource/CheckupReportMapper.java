@@ -23,45 +23,35 @@ import java.util.logging.Logger;
  * @author Minerva
  */
 public class CheckupReportMapper {
-//        private static Connection con;
-//    private static CheckupReportMapper bm;
-//
-//    CheckupReportMapper() {
-//        con = (Connection) DBConnector.getInstance().getConnection();
-//
-//    }
-//
-//    public static void main(String[] args) {
-//        bm = new CheckupReportMapper();
-//        
-//        List<CheckupReport> reports = bm.getPendingReports(con);
-//        System.out.println(reports);
-//    }
+
     // Shows recently created reports. Marked as pending.
     public List<CheckupReport> getPendingReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
                 + "join Building ON Building.building_id=CheckupReport.building_id "
                 + "join Customer ON Customer.customer_id=Building.customer_id "
-//                + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
                 + "join City ON Building.zip=City.zip "
                 + "where reportStatus='pending'";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                // Create a building object for the report
                 Building b = new Building(
                         rs.getString("street"),
                         rs.getInt("size"),
                         rs.getInt("zip"),
                         rs.getString("city"));
+                // Create a customer object for the report 
                 Customer c = new Customer(
                         rs.getString("company_name"),
                         rs.getString("fname"),
                         rs.getString("lname")
                 );
+                // Create empty employee object for report
                 Employee e = new Employee(
                         " ", " "
                 );
+                // Create report 
                 CheckupReport cr = new CheckupReport(
                         rs.getInt("creport_id"),
                         b,
@@ -72,8 +62,8 @@ public class CheckupReportMapper {
                         rs.getString("reportStatus"),
                         rs.getString("comments")
                 );
+                // Add report to list
                 reports.add(cr);
-                System.out.println(cr);
             }
 
             return reports;
@@ -83,6 +73,7 @@ public class CheckupReportMapper {
             return null;
         }
     }
+    
     // Shows reports which have been assigned for an employee to fill in.
     public List<CheckupReport> getActiveReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
@@ -92,25 +83,29 @@ public class CheckupReportMapper {
                 + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
                 + "join City ON Building.zip=City.zip "
                 + "where reportStatus='active' "
-                + "order by creport_id "
-                ;
+                + "order by creport_id ";
+        
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                // Create a building object for the report
                 Building b = new Building(
                         rs.getString("street"),
                         rs.getInt("size"),
                         rs.getInt("zip"),
                         rs.getString("city"));
+                // Create a customer object for the report
                 Customer c = new Customer(
                         rs.getString("company_name"),
                         rs.getString("fname"),
                         rs.getString("lname")
                 );
+                // Create an employee object for the report
                 Employee e = new Employee(
                         rs.getString("Employee.fname"),
                         rs.getString("Employee.lname")
                 );
+                // Create a report object
                 CheckupReport cr = new CheckupReport(
                         rs.getInt("creport_id"),
                         b,
@@ -118,8 +113,8 @@ public class CheckupReportMapper {
                         e,
                         rs.getString("reportStatus")
                 );
+                // Add report to list
                 reports.add(cr);
-                System.out.println(cr);
             }
 
             return reports;
@@ -142,20 +137,24 @@ public class CheckupReportMapper {
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                // Create a building object for the report
                 Building b = new Building(
                         rs.getString("street"),
                         rs.getInt("size"),
                         rs.getInt("zip"),
                         rs.getString("city"));
+                // Create a customer object for the report
                 Customer c = new Customer(
                         rs.getString("company_name"),
                         rs.getString("fname"),
                         rs.getString("lname")
                 );
+                // Create an employee object for the report
                 Employee e = new Employee(
                         rs.getString("Employee.fname"),
                         rs.getString("Employee.lname")
                 );
+                // Create a report object
                 CheckupReport cr = new CheckupReport(
                         rs.getInt("creport_id"),
                         b,
@@ -166,8 +165,8 @@ public class CheckupReportMapper {
                         rs.getString("reportStatus"),
                         rs.getString("comments")
                 );
+                // Add report to list
                 reports.add(cr);
-                System.out.println(cr);
             }
 
             return reports;
@@ -211,6 +210,7 @@ public class CheckupReportMapper {
             statement.setInt(1, reportid);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
+                // Create a building object for the report
                 Building b = new Building(
                         rs.getString("name"),
                         rs.getString("street"),
@@ -219,15 +219,18 @@ public class CheckupReportMapper {
                         rs.getInt("year"),
                         rs.getString("buildingUse"),
                         rs.getString("city"));
+                // Create a customer object for the report
                 Customer c = new Customer(
                         rs.getString("company_name"),
                         rs.getString("Customer.fname"),
                         rs.getString("Customer.lname")
                 );
+                // Create an employee object for the report
                 Employee e = new Employee(
                         rs.getString("Employee.fname"),
                         rs.getString("Employee.lname")
                 );
+                // Create the report
                 cr = new CheckupReport(
                         rs.getInt("creport_id"),
                         b,
