@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class CheckupReportMapper {
 
-    // Shows recently created reports. Marked as pending.
+    // Returns recently created reports. Marked as pending.
     public List<CheckupReport> getPendingReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
@@ -74,7 +74,7 @@ public class CheckupReportMapper {
         }
     }
     
-    // Shows reports which have been assigned for an employee to fill in.
+    // Returns reports which have been assigned for an employee to fill in.
     public List<CheckupReport> getActiveReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
@@ -125,7 +125,7 @@ public class CheckupReportMapper {
         }
     }
 
-    // Shows filled in reports.
+    // Returns filled in reports.
     public List<CheckupReport> getDoneReports(Connection con) {
         ArrayList<CheckupReport> reports = new ArrayList<>();
         String sql = "select * from CheckupReport "
@@ -197,7 +197,7 @@ public class CheckupReportMapper {
         return myReports;
     }
 
-    // Shows an individual report.
+    // Returns an individual report.
     public CheckupReport getReportByID(int reportid, Connection con) {
         CheckupReport cr = null;
         String sql = "select * from CheckupReport "
@@ -266,7 +266,7 @@ public class CheckupReportMapper {
 
     }
 
-    // Creates a report after customer requests for checkup for their building. Marked as pending.
+    // Creates a report in the databse after customer requests for checkup for their building. Marked as pending.
     public boolean createCheckupReport(int building_id, Connection con) {
         boolean result = false;
         String sqlString = "INSERT INTO CheckupReport(building_id, checkDate, reportStatus) "
@@ -307,7 +307,7 @@ public class CheckupReportMapper {
         return result;
     }
     
-    // Saves information filled in during checkup. Marked as done. 
+    // Saves information filled in during checkup to the database. Marked as done. 
     public boolean updateCheckupReport(CheckupReport cr, Connection con) {
         boolean result = false;
         String sqlString = "UPDATE CheckupReport  "
