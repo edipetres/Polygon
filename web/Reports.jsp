@@ -36,12 +36,12 @@
         <title>Checkup Reports</title>
         <link rel="icon" href="images/polygon_icon.png">
         <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <%-- Java scrips for bootstrap here --%>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.js"></script>
     </head>
     <body>
         <%
@@ -62,7 +62,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Reports waiting to be filled in</h3>
                         </div>
-                        <table class="table table-bordered" cellspacing="0" width="100%">
+                    <table class="table table-bordered"  width="100%">
                             <thread>
                                 <tr>
                                     <th>ID</th> 
@@ -92,7 +92,7 @@
 
                             <h3 class="panel-title">Finished CheckUp Reports</h3>
                         </div>
-                        <table class="table table-bordered" cellspacing="0" width="100%">
+                        <table class="table table-bordered" width="100%">
                             <thread>
                                 <tr>
                                     <th>ID</th> 
@@ -122,5 +122,6 @@
 </div>
 </div>
 ${errorMessage}
+${savedRequest}
 </body>
 </html>

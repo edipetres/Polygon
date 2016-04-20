@@ -92,8 +92,7 @@ public class CheckupReportMapper {
                 + "join Employee ON Employee.emp_id=CheckupReport.employee_id "
                 + "join City ON Building.zip=City.zip "
                 + "where reportStatus='active' "
-                + "order by creport_id "
-                ;
+                + "order by creport_id ";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {

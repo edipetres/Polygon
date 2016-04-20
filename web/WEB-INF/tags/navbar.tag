@@ -85,6 +85,7 @@
                                 <li><a href="ServiceRequest.jsp"><span class="glyphicon glyphicon-plus"></span> Request new Service</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="UserServlet?command=showCheckupReports"><span class="glyphicon glyphicon-th-list"></span> CheckUp Reports</a></li>
+                                <li><a href="AssignEmployee.jsp"><span class="glyphicon glyphicon-th-list"></span> Assign jobs</a></li>
                                 <li><a href="MyJobs.jsp"><span class="glyphicon glyphicon-th-list"></span> My Jobs</a></li>
                             </ul>
                         </li>

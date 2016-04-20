@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <!-- Custom css -->
         <link href="css/styles.css" rel="stylesheet">
-        
+
     </head>
     <body>
         <%
@@ -47,64 +47,66 @@
         </c:if>
         <mytags:navbar/>
         <div class="container">
-            <h1>Buildings</h1>
+            <div class="col-md-12">
 
-            <div class="col-sm-12">
-                <div class="panel panel-group">
-                    <c:choose>
-                        <c:when test="${result == 'true'}">
-                            <div class="alert alert-success fade in">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Success!</strong> Building was added.
-                            </div>
-                        </c:when>
-                        <c:when test="${result == 'false'}">
-                            <div class="alert alert-warning fade in">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Failure!</strong> Building was not added.
-                            </div>
-                        </c:when>
-                        <c:otherwise>
+                <div class="row">
+                    <h1>Buildings</h1>
+                    <div class="panel panel-group">
+                        <c:choose>
+                            <c:when test="${result == 'true'}">
+                                <div class="alert alert-success fade in">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Success!</strong> Building was added.
+                                </div>
+                            </c:when>
+                            <c:when test="${result == 'false'}">
+                                <div class="alert alert-warning fade in">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Failure!</strong> Building was not added.
+                                </div>
+                            </c:when>
+                            <c:otherwise>
 
-                        </c:otherwise>
-                    </c:choose>
+                            </c:otherwise>
+                        </c:choose>
 
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th><span class="glyphicon glyphicon-home"></span> Name</th>
-                                <th>Street</th>
-                                <th>Zip</th>
-                                <th>Parcel No.</th>
-                                <th>Size (m2)</th>
-                                <th>Condition</th>
-                                <th>Building use</th>
-                                <th>Year</th>
-                                <th>CheckUp</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <c:forEach var="building" items="${buildings}" >
-                            <tr>
-                                <td><c:out value="${building.getBuildingID()}"/></td>
-                                <td><c:out value="${building.getName()}"/></td>
-                                <td><c:out value="${building.getStreet()}"/></td>
-                                <td><c:out value="${building.getZip()}"/></td>
-                                <td><c:out value="${building.getParcel_no()}"/></td> 
-                                <td><c:out value="${building.getSize()}"/></td>
-                                <td><c:out value="${building.getCondition()}"/></td>
-                                <td>n/a</td>
-                                <td>n/a</td>
-                                <td><a class="btn btn-default btn-xs" href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request CheckUp</a></td>
-                                <td><a class="btn btn-default btn-xs" href="UserServlet?command=editBuilding&building_id=${building.getBuildingID()}">Edit</a></td>
-                            </tr>
-                        </c:forEach>
-                    </table>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th><span class="glyphicon glyphicon-home"></span> Name</th>
+                                    <th>Street</th>
+                                    <th>Zip</th>
+                                    <th>Parcel No.</th>
+                                    <th>Size (m2)</th>
+                                    <th>Condition</th>
+                                    <th>Building use</th>
+                                    <th>Year</th>
+                                    <th>CheckUp</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <c:forEach var="building" items="${buildings}" >
+                                <tr>
+                                    <td><c:out value="${building.getBuildingID()}"/></td>
+                                    <td><c:out value="${building.getName()}"/></td>
+                                    <td><c:out value="${building.getStreet()}"/></td>
+                                    <td><c:out value="${building.getZip()}"/></td>
+                                    <td><c:out value="${building.getParcel_no()}"/></td> 
+                                    <td><c:out value="${building.getSize()}"/></td>
+                                    <td><c:out value="${building.getCondition()}"/></td>
+                                    <td>n/a</td>
+                                    <td>n/a</td>
+                                    <td><a class="btn btn-default btn-xs" href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request CheckUp</a></td>
+                                    <td><a class="btn btn-default btn-xs" href="UserServlet?command=editBuilding&building_id=${building.getBuildingID()}">Edit</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
                 </div>
+                ${message}
+                ${SaveSuccessMessage}
             </div>
-            ${message}
-            ${SaveSuccessMessage}
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

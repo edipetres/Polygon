@@ -82,8 +82,7 @@ public class UserServlet extends HttpServlet {
                 break;
             case "requestCheckup":
                 requestCheckup(request, response, domainModel);
-                dispatcher = request.getRequestDispatcher("Reports.jsp");
-                dispatcher.forward(request, response);
+
                 break;
             case "selectReport":
                 selectReport(request, response, domainModel);
@@ -168,8 +167,7 @@ public class UserServlet extends HttpServlet {
         int buildingID;
         if (request.getParameter("buildingID") == null) {
             buildingID = Integer.parseInt(request.getParameter("selectBuilding"));
-        }
-        else {
+        } else {
             buildingID = Integer.parseInt(request.getParameter("buildingID"));
         }
         ServiceRequest service = new ServiceRequest(service_id, buildingID, customerID, description, "pending");
@@ -319,9 +317,12 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) {
+    private void requestCheckup(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("building_id"));
         domainModel.createCheckupReport(id);
+        request.setAttribute("savedRequest", "true");
+        RequestDispatcher rd = request.getRequestDispatcher("Reports.jsp");
+        rd.forward(request, response);
     }
 
     private void selectReport(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {

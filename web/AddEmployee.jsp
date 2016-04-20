@@ -4,7 +4,10 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,88 +20,91 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <title>JSP Page</title>
     </head>
     <body>
-        <form class="form-horizontal" action="UserServlet" method="post">
-            <fieldset>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>  
+    <c:if test="${username == null}">
+        <jsp:forward page="Login.jsp?login=true" />
+    </c:if>
+    <mytags:navbar/>
+    <form class="form-horizontal" action="UserServlet" method="post">
+        <fieldset>
 
-                <!-- Form Name -->
-                <legend>Add employee</legend>
-                
-                <input type="hidden" name="command" value="addEmployee"/>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="fname">First name</label>  
-                    <div class="col-md-4">
-                        <input id="textinput" name="fname" placeholder="First name" class="form-control input-md" required="" type="text">
+            <!-- Form Name -->
+            <legend>Add employee</legend>
 
-                    </div>
+            <input type="hidden" name="command" value="addEmployee"/>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="fname">First name</label>  
+                <div class="col-md-4">
+                    <input id="textinput" name="fname" placeholder="First name" class="form-control input-md" required="" type="text">
+
                 </div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="lname">Last name</label>  
-                    <div class="col-md-4">
-                        <input id="laname" name="lname" placeholder="Last name" class="form-control input-md" required="" type="text">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="lname">Last name</label>  
+                <div class="col-md-4">
+                    <input id="laname" name="lname" placeholder="Last name" class="form-control input-md" required="" type="text">
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="username">Username</label>  
-                    <div class="col-md-4">
-                        <input id="username" name="username" placeholder="Username" class="form-control input-md" required="" type="text">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="username">Username</label>  
+                <div class="col-md-4">
+                    <input id="username" name="username" placeholder="Username" class="form-control input-md" required="" type="text">
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="pwd">Password</label>
-                    <div class="col-md-4">
-                        <input id="pwd" name="pwd" placeholder="Password" class="form-control input-md" required="" type="password">
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pwd">Password</label>
+                <div class="col-md-4">
+                    <input id="pwd" name="pwd" placeholder="Password" class="form-control input-md" required="" type="password">
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="email">Email</label>  
-                    <div class="col-md-4">
-                        <input id="email" name="email" placeholder="Email" class="form-control input-md" required="" type="text">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="email">Email</label>  
+                <div class="col-md-4">
+                    <input id="email" name="email" placeholder="Email" class="form-control input-md" required="" type="text">
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="phone_no">Phone number</label>  
-                    <div class="col-md-4">
-                        <input id="phone_no" name="phone_no" placeholder="Phone number" class="form-control input-md" required="" type="text">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="phone_no">Phone number</label>  
+                <div class="col-md-4">
+                    <input id="phone_no" name="phone_no" placeholder="Phone number" class="form-control input-md" required="" type="text">
 
-                    </div>
                 </div>
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for=""></label>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </div>
+            </div>
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for=""></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </div>
-            </fieldset>
-        </form>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+            </div>
+        </fieldset>
+    </form>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
 </html>

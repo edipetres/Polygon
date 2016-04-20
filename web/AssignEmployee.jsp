@@ -4,6 +4,7 @@
     Author     : Minerva
 --%>
 
+<%@page import="Domain.UserPrefs"%>
 <%@page import="Domain.Employee"%>
 <%@page import="Domain.CheckupReport"%>
 <%@page import="java.util.List"%>
@@ -39,8 +40,17 @@
         <![endif]-->
     </head>
     <body>
-
-        <mytags:navbar/>
+        <%
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            if (userPrefs != null) {
+                request.setAttribute("username", userPrefs.getUsername());
+                request.setAttribute("accessLevel", userPrefs.getAccessLevel());
+            }
+        %>  
+    <c:if test="${username == null}">
+        <jsp:forward page="Login.jsp?login=true" />
+    </c:if>
+    <mytags:navbar/>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">

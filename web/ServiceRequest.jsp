@@ -32,14 +32,16 @@
         <%
             DomainFacade domainModel = DomainFacade.getInstance();
             ArrayList<ServiceList> serviceList = domainModel.getAllServices();
+            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
             request.setAttribute("serviceList", serviceList);
 
             int buildingID = 0;
+            //Check if we received a buildingID parameter (then the request comes from a specific building)
+            //or we have to show a dropdown list to choose one of their building
             if (request.getParameter("buildingID") != null) {
                 buildingID = Integer.parseInt(request.getParameter("buildingID"));
             }
-
-            UserPrefs userPrefs = (UserPrefs) session.getAttribute("UserPrefs");
+            
             if (userPrefs != null) {
                 request.setAttribute("username", userPrefs.getUsername());
                 request.setAttribute("accessLevel", userPrefs.getAccessLevel());
