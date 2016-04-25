@@ -18,17 +18,25 @@ import java.util.List;
  * @author Minerva
  */
 public class EmployeeMapper {
+    
+    // Returns a list of all employees
     public List<Employee> viewAllEmployees(Connection con){
         ArrayList<Employee> employees = new ArrayList<>();
         String sql = "SELECT * FROM Employee";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                    // Create employee object
                     Employee e = new Employee(
                     rs.getString("fname"),
                     rs.getString("lname"),
-                    rs.getInt("emp_id")
+                    rs.getInt("emp_id"),
+                    rs.getString("username"),
+                    rs.getString("pwd"),
+                    rs.getString("email"),
+                    rs.getString("phone_no")
                     );
+                    // Add employee to list
                     employees.add(e);
                 }
             
@@ -40,6 +48,8 @@ public class EmployeeMapper {
         }
         
     }
+    
+    // Creates a new employee in the database
     public boolean createEmployee(Employee e, Connection con) throws SQLException{
     boolean result = false;
         String sql = "INSERT INTO Employee (fname, lname, username, pwd, email, phone_no) VALUES (?,?,?,?,?,?)";

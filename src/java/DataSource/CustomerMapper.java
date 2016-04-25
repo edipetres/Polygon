@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class CustomerMapper {
     
+    // Creates a new customer in the database
     public boolean createCustomer(Customer c, Connection con) throws SQLException{
     boolean result = false;
         String sql = "INSERT INTO Customer (company_name, fname, lname, username, pwd, email, phone_no) VALUES (?,?,?,?,?,?,?)";
@@ -43,13 +44,17 @@ public class CustomerMapper {
         }
         return result;
     }
+    
+    // Shows a list of all customers.
     public List<Customer> viewAllCustomers(Connection con){
         ArrayList<Customer> customers = new ArrayList<>();
         String sql = "SELECT * FROM Customer";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                    // Create customer object
                     Customer c = new Customer(
+                    rs.getInt("customer_id"),
                     rs.getString("company_name"),
                     rs.getString("fname"),
                     rs.getString("lname"),
@@ -58,6 +63,7 @@ public class CustomerMapper {
                     rs.getString("email"),
                     rs.getString("phone_no")
                     );
+                    // Add customer to list
                     customers.add(c);
                 }
             

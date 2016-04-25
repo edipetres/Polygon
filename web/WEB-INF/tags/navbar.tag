@@ -60,33 +60,32 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Customers <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Users<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="UserServlet?command=showCustomers"><span class="glyphicon glyphicon-th-list"></span>  All customers</a></li>
                                 <li><a href="AddCustomer.jsp"><span class="glyphicon glyphicon-plus"></span> Add new customer</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Employees <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="UserServlet?command=showCustomers"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
+                                
+                                <li><a href="ViewEmployees.jsp"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
                                 <li><a href="AddEmployee.jsp"><span class="glyphicon glyphicon-plus"></span> Add new employee</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
                             </ul>
                         </li>
                         <li class="nav-divider"></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> Services<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-fire"></span> Damage Reports<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="ShowServiceRequests.jsp"><span class="glyphicon glyphicon-th-list"></span> Service Requests</a></li>
-                                <li><a href="ServiceRequest.jsp"><span class="glyphicon glyphicon-plus"></span> Request new Service</a></li>
+                                <li><a href="ShowServiceRequests.jsp"><span class="glyphicon glyphicon-th-list"></span> Damage Reports</a></li>
+                                <li><a href="ServiceRequest.jsp"><span class="glyphicon glyphicon-plus"></span> Report Damage</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="UserServlet?command=showCheckupReports"><span class="glyphicon glyphicon-th-list"></span> CheckUp Reports</a></li>
-                                <li><a href="AssignEmployee.jsp"><span class="glyphicon glyphicon-th-list"></span> Assign jobs</a></li>
-                                <li><a href="MyJobs.jsp"><span class="glyphicon glyphicon-th-list"></span> My Jobs</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-heart"></span> Health CheckUps<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="UserServlet?command=showCheckupReports"><span class="glyphicon glyphicon-sort-by-attributes"></span> CheckUp Reports</a></li>
+                                <li><a href="AssignEmployee.jsp"><span class="glyphicon glyphicon-arrow-right"></span> Assign jobs</a></li>
+                                <li><a href="MyJobs.jsp"><span class="glyphicon glyphicon-tasks"></span> My Jobs</a></li>
                             </ul>
                         </li>
                     </c:when>
@@ -114,7 +113,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Employees <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="UserServlet?command=showCustomers"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
+                                <li><a href="ViewEmployees.jsp"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
                                 <li><a href="AddEmployee.jsp"><span class="glyphicon glyphicon-plus"></span> Add new employee</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Separated link</a></li>

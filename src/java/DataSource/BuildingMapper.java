@@ -41,6 +41,7 @@ public class BuildingMapper {
 //        }
 //    }
 
+    // Creates a new building to the database
     public boolean addBuilding(Connection con, Building building) {
         boolean result = false;
         String sqlString = "INSERT INTO Building (building_id,name,street,zip,size,year,buildingUse,condition_level,customer_id) "
@@ -66,8 +67,9 @@ public class BuildingMapper {
         }
         return result;
     }
-    
-        public boolean addRoom(Connection con, int b_id, int size) {
+
+    // Creates a new room in the database for chosen building
+    public boolean addRoom(Connection con, int b_id, int size) {
         boolean result = false;
         String sqlString = "INSERT INTO Room (building_id,size) "
                 + "VALUES (?,?);";
@@ -85,7 +87,8 @@ public class BuildingMapper {
         }
         return result;
     }
-
+    
+    // Returns a list of all buildings
     public List<Building> getBuildings(Connection con) {
         ArrayList<Building> buildings = new ArrayList<>();
         String sql = "select * from Building "
@@ -112,7 +115,8 @@ public class BuildingMapper {
         }
         return buildings;
     }
-
+    
+    // Returns an individual building
     public Building getBuilding(Connection con, int building_id) {
         Building building = null;
         String sql = "select * from Building where building_id=?";
@@ -139,6 +143,7 @@ public class BuildingMapper {
         return building;
     }
 
+    // Saves changes made for building in database
     boolean saveBuildingEdits(Connection con, Building tempBuilding) {
         boolean result = false;
         String sqlString = "UPDATE Building "
@@ -170,6 +175,7 @@ public class BuildingMapper {
         return result;
     }
 
+    // Returns a list of all cities with their zip codes
     public ArrayList<CityList> getCityList(Connection con) {
         ArrayList<CityList> cityList = new ArrayList();
         String sqlString = "select * from City";
@@ -189,6 +195,7 @@ public class BuildingMapper {
         return cityList;
     }
 
+    // Returns a list of buildings for a single customer
     List<Building> getMyBuildings(Connection con, int customerID) {
         ArrayList<Building> myBuildings = new ArrayList<>();
         String sql = "select * from Building where customer_id=?";

@@ -7,15 +7,12 @@ package Presentation;
 
 import Domain.Building;
 import Domain.CheckupReport;
-
 import Domain.Customer;
-
 import Domain.DomainFacade;
 import Domain.Employee;
 import Domain.ServiceRequest;
 import Domain.UserPrefs;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -202,6 +199,7 @@ public class UserServlet extends HttpServlet {
         return result;
     }
 
+    // Sends customer object to DomainFacade
     private void createCustomer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException, SQLException {
         String company_name = request.getParameter("company_name");
         String fname = request.getParameter("fname");
@@ -212,7 +210,6 @@ public class UserServlet extends HttpServlet {
         String phone_no = request.getParameter("phone_no");
 
         Customer customer = new Customer(company_name, fname, lname, username, pwd, email, phone_no);
-        System.out.println(customer.getCompany_name());
         boolean result = domainModel.createCustomer(customer);
         request.setAttribute("Message", "Building added: " + result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddBuilding.jsp");
@@ -313,7 +310,7 @@ public class UserServlet extends HttpServlet {
         CheckupReport report = new CheckupReport(creport_id, condition_level, comments, roof, walls_outside, damaged, damage_when, damage_where, damage_what, damage_repaired, walls, ceiling, floor, windows_doors, moisture_scanning, moisture_measure);
         domainModel.updateCheckupReport(report);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp"); //wanted to redirect to Reports.jsp but wont work 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reports.jsp");
         dispatcher.forward(request, response);
     }
 

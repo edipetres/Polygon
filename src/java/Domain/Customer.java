@@ -10,22 +10,33 @@ package Domain;
  * @author Minerva
  */
 public class Customer {
-    int customer_id;
-    String company_name;
-    String fname;
-    String lname;
-    String username;
-    String pwd;
-    String email;
-    String phone_no;
+    private int customer_id;
+    private String company_name;
+    private String fname;
+    private String lname;
+    private String username;
+    private String pwd;
+    private String email;
+    private String phone_no;
 
+    // Constructors
     public Customer(String company_name, String fname, String lname) {
         this.company_name = company_name;
         this.fname = fname;
         this.lname = lname;
     }
 
-    public Customer(String company_name, String fname, String lname, String username, String pwd, String email, String phone_no) {
+    public Customer(int customer_id,String company_name, String fname, String lname, String username, String pwd, String email, String phone_no) {
+        this.customer_id = customer_id;
+        this.company_name = company_name;
+        this.fname = fname;
+        this.lname = lname;
+        this.username = username;
+        this.pwd = pwd;
+        this.email = email;
+        this.phone_no = phone_no;
+    }
+        public Customer(String company_name, String fname, String lname, String username, String pwd, String email, String phone_no) {
         this.company_name = company_name;
         this.fname = fname;
         this.lname = lname;
@@ -35,6 +46,7 @@ public class Customer {
         this.phone_no = phone_no;
     }
 
+    // Getters
     public int getCustomer_id() {
         return customer_id;
     }
