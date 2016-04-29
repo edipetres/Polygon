@@ -65,7 +65,7 @@
                         <fieldset>
 
                             <!-- Form Name -->
-                            <legend>Request a service</legend>
+                            <legend>Report a damage</legend>
                             <input type="hidden" name="command" value="serviceRequest">
                             <input type="hidden" name="customerID" value="${customerID}">
                             <c:if test="${buildingID != 0}">

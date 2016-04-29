@@ -120,4 +120,7 @@ public class DomainFacade {
     public List<CheckupReport> getMyReports(int employeeID) {
         return dbf.getMyReports(employeeID);
     }
+    public String getServiceName(int id) {
+        return dbf.getServiceName(id);
+    } 
 }

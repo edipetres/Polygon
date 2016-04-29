@@ -41,7 +41,7 @@ public class BuildingMapper {
 //        }
 //    }
 
-    // Creates a new building to the database
+    // Creates a new building in the database
     public boolean addBuilding(Connection con, Building building) {
         boolean result = false;
         String sqlString = "INSERT INTO Building (building_id,name,street,zip,size,year,buildingUse,condition_level,customer_id) "

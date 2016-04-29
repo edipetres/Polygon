@@ -24,6 +24,7 @@ public class UserPrefs {
     private int phoneNo;
     private String companyName;
     
+    //Constructor for customer access with company name
     public UserPrefs(int accessLevel, int userID, String fname, String lname, String username, String email, int phoneNo, String companyName) {
         this.accessLevel = accessLevel;
         this.userID = userID;
@@ -35,6 +36,7 @@ public class UserPrefs {
         this.companyName = companyName;
     }
     
+    //Constructor for employee access
     public UserPrefs(int accessLevel, int userID, String fname, String lname, String username, String email, int phoneNo) {
         this.accessLevel = accessLevel;
         this.userID = userID;

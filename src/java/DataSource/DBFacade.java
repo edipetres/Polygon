@@ -145,4 +145,7 @@ public class DBFacade {
     public List<CheckupReport> getMyReports(int employeeID) {
         return creportmap.getMyReports(employeeID, con);
     }
+    public String getServiceName(int id) {
+        return serviceMapper.getServiceName(con, id);
+    }
 }

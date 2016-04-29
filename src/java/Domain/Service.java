@@ -15,8 +15,6 @@ public class Service {
     private int employee_id;
     private String requestDate;
     private String checkDate;
-
-    
     private int service_id;
     private String description;
     private String reportStatus;

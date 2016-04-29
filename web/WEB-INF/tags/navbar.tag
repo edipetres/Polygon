@@ -10,6 +10,8 @@
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="message"%>
 <%@attribute name="username"%>
+<%@attribute name="fullname"%>
+
 <%@attribute name="userPrefs"%>
 <%@attribute name="accessLevel"%>
 
@@ -35,8 +37,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="MyBuildings.jsp"><span class="glyphicon glyphicon-th-list"></span>  My buildings</a></li>
                                 <li><a href="AddBuilding.jsp"><span class="glyphicon glyphicon-plus"></span> Add new building</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                
                             </ul>
                         </li>
                         <li class="nav-divider"></li>
@@ -76,14 +77,13 @@
                             <ul class="dropdown-menu">
                                 <li><a href="ShowServiceRequests.jsp"><span class="glyphicon glyphicon-th-list"></span> Damage Reports</a></li>
                                 <li><a href="ServiceRequest.jsp"><span class="glyphicon glyphicon-plus"></span> Report Damage</a></li>
-                                <li role="separator" class="divider"></li>
-                                
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-heart"></span> Health CheckUps<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="UserServlet?command=showCheckupReports"><span class="glyphicon glyphicon-sort-by-attributes"></span> CheckUp Reports</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="AssignEmployee.jsp"><span class="glyphicon glyphicon-arrow-right"></span> Assign jobs</a></li>
                                 <li><a href="MyJobs.jsp"><span class="glyphicon glyphicon-tasks"></span> My Jobs</a></li>
                             </ul>
@@ -157,7 +157,9 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a href="#">${fullname}</a></li>
                                 <li><a href="MyAccount.jsp"><b>My Account</b></a></li>
+                                
                                 <li><a href="Authenticate?command=logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                             </ul>
                         </li>

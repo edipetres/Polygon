@@ -129,6 +129,23 @@ public class ServiceMapper {
         }
         return service;
     }
+        String getServiceName(Connection con, int service_id) {
+        String service = null;
+        String sqlString = "select * from Services where service_id='"+service_id+"'";
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                service = rs.getString("service_name");
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return service;
+    }
     
     boolean takeServiceRequest(Connection con,int srequest_id,int employee_id) {
         boolean result = false;

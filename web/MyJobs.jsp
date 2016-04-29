@@ -50,7 +50,7 @@
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">CheckUp requests</h3>
+                        <h3 class="panel-title">My CheckUp requests to do</h3>
                     </div>
                     <c:choose>
                         <c:when test="${myReports != null}">
@@ -67,7 +67,7 @@
                                 <c:forEach var="report" items="${myReports}">
                                     <tr>
                                         <td><c:out value="${report.getCreport_id()}"/></td>
-                                        <td><c:out value="${report.getCustomer().getCompany_name()}"/></td>
+                                        <td><c:out value="${report.getCustomer().getFname()}"/> <c:out value="${report.getCustomer().getLname()}"/></td>
                                         <td><c:out value="${report.getEmployee().getFname()}"/> <c:out value="${report.getEmployee().getLname()}"/></td>
                                         <td><c:out value="${report.getBuilding().getStreet()}"/> <br> <c:out value="${report.getBuilding().getZip()}"/> <c:out value="${report.getBuilding().getCity()}"/></td>
                                         <td><a href="UserServlet?command=selectReport&reportid=${report.getCreport_id()}">Fill out report</a></td>

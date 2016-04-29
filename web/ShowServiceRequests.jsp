@@ -47,23 +47,35 @@
         </c:if>
         <mytags:navbar/>
         <div class="container">
-            <h1>Pending Service Requests</h1>
+            <h1>Damages reported</h1>
             ${takeServiceMessage}
             ${nothingToShowMessage}
-            <div class="col-sm-5">
-                <c:forEach var="service" items="${serviceRequests}" >
-                    <div class="panel panel-info">
-                        <div class="panel-heading"><c:out value="${service.getRequestDate()}"/></div>
-                        <div class="panel-body">
-                            <b> <c:out value="${service.getBuilding_id()}"/> <c:out value="${service.getReportStatus()}"/></b> <br>
-                            <span class="glyphicon glyphicon-envelope"></span> <c:out value="${service.getDescription()}"/> <br>
-                            <span class="glyphicon glyphicon-earphone"></span> <c:out value="${service.getReportStatus()}"/><br>
-                            <span class="glyphicon glyphicon-earphone"></span> id:<c:out value="${service.getSrequest_id()}"/><br>
-                            <a href="UserServlet?command=takeServiceRequest&srequest_id=${service.getSrequest_id()}">Take this job</a>
-
-                        </div>
-                    </div><!-- single customer info end-->
-                </c:forEach> 
+            <div class="col-sm-8">
+                <table class="table">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Building ID</th>
+                            <th>Service ID</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Take Job</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="service" items="${serviceRequests}">
+                        <tr>
+                            <th scope="row"><c:out value="${service.getBuilding_id()}"/></th>
+                            <td><c:out value="${service.getService_id()}"/></td>
+                            <td><c:out value="${service.getRequestDate()}"/></td>
+                            <td><c:out value="${service.getDescription()}"/></td>
+                            
+                            <td><a href="UserServlet?command=takeServiceRequest&srequest_id=${service.getSrequest_id()}">Take this job</a></td>
+                        </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                    
             </div>
         </div>
 
