@@ -22,6 +22,11 @@ Author     : Minerva
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!--custom css-->
         <link href="css/styles.css" rel="stylesheet">
+        <script src="js/bootstrap.min.js"></script>
+        <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
+        <script src="js/fileinput.min.js" type="text/javascript"></script>
 
     </head>
     <body>
@@ -48,6 +53,7 @@ Author     : Minerva
                         Address: <%= report.getBuilding().getStreet()%>
                         <br>
                         Postnr./City: <%= report.getBuilding().getZip()%>
+                        
                     </p>
                 </div>    
                 <div class="col-sm-4"></div>
@@ -66,11 +72,38 @@ Author     : Minerva
                 </div>
             </div>
             <!-- image of building-->
+            <fieldset>
+            <legend>Upload Building Images</legend>
             <div class="row">
-                <div class="col-sm-12 image-holder">
-                    (Insert image of building here)
+                <div class="col-sm-12">
+                    <form method="post" action="uploadFile" encType="multipart/form-data">
+                        
+                        <input type="hidden" name="b_id" value="Report <%= report.getBuilding().getName()%>"/>
+                        
+                        <div class="row">
+                            <div class="form-group">
+                                <input id="input-700" name="kartik-input-700[]" type="file" multiple class="file-loading">
+                                <script>
+                                    $("#input-700").fileinput({
+                                        showUpload: false,
+                                        uploadAsync: true,
+                                        maxFileCount: 5,
+                                        allowedFileExtensions: ['png', 'img', 'gif', 'jpeg', 'jpg']
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group" >
+                                
+                                    <button style="float: right;" type="submit" class="btn btn-info">Upload</button>
+                                
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            </fieldset>
             <!--content of report-->
             <form role="form" action="UserServlet" method="post">
                 <input type="hidden" name="command" value="updateCheckupReport">
@@ -164,12 +197,12 @@ Author     : Minerva
                             <label><input type="checkbox" name="moisture_scanning" value="no"> No</label>
                         </div>
                         <div id="moisture_delivery" style="display:none;">
-                        <div class="form-group row">
-                            <label for="moisture_measure" class="col-sm-2 form-control-label">Measuring point:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="moisture_measure" class="form-control">
+                            <div class="form-group row">
+                                <label for="moisture_measure" class="col-sm-2 form-control-label">Measuring point:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="moisture_measure" class="form-control">
+                                </div>
                             </div>
-                        </div>
                         </div>
 
                         <h4>Conclusion</h4>
@@ -288,7 +321,7 @@ Author     : Minerva
                     delivery_div.style['display'] = 'none';
                 }
             };
-            
+
             moisture_checkbox.onclick = function () {
                 console.log(this);
                 if (this.checked) {

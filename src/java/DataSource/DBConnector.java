@@ -10,8 +10,8 @@ public class DBConnector
 
     private static String driver = "com.mysql.jdbc.Driver";
     private static String URL = "jdbc:mysql://localhost:3306/Polygon";
-    private static String id = "root";			
-    private static String pw = "";
+    private static String id = "Zygimantas";			
+    private static String pw = "Parkuras1996";
     
     private Connection con;
 
