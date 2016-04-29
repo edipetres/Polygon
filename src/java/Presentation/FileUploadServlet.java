@@ -30,8 +30,9 @@ public class FileUploadServlet extends HttpServlet {
     private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
+    // Set location where the images will be stored
         private static final String UPLOAD_PATH 
-            = "C:\\Users\\przyg\\Desktop\\PolygonFinal\\build\\web\\BIMG\\";
+            = "/Users/edipetres/NetBeansProjects/Polygon2.0/build/web/BuildingImages/"; 
 
     /**
      * Upon receiving file upload submission, parses the request to read upload

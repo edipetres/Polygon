@@ -116,6 +116,7 @@
                                 <input id="input-700" name="kartik-input-700[]" type="file" multiple class="file-loading">
                                 <script>
                                     $("#input-700").fileinput({
+                                        uploadUrl: "c:/temp",
                                         showUpload: false,
                                         uploadAsync: true,
                                         maxFileCount: 5,

@@ -36,8 +36,9 @@ public class ImagePreview extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private List imageUrlList = new ArrayList();
+    // Location where the pictures will be received from. (It is the same location as in the Upload Servlet in most cases)
     private static final String UPLOAD_PATH 
-            = "C:\\Users\\przyg\\Desktop\\PolygonFinal\\build\\web\\BIMG\\";
+    = "/Users/edipetres/NetBeansProjects/Polygon2.0/build/web/BuildingImages/";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String b_id = request.getParameter("b_id");
@@ -46,7 +47,7 @@ public class ImagePreview extends HttpServlet {
             File f = new File(UPLOAD_PATH + b_id);
 
             for (File imageFile : f.listFiles()) {
-                String imageFileName = "BIMG" + "/" + b_id + "/" + imageFile.getName();
+                String imageFileName = "BuildingImages" + "/" +  b_id + "/" + imageFile.getName();
 
                 // add this images name to the list we are building up
                 imageUrlList.add(imageFileName);
