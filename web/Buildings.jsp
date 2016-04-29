@@ -18,12 +18,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>All Buildings</title>
+
         <link rel="icon" href="images/polygon_icon.png">
+        <link rel="icon" href="http://example.com/favicon.png">
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <!-- Custom css -->
         <link href="css/styles.css" rel="stylesheet">
-
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/galleria-1.4.2.min.js"></script>
     </head>
     <body>
         <%
@@ -84,6 +88,7 @@
                                     <th>Year</th>
                                     <th>CheckUp</th>
                                     <th>Edit</th>
+                                    <th>Images</th>
                                 </tr>
                             </thead>
                             <c:forEach var="building" items="${buildings}" >
@@ -99,18 +104,63 @@
                                     <td>n/a</td>
                                     <td><a class="btn btn-default btn-xs" href="UserServlet?command=requestCheckup&building_id=${building.getBuildingID()}">Request CheckUp</a></td>
                                     <td><a class="btn btn-default btn-xs" href="UserServlet?command=editBuilding&building_id=${building.getBuildingID()}">Edit</a></td>
+
+                                    <!-- Button trigger modal -->
+                                    <td><button  class="btn btn-default btn-xs imageview" data-toggle="modal" data-target="#myModal" value="${building.getBuildingID()}">
+                                            View
+                                        </button></td>
+
+
+
+
                                 </tr>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
+
                 ${message}
                 ${SaveSuccessMessage}
+
+            </div>
+            <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button id="reload" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Building Images</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <center>
+
+
+
+                                <div id="imgas"></div>
+
+
+
+                            </center>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
+        <script>
+
+            $(".imageview").click(function () {
+                var id = $(this).attr("value");
+                $("#imgas").load("SlideShow.jsp?id=" + id);
+            });
+
+
+
+        </script>
+        <script>
+            $("#reload").click(function () {
+                location.reload();
+            });
+        </script>
     </body>
 </html>
