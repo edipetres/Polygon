@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/styles.css" rel="stylesheet">
-        <title>Service Requests</title>
+        <title>Reported Damages</title>
         <link rel="icon" href="images/polygon_icon.png">
         <%-- Java scrips for bootstrap here --%>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -47,35 +47,36 @@
         </c:if>
         <mytags:navbar/>
         <div class="container">
-            <h1>Damages reported</h1>
-            ${takeServiceMessage}
-            ${nothingToShowMessage}
+
             <div class="col-sm-8">
+                <h2>Reported damages</h2>
+                ${takeServiceMessage}
+                ${nothingToShowMessage}
                 <table class="table">
-                    <thead class="thead-inverse">
+                    <thead>
                         <tr>
                             <th>Building ID</th>
                             <th>Service ID</th>
                             <th>Date</th>
                             <th>Description</th>
                             <th>Take Job</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="service" items="${serviceRequests}">
-                        <tr>
-                            <th scope="row"><c:out value="${service.getBuilding_id()}"/></th>
-                            <td><c:out value="${service.getService_id()}"/></td>
-                            <td><c:out value="${service.getRequestDate()}"/></td>
-                            <td><c:out value="${service.getDescription()}"/></td>
-                            
-                            <td><a href="UserServlet?command=takeServiceRequest&srequest_id=${service.getSrequest_id()}">Take this job</a></td>
-                        </tr>
+                            <tr>
+                                <th scope="row"><c:out value="${service.getBuilding_id()}"/></th>
+                                <td><c:out value="${service.getService_id()}"/></td>
+                                <td><c:out value="${service.getRequestDate()}"/></td>
+                                <td><c:out value="${service.getDescription()}"/></td>
+
+                                <td><a href="UserServlet?command=takeServiceRequest&srequest_id=${service.getSrequest_id()}">Take this job</a></td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-                    
+
             </div>
         </div>
 

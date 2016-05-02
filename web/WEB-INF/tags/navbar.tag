@@ -115,8 +115,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="ViewEmployees.jsp"><span class="glyphicon glyphicon-th-list"></span>  All employees</a></li>
                                 <li><a href="AddEmployee.jsp"><span class="glyphicon glyphicon-plus"></span> Add new employee</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
                             </ul>
                         </li>
                         <li class="nav-divider"></li>
@@ -157,9 +155,7 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">${fullname}</a></li>
                                 <li><a href="MyAccount.jsp"><b>My Account</b></a></li>
-                                
                                 <li><a href="Authenticate?command=logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                             </ul>
                         </li>

@@ -114,6 +114,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void saveBuildingEdits(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        //Receive relevant parameters
         String b_name, street;
         int zip, size, condition_level, parcel_no, buildingID;
         buildingID = Integer.parseInt(request.getParameter("building_id"));

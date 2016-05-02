@@ -29,82 +29,86 @@
                 request.setAttribute("accessLevel", userPrefs.getAccessLevel());
             }
         %>  
-    <c:if test="${username == null}">
-        <jsp:forward page="Login.jsp?login=true" />
-    </c:if>
-    <mytags:navbar/>
-    <form class="form-horizontal" action="UserServlet" method="post">
-        <fieldset>
+        <c:if test="${username == null}">
+            <jsp:forward page="Login.jsp?login=true" />
+        </c:if>
+        <mytags:navbar/>
+        <div class="container">
+            <div class="col-lg-12">
+                <form class="form-horizontal" action="UserServlet" method="post">
+                    <fieldset>
 
-            <!-- Form Name -->
-            <legend>Add employee</legend>
+                        <!-- Form Name -->
+                        <legend>Add new employee</legend>
 
-            <input type="hidden" name="command" value="addEmployee"/>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="fname">First name</label>  
-                <div class="col-md-4">
-                    <input id="textinput" name="fname" placeholder="First name" class="form-control input-md" required="" type="text">
+                        <input type="hidden" name="command" value="addEmployee"/>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="fname">First name</label>  
+                            <div class="col-md-4">
+                                <input id="textinput" name="fname" placeholder="First name" class="form-control input-md" required="" type="text">
 
-                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="lname">Last name</label>  
+                            <div class="col-md-4">
+                                <input id="laname" name="lname" placeholder="Last name" class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="username">Username</label>  
+                            <div class="col-md-4">
+                                <input id="username" name="username" placeholder="Username" class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="pwd">Password</label>
+                            <div class="col-md-4">
+                                <input id="pwd" name="pwd" placeholder="Password" class="form-control input-md" required="" type="password">
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email</label>  
+                            <div class="col-md-4">
+                                <input id="email" name="email" placeholder="Email" class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="phone_no">Phone number</label>  
+                            <div class="col-md-4">
+                                <input id="phone_no" name="phone_no" placeholder="Phone number" class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="lname">Last name</label>  
-                <div class="col-md-4">
-                    <input id="laname" name="lname" placeholder="Last name" class="form-control input-md" required="" type="text">
-
-                </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="username">Username</label>  
-                <div class="col-md-4">
-                    <input id="username" name="username" placeholder="Username" class="form-control input-md" required="" type="text">
-
-                </div>
-            </div>
-
-            <!-- Password input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="pwd">Password</label>
-                <div class="col-md-4">
-                    <input id="pwd" name="pwd" placeholder="Password" class="form-control input-md" required="" type="password">
-
-                </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="email">Email</label>  
-                <div class="col-md-4">
-                    <input id="email" name="email" placeholder="Email" class="form-control input-md" required="" type="text">
-
-                </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="phone_no">Phone number</label>  
-                <div class="col-md-4">
-                    <input id="phone_no" name="phone_no" placeholder="Phone number" class="form-control input-md" required="" type="text">
-
-                </div>
-            </div>
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-</body>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>

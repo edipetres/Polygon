@@ -52,8 +52,9 @@
     </c:if>
     <mytags:navbar/>
         <div class="container">
+            <h2>Assign jobs to employees</h2>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">CheckUp requests</h3>
@@ -64,7 +65,7 @@
                                     <th>ID</th> 
                                     <th>Customer</th> 
                                     <th>Address</th>
-                                    <th>Perform</th>
+                                    <th>Assign Employee</th>
                                 </tr>
                             </thread>
                             <c:forEach var="request" items="${reports}">
@@ -82,7 +83,7 @@
                                             </select> 
                                             <input type="hidden" name="command" value="assignEmployee"/>
                                             <input type="hidden" name="reportid" value="${request.getCreport_id()}"/>
-                                            <button type="submit" class="btn btn-default">Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-xs">Assign</button>
                                         </form>
                                     </td>
                                 </tr>

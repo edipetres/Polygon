@@ -37,5 +37,12 @@ public class BuildingMapperTester {
         List<Building> allBuildings = buildingMapper.getBuildings(con);
         assertTrue(!allBuildings.isEmpty());
     }
+    @Test
+    public void getBuildingsByID() {
+        final Connection con = (Connection) DBConnector.getInstance().getConnection();
+        BuildingMapper buildingMapper = new BuildingMapper();
+        List<Building> myBuildings =  buildingMapper.getMyBuildings(con, 1);
+        assertTrue(!myBuildings.isEmpty());
+    }
     
 }

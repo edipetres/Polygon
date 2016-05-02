@@ -134,10 +134,6 @@
                         </div>
                     </form>
                 </fieldset>
-
-
-
-
             </div>
             <div class="col-sm-3">
                 <img class="pull-left" src="images/building.gif" width="400" height="300" alt="building"/>

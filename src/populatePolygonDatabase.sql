@@ -1,5 +1,4 @@
-
-INSERT INTO Customer(company_name,fname,lname,username,pwd,email,phone_no) VALUES ('Microsoft','Robert','Gosh','robgosh','pwd123','robgosh@gmail.com',91805532);
+INSERT INTO Customer(company_name,fname,lname,username,pwd,email,phone_no) VALUES ('Microsoft','Robert','George','robg','pwd123','robg@gmail.com',91805532);
 INSERT INTO Customer(company_name,fname,lname,username,pwd,email,phone_no) VALUES ('Kobenhavn Kommune','Stacy','Brown','sbrown','stacy12','stacy@gmail.com',91854332);
 insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Bubblemix', 'Jack', 'Frazier', 'jfrazier0', 'wVuIQqRs7', 'jfrazier0@t.co', '62-(373)521-9030');
 insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Topiczoom', 'Kenneth', 'Fernandez', 'kfernandez1', 'XcDzAnlTFkO', 'kfernandez1@sourceforge.net', '27-(105)655-7291');
@@ -74,33 +73,6 @@ insert into Customer (company_name, fname, lname, username, pwd, email, phone_no
 insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Riffwire', 'Tina', 'Stewart', 'tstewart1y', 'K4q5IWxv69l', 'tstewart1y@go.com', '598-(689)275-4594');
 insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Einti', 'Dorothy', 'Pierce', 'dpierce1z', '2kCsHZevEkm', 'dpierce1z@mashable.com', '352-(156)384-1676');
 insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Teklist', 'Robert', 'Green', 'rgreen20', 'dBrXNiCw3THu', 'rgreen20@godaddy.com', '356-(628)865-0994');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Photolist', 'Stephen', 'Jordan', 'sjordan21', '1vC2gvKQXK', 'sjordan21@merriam-webster.com', '86-(900)313-5188');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Eazzy', 'Jeffrey', 'Mason', 'jmason22', 'Zi2ddoSzy', 'jmason22@xinhuanet.com', '254-(581)827-8880');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Voonix', 'Emily', 'Martinez', 'emartinez23', 'mGhIljsAnPm', 'emartinez23@spotify.com', '46-(937)581-5593');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Chatterpoint', 'Charles', 'Mendoza', 'cmendoza24', 'uHcwgtR32x', 'cmendoza24@mtv.com', '60-(343)252-3707');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Einti', 'Betty', 'Jenkins', 'bjenkins25', 'H1rk5GEcXan', 'bjenkins25@ebay.com', '357-(200)371-7657');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Feedmix', 'Jesse', 'Cox', 'jcox26', 'Tm73oNKqYmY', 'jcox26@latimes.com', '86-(965)308-7262');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('InnoZ', 'Kathy', 'Shaw', 'kshaw27', 'JEUDsY', 'kshaw27@ebay.co.uk', '62-(561)948-2378');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Tavu', 'Edward', 'Wagner', 'ewagner28', 'iEcHVp9wkdcb', 'ewagner28@paginegialle.it', '504-(767)332-1710');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Avaveo', 'Kelly', 'Rice', 'krice29', 'NHz6xGJD8NY1', 'krice29@sitemeter.com', '86-(957)272-3671');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Shufflebeat', 'Joe', 'Wilson', 'jwilson2a', 'EgFgMDd74m', 'jwilson2a@mit.edu', '66-(666)378-1119');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Skipstorm', 'Lisa', 'Kim', 'lkim2b', 'gwopxs3uM9F8', 'lkim2b@wufoo.com', '57-(809)191-6221');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Realfire', 'Ruth', 'Meyer', 'rmeyer2c', 'ueOvxSHUE', 'rmeyer2c@bing.com', '62-(854)475-5500');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Buzzdog', 'Daniel', 'Fox', 'dfox2d', 'WWokyeGni', 'dfox2d@github.io', '86-(580)875-3502');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Twimm', 'Paula', 'Davis', 'pdavis2e', 'bUTsKfu3UBoh', 'pdavis2e@hugedomains.com', '82-(934)832-4816');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Trilith', 'Frances', 'Gardner', 'fgardner2f', 'bR7eTf55', 'fgardner2f@tuttocitta.it', '62-(494)505-9365');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Jabbertype', 'Shawn', 'Bradley', 'sbradley2g', 'MwNt6s4F0', 'sbradley2g@yale.edu', '62-(826)525-5368');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Brainlounge', 'Patricia', 'Jones', 'pjones2h', 'XV9SCS', 'pjones2h@netscape.com', '86-(579)121-5044');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Jabbersphere', 'Kimberly', 'Morgan', 'kmorgan2i', 'f7v4NeRAVM', 'kmorgan2i@cargocollective.com', '86-(167)318-3420');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Blogtags', 'Tina', 'Riley', 'triley2j', 'ypBWm2A7', 'triley2j@twitter.com', '54-(199)740-7636');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Yakitri', 'Theresa', 'Richards', 'trichards2k', '08TGvPF5HEd0', 'trichards2k@mozilla.com', '86-(348)607-3559');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Linktype', 'Jack', 'Bryant', 'jbryant2l', 'fNDHWn', 'jbryant2l@macromedia.com', '353-(193)433-4001');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Edgeclub', 'Thomas', 'Hernandez', 'thernandez2m', 'EmfKzskBn', 'thernandez2m@theguardian.com', '86-(250)360-8747');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Wikido', 'Alice', 'Stanley', 'astanley2n', '5p4Zyg', 'astanley2n@house.gov', '62-(489)293-1480');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Twitternation', 'Martha', 'Arnold', 'marnold2o', 'Dj9LUC', 'marnold2o@mozilla.org', '63-(245)963-4347');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Meevee', 'Charles', 'Reid', 'creid2p', '9KAysxIa7r5p', 'creid2p@yellowpages.com', '86-(814)880-9697');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Voomm', 'Kathleen', 'Owens', 'kowens2q', 'Ddu1paWKFi7J', 'kowens2q@yellowbook.com', '62-(246)310-7107');
-insert into Customer (company_name, fname, lname, username, pwd, email, phone_no) values ('Jaxnation', 'Patrick', 'Fields', 'pfields2r', 'BK9XbZ', 'pfields2r@weather.com', '36-(150)179-8943');
 
 
 INSERT INTO City VALUES(2800, 'Lyngby');
@@ -147,30 +119,6 @@ insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Bru
 insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Alice', 'Mitchell', 'amitchell3', 'VytR302', 'amitchell3@surveymonkey.com', '86-(689)223-7142');
 insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Victor', 'Bryant', 'vbryant4', 'IscPYOCtBC', 'vbryant4@cloudflare.com', '55-(261)599-2847');
 insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Adam', 'Lane', 'alane5', '2trGgLga', 'alane5@unc.edu', '387-(165)891-2646');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Amanda', 'Garza', 'agarza6', 'HsM72LxFdYkI', 'agarza6@dailymotion.com', '351-(717)796-9174');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Ernest', 'Williams', 'ewilliams7', 'ElUOFf', 'ewilliams7@nih.gov', '62-(216)602-4318');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Judy', 'Tucker', 'jtucker8', 'iTp5rhT0El', 'jtucker8@fotki.com', '351-(369)441-0868');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Virginia', 'Cruz', 'vcruz9', 'xydbdE3V0', 'vcruz9@ucoz.ru', '62-(664)430-5517');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Martin', 'Hayes', 'mhayesa', 'P4WQOM', 'mhayesa@github.io', '48-(732)894-2230');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Terry', 'Oliver', 'toliverb', 'CI5JF21S', 'toliverb@ustream.tv', '62-(306)109-8313');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Sharon', 'Mcdonald', 'smcdonaldc', 'eSpI3ngMPZke', 'smcdonaldc@arizona.edu', '82-(628)125-3431');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Joe', 'Adams', 'jadamsd', 'WJ05a6VALo', 'jadamsd@goodreads.com', '81-(432)743-6725');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Evelyn', 'Dixon', 'edixone', 'IqQrjfyjEM', 'edixone@ihg.com', '60-(235)202-6228');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Patrick', 'Wood', 'pwoodf', 'SlClxU', 'pwoodf@merriam-webster.com', '33-(835)809-8462');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Roger', 'Hanson', 'rhansong', '2LKasnlF4QY', 'rhansong@tiny.cc', '86-(204)851-1497');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Ruby', 'Brown', 'rbrownh', 's6N5muP', 'rbrownh@eepurl.com', '420-(465)535-5408');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Helen', 'Cole', 'hcolei', 'QBso2iYhOp', 'hcolei@g.co', '86-(241)498-9926');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Nicole', 'Russell', 'nrussellj', 'bEl6MXxobey', 'nrussellj@nature.com', '63-(346)747-5334');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Billy', 'Turner', 'bturnerk', 'XhogtI1', 'bturnerk@opensource.org', '31-(734)761-5129');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Christina', 'Oliver', 'coliverl', 'Lffr1MSG7ad', 'coliverl@nationalgeographic.com', '356-(531)566-0444');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Judith', 'Andrews', 'jandrewsm', 'OOUNYO', 'jandrewsm@auda.org.au', '355-(803)170-5280');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Sandra', 'Fuller', 'sfullern', 'Cqx2UqhdPyr', 'sfullern@nymag.com', '48-(470)696-3198');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Joshua', 'Torres', 'jtorreso', 'dnpR5Q0aVgi', 'jtorreso@google.fr', '370-(478)125-6145');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Phillip', 'Palmer', 'ppalmerp', '4OIAad', 'ppalmerp@bloglovin.com', '62-(219)106-8477');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Mildred', 'Bishop', 'mbishopq', 'tA9HpMseTP', 'mbishopq@mtv.com', '84-(390)565-0063');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Diane', 'Medina', 'dmedinar', 'ogAenm95', 'dmedinar@nps.gov', '972-(412)414-9059');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Nicole', 'Lee', 'nlees', '8xwLSRJYus', 'nlees@techcrunch.com', '98-(945)309-8010');
-insert into Employee (fname, lname, username, pwd, email, phone_no) values ('Nicole', 'Matthews', 'nmatthewst', 'sSASmQrJmg', 'nmatthewst@youtu.be', '30-(360)424-1623');
 
 
 INSERT INTO Building (name,street,zip,parcel_no,size,condition_level,customer_id) VALUES ('Norre Flat', 'Norreport',1400,1500,344,0,1);

@@ -111,10 +111,6 @@
                                 <td><button  class="btn btn-default btn-xs imageview" data-toggle="modal" data-target="#myModal" value="${building.getBuildingID()}">
                                         View
                                     </button></td>
-
-
-
-
                             </tr>
                         </c:forEach>
                     </table>
@@ -135,15 +131,8 @@
 
                     <div class="modal-body">
                         <center>
-
-
-
                             <div id="imgas"></div>
-
-
-
                         </center>
-
                     </div>
                 </div>
             </div>

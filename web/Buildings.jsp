@@ -88,7 +88,7 @@
                                     <th>Year</th>
                                     <th>CheckUp</th>
                                     <th>Edit</th>
-                                    <th>Images</th>
+                                    <th><span class="glyphicon glyphicon-picture"></span> Images</th>
                                 </tr>
                             </thead>
                             <c:forEach var="building" items="${buildings}" >
@@ -109,10 +109,6 @@
                                     <td><button  class="btn btn-default btn-xs imageview" data-toggle="modal" data-target="#myModal" value="${building.getBuildingID()}">
                                             View
                                         </button></td>
-
-
-
-
                                 </tr>
                             </c:forEach>
                         </table>
@@ -133,15 +129,8 @@
 
                         <div class="modal-body">
                             <center>
-
-
-
                                 <div id="imgas"></div>
-
-
-
                             </center>
-
                         </div>
                     </div>
                 </div>

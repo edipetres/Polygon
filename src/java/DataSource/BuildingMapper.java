@@ -7,7 +7,6 @@ package DataSource;
 
 import Domain.Building;
 import Domain.CityList;
-import Domain.ServiceList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -196,7 +195,7 @@ public class BuildingMapper {
     }
 
     // Returns a list of buildings for a single customer
-    List<Building> getMyBuildings(Connection con, int customerID) {
+    public List<Building> getMyBuildings(Connection con, int customerID) {
         ArrayList<Building> myBuildings = new ArrayList<>();
         String sql = "select * from Building where customer_id=?";
         try (PreparedStatement statement = con.prepareStatement(sql)) {

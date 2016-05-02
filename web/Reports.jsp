@@ -60,9 +60,9 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Reports waiting to be filled in</h3>
+                            <h3 class="panel-title">Reports waiting to be filled out</h3>
                         </div>
-                    <table class="table table-bordered"  width="100%">
+                        <table class="table table-bordered"  width="100%">
                             <thread>
                                 <tr>
                                     <th>ID</th> 
@@ -117,11 +117,32 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <c:if test="${errorMessage != null}">
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Warning!</strong> ${errorMessage}
+                        </div>
+                    </c:if>
+                    <c:if test="${savedRequest == true}">
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Request has been saved.
+                        </div>
+                    </c:if>
+                    <c:if test="${savedRequest == false}">
+                        <div class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> Your request failed to save.
+                        </div>
+                    </c:if>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 </div>
-${errorMessage}
-${savedRequest}
+
 </body>
 </html>
